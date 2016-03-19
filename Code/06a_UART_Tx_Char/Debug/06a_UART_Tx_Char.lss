@@ -1,0 +1,314 @@
+
+06a_UART_Tx_Char.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000017c  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000001d0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000001d0  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000200  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000080  00000000  00000000  0000023c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000058c  00000000  00000000  000002bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000002b7  00000000  00000000  00000848  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000002b2  00000000  00000000  00000aff  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000001ac  00000000  00000000  00000db4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000286  00000000  00000000  00000f60  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000af9  00000000  00000000  000011e6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000060  00000000  00000000  00001cdf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 6e 00 	call	0xdc	; 0xdc <main>
+  64:	0c 94 bc 00 	jmp	0x178	; 0x178 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <UART_SetBaudRate>:
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+  6c:	cf 92       	push	r12
+  6e:	df 92       	push	r13
+  70:	ef 92       	push	r14
+  72:	ff 92       	push	r15
+  74:	6b 01       	movw	r12, r22
+  76:	7c 01       	movw	r14, r24
+  78:	dc 01       	movw	r26, r24
+  7a:	cb 01       	movw	r24, r22
+  7c:	80 56       	subi	r24, 0x60	; 96
+  7e:	99 40       	sbci	r25, 0x09	; 9
+  80:	a1 09       	sbc	r26, r1
+  82:	b1 09       	sbc	r27, r1
+  84:	81 3a       	cpi	r24, 0xA1	; 161
+  86:	98 4b       	sbci	r25, 0xB8	; 184
+  88:	a1 40       	sbci	r26, 0x01	; 1
+  8a:	b1 05       	cpc	r27, r1
+  8c:	98 f4       	brcc	.+38     	; 0xb4 <UART_SetBaudRate+0x48>
+  8e:	a8 ef       	ldi	r26, 0xF8	; 248
+  90:	bf ef       	ldi	r27, 0xFF	; 255
+  92:	a7 01       	movw	r20, r14
+  94:	96 01       	movw	r18, r12
+  96:	0e 94 9d 00 	call	0x13a	; 0x13a <__mulohisi3>
+  9a:	7c 5d       	subi	r23, 0xDC	; 220
+  9c:	8b 40       	sbci	r24, 0x0B	; 11
+  9e:	9f 4f       	sbci	r25, 0xFF	; 255
+  a0:	e4 e0       	ldi	r30, 0x04	; 4
+  a2:	22 0f       	add	r18, r18
+  a4:	33 1f       	adc	r19, r19
+  a6:	44 1f       	adc	r20, r20
+  a8:	55 1f       	adc	r21, r21
+  aa:	ea 95       	dec	r30
+  ac:	d1 f7       	brne	.-12     	; 0xa2 <UART_SetBaudRate+0x36>
+  ae:	0e 94 78 00 	call	0xf0	; 0xf0 <__udivmodsi4>
+  b2:	02 c0       	rjmp	.+4      	; 0xb8 <UART_SetBaudRate+0x4c>
+  b4:	27 e6       	ldi	r18, 0x67	; 103
+  b6:	30 e0       	ldi	r19, 0x00	; 0
+  b8:	29 b9       	out	0x09, r18	; 9
+  ba:	30 bd       	out	0x20, r19	; 32
+  bc:	ff 90       	pop	r15
+  be:	ef 90       	pop	r14
+			{
+			case 'C':
+			case 'c':     /* Argument type is of char, hence read char data from the argp */
+				ch = va_arg(argp, int);
+  c0:	df 90       	pop	r13
+  c2:	cf 90       	pop	r12
+  c4:	08 95       	ret
+
+000000c6 <UART_Init>:
+  c6:	28 e1       	ldi	r18, 0x18	; 24
+				UART_TxChar(ch);
+  c8:	2a b9       	out	0x0a, r18	; 10
+  ca:	26 e8       	ldi	r18, 0x86	; 134
+  cc:	20 bd       	out	0x20, r18	; 32
+  ce:	1b b8       	out	0x0b, r1	; 11
+  d0:	0c 94 36 00 	jmp	0x6c	; 0x6c <UART_SetBaudRate>
+
+000000d4 <UART_TxChar>:
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+  d4:	5d 9b       	sbis	0x0b, 5	; 11
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+  d6:	fe cf       	rjmp	.-4      	; 0xd4 <UART_TxChar>
+				ch = va_arg(argp, int);
+				UART_TxChar(ch);
+				break;
+
+			case 'd':    /* Argument type is of signed integer, hence read 16bit data from the argp */
+				v_num_s16 = va_arg(argp, sint16_t);
+  d8:	8c b9       	out	0x0c, r24	; 12
+  da:	08 95       	ret
+
+000000dc <main>:
+
+
+int main() 
+{
+
+    UART_Init(9600);  // Initialize UARt at 9600 baud rate
+  dc:	60 e8       	ldi	r22, 0x80	; 128
+  de:	75 e2       	ldi	r23, 0x25	; 37
+  e0:	80 e0       	ldi	r24, 0x00	; 0
+  e2:	90 e0       	ldi	r25, 0x00	; 0
+  e4:	0e 94 63 00 	call	0xc6	; 0xc6 <UART_Init>
+    
+    while(1)
+    {
+        UART_TxChar('e');
+  e8:	85 e6       	ldi	r24, 0x65	; 101
+  ea:	0e 94 6a 00 	call	0xd4	; 0xd4 <UART_TxChar>
+    }
+  ee:	fc cf       	rjmp	.-8      	; 0xe8 <main+0xc>
+
+000000f0 <__udivmodsi4>:
+				if(v_num_s16<0)
+				 { /* If the number is -ve then display the 2's complement along with '-' sign */ 
+				   v_num_s16 = -v_num_s16;
+				   UART_TxChar('-');
+  f0:	a1 e2       	ldi	r26, 0x21	; 33
+  f2:	1a 2e       	mov	r1, r26
+  f4:	aa 1b       	sub	r26, r26
+  f6:	bb 1b       	sub	r27, r27
+  f8:	fd 01       	movw	r30, r26
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s16,v_numOfDigitsToTransmit_u8);
+  fa:	0d c0       	rjmp	.+26     	; 0x116 <__udivmodsi4_ep>
+
+000000fc <__udivmodsi4_loop>:
+  fc:	aa 1f       	adc	r26, r26
+  fe:	bb 1f       	adc	r27, r27
+ 100:	ee 1f       	adc	r30, r30
+ 102:	ff 1f       	adc	r31, r31
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 104:	a2 17       	cp	r26, r18
+ 106:	b3 07       	cpc	r27, r19
+ 108:	e4 07       	cpc	r30, r20
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 10a:	f5 07       	cpc	r31, r21
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s16,v_numOfDigitsToTransmit_u8);
+				break;
+				
+			case 'D':    /* Argument type is of integer, hence read 16bit data from the argp */
+				v_num_s32 = va_arg(argp, sint32_t);				
+ 10c:	20 f0       	brcs	.+8      	; 0x116 <__udivmodsi4_ep>
+ 10e:	a2 1b       	sub	r26, r18
+ 110:	b3 0b       	sbc	r27, r19
+ 112:	e4 0b       	sbc	r30, r20
+ 114:	f5 0b       	sbc	r31, r21
+
+00000116 <__udivmodsi4_ep>:
+ 116:	66 1f       	adc	r22, r22
+ 118:	77 1f       	adc	r23, r23
+ 11a:	88 1f       	adc	r24, r24
+ 11c:	99 1f       	adc	r25, r25
+				if(v_num_s32<0)
+ 11e:	1a 94       	dec	r1
+ 120:	69 f7       	brne	.-38     	; 0xfc <__udivmodsi4_loop>
+				 { /* If the number is -ve then display the 2's complement along with '-' sign */
+				   v_num_s32 = -v_num_s32;
+ 122:	60 95       	com	r22
+ 124:	70 95       	com	r23
+ 126:	80 95       	com	r24
+ 128:	90 95       	com	r25
+ 12a:	9b 01       	movw	r18, r22
+ 12c:	ac 01       	movw	r20, r24
+ 12e:	bd 01       	movw	r22, r26
+				   UART_TxChar('-');
+ 130:	cf 01       	movw	r24, r30
+ 132:	08 95       	ret
+
+00000134 <__mulshisi3>:
+ 134:	b7 ff       	sbrs	r27, 7
+ 136:	0c 94 a2 00 	jmp	0x144	; 0x144 <__muluhisi3>
+
+0000013a <__mulohisi3>:
+ 13a:	0e 94 a2 00 	call	0x144	; 0x144 <__muluhisi3>
+ 13e:	82 1b       	sub	r24, r18
+ 140:	93 0b       	sbc	r25, r19
+ 142:	08 95       	ret
+
+00000144 <__muluhisi3>:
+ 144:	0e 94 ad 00 	call	0x15a	; 0x15a <__umulhisi3>
+ 148:	a5 9f       	mul	r26, r21
+ 14a:	90 0d       	add	r25, r0
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 14c:	b4 9f       	mul	r27, r20
+ 14e:	90 0d       	add	r25, r0
+ 150:	a4 9f       	mul	r26, r20
+ 152:	80 0d       	add	r24, r0
+ 154:	91 1d       	adc	r25, r1
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 156:	11 24       	eor	r1, r1
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s32,v_numOfDigitsToTransmit_u8);			
+				break;	
+
+			case 'u':    /* Argument type is of unsigned integer, hence read 16bit unsigned data */
+				v_num_u16 = va_arg(argp, uint16_t);			
+ 158:	08 95       	ret
+
+0000015a <__umulhisi3>:
+ 15a:	a2 9f       	mul	r26, r18
+ 15c:	b0 01       	movw	r22, r0
+ 15e:	b3 9f       	mul	r27, r19
+				UART_TxNumber(C_DECIMAL_U8,v_num_u16,v_numOfDigitsToTransmit_u8);				
+ 160:	c0 01       	movw	r24, r0
+ 162:	a3 9f       	mul	r26, r19
+ 164:	70 0d       	add	r23, r0
+ 166:	81 1d       	adc	r24, r1
+ 168:	11 24       	eor	r1, r1
+ 16a:	91 1d       	adc	r25, r1
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 16c:	b2 9f       	mul	r27, r18
+ 16e:	70 0d       	add	r23, r0
+ 170:	81 1d       	adc	r24, r1
+ 172:	11 24       	eor	r1, r1
+ 174:	91 1d       	adc	r25, r1
+ 176:	08 95       	ret
+
+00000178 <_exit>:
+ 178:	f8 94       	cli
+
+0000017a <__stop_program>:
+ 17a:	ff cf       	rjmp	.-2      	; 0x17a <__stop_program>

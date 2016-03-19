@@ -1,0 +1,2851 @@
+
+StarterAvrBoartTest.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000dc4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000154  00800060  00000dc4  00000e58  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000010  008001b4  008001b4  00000fac  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000fac  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000fdc  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000208  00000000  00000000  00001018  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000021f6  00000000  00000000  00001220  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000009fb  00000000  00000000  00003416  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000a83  00000000  00000000  00003e11  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000648  00000000  00000000  00004894  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000008df  00000000  00000000  00004edc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00002580  00000000  00000000  000057bb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000001e0  00000000  00000000  00007d3b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 ec       	ldi	r30, 0xC4	; 196
+  68:	fd e0       	ldi	r31, 0x0D	; 13
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a4 3b       	cpi	r26, 0xB4	; 180
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	21 e0       	ldi	r18, 0x01	; 1
+  78:	a4 eb       	ldi	r26, 0xB4	; 180
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a4 3c       	cpi	r26, 0xC4	; 196
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 77 06 	call	0xcee	; 0xcee <main>
+  8a:	0c 94 e0 06 	jmp	0xdc0	; 0xdc0 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <ADC_Init>:
+ * description :This function initializes the ADC module.
+
+***************************************************************************************************/
+void ADC_Init()
+ {
+   ADCSRA=(1<<ADEN) | (1<<ADPS0); /* Enable ADC , sampling freq=osc_freq/2 */
+  92:	81 e8       	ldi	r24, 0x81	; 129
+  94:	86 b9       	out	0x06, r24	; 6
+   ADMUX=0x00;                    /* Result right justified, select channel zero */
+  96:	17 b8       	out	0x07, r1	; 7
+  98:	08 95       	ret
+
+0000009a <ADC_GetAdcValue>:
+				 For AVR/PIC(10-bit adc) the adc value per lsb will be 5/1023=0048v
+***************************************************************************************************/				 
+uint16_t ADC_GetAdcValue(uint8_t v_adcChannel_u8)
+ {
+   
+   ADMUX = v_adcChannel_u8;               /* Select the required channel */
+  9a:	87 b9       	out	0x07, r24	; 7
+   DELAY_us(10);                          /* Wait for some time for the channel to get selected */
+  9c:	8a e0       	ldi	r24, 0x0A	; 10
+  9e:	90 e0       	ldi	r25, 0x00	; 0
+  a0:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+   util_BitSet(ADCSRA,ADSC);              /* Start the ADC conversion by setting ADSC bit */
+  a4:	36 9a       	sbi	0x06, 6	; 6
+   
+   while(util_IsBitCleared(ADCSRA,ADIF)); /* Wait till the conversion is over */
+  a6:	34 9b       	sbis	0x06, 4	; 6
+  a8:	fe cf       	rjmp	.-4      	; 0xa6 <ADC_GetAdcValue+0xc>
+                                          /* ADIF will be set once ADC conversion is complete */
+     return(ADCW);                        /* Return the 10-bit result */
+  aa:	84 b1       	in	r24, 0x04	; 4
+  ac:	95 b1       	in	r25, 0x05	; 5
+ }
+  ae:	08 95       	ret
+
+000000b0 <DELAY_us>:
+         if 5000 is passed as the argument then it generates a delay of 5ms.		  
+
+ ***************************************************************************************************/
+void DELAY_us(uint16_t us_count) 
+{
+    while (us_count != 0) 
+  b0:	00 97       	sbiw	r24, 0x00	; 0
+  b2:	31 f0       	breq	.+12     	; 0xc0 <DELAY_us+0x10>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  b4:	25 e0       	ldi	r18, 0x05	; 5
+  b6:	2a 95       	dec	r18
+  b8:	f1 f7       	brne	.-4      	; 0xb6 <DELAY_us+0x6>
+  ba:	00 00       	nop
+    {
+        _delay_us(1);
+		us_count--;
+  bc:	01 97       	sbiw	r24, 0x01	; 1
+  be:	f8 cf       	rjmp	.-16     	; 0xb0 <DELAY_us>
+    }
+}
+  c0:	08 95       	ret
+
+000000c2 <DELAY_ms>:
+     It generates a delay of 1ms for each count,
+     if 1000 is passed as the argument then it generates delay of 1000ms(1sec)
+ ***************************************************************************************************/
+void DELAY_ms(uint16_t ms_count) 
+{
+    while (ms_count != 0) 
+  c2:	00 97       	sbiw	r24, 0x00	; 0
+  c4:	41 f0       	breq	.+16     	; 0xd6 <DELAY_ms+0x14>
+  c6:	ef e9       	ldi	r30, 0x9F	; 159
+  c8:	ff e0       	ldi	r31, 0x0F	; 15
+  ca:	31 97       	sbiw	r30, 0x01	; 1
+  cc:	f1 f7       	brne	.-4      	; 0xca <DELAY_ms+0x8>
+  ce:	00 c0       	rjmp	.+0      	; 0xd0 <DELAY_ms+0xe>
+  d0:	00 00       	nop
+    {
+        _delay_us(1000); //DELAY_us is called to generate 1ms delay
+        ms_count--;
+  d2:	01 97       	sbiw	r24, 0x01	; 1
+  d4:	f6 cf       	rjmp	.-20     	; 0xc2 <DELAY_ms>
+    }
+}
+  d6:	08 95       	ret
+
+000000d8 <EEPROM_WriteByte>:
+ * description: This function is used to write the data at specified EEPROM_address..
+
+ **************************************************************************************************/
+void EEPROM_WriteByte(uint16_t v_eepromAddress_u16, uint8_t v_eepromData_u8)
+{
+	while(util_IsBitSet(EECR,EEWE)); // Wait for completion of previous write.
+  d8:	e1 99       	sbic	0x1c, 1	; 28
+  da:	fe cf       	rjmp	.-4      	; 0xd8 <EEPROM_WriteByte>
+	                                 // EEWE will be cleared by hardware once Eeprom write is completed.
+
+	EEAR = v_eepromAddress_u16;  //Load the eeprom address and data
+  dc:	9f bb       	out	0x1f, r25	; 31
+  de:	8e bb       	out	0x1e, r24	; 30
+	EEDR = v_eepromData_u8;
+  e0:	6d bb       	out	0x1d, r22	; 29
+
+	util_BitSet(EECR,EEMWE);    // Eeprom Master Write Enable
+  e2:	e2 9a       	sbi	0x1c, 2	; 28
+	util_BitSet(EECR,EEWE);     // Start eeprom write by setting EEWE
+  e4:	e1 9a       	sbi	0x1c, 1	; 28
+  e6:	08 95       	ret
+
+000000e8 <EEPROM_ReadByte>:
+
+ * description: This function is used to read the data from specified EEPROM_address.        
+ ***************************************************************************************************/
+uint8_t EEPROM_ReadByte(uint16_t v_eepromAddress_u16)
+{
+	while(util_IsBitSet(EECR,EEWE));  //Wait for completion of previous write if any.
+  e8:	e1 99       	sbic	0x1c, 1	; 28
+  ea:	fe cf       	rjmp	.-4      	; 0xe8 <EEPROM_ReadByte>
+
+	EEAR = v_eepromAddress_u16;    //Load the address from where the data needs to be read.
+  ec:	9f bb       	out	0x1f, r25	; 31
+  ee:	8e bb       	out	0x1e, r24	; 30
+	util_BitSet(EECR,EERE);   // start eeprom read by setting EERE
+  f0:	e0 9a       	sbi	0x1c, 0	; 28
+
+	return EEDR;             // Return data from data register
+  f2:	8d b3       	in	r24, 0x1d	; 29
+}
+  f4:	08 95       	ret
+
+000000f6 <GPIO_PinDirection>:
+
+    uint8_t v_portNumber_u8;
+
+
+    v_portNumber_u8 =  (enm_pinNumber>>3);  // Divide the pin number by 8 go get the PORT number
+    enm_pinNumber  =   enm_pinNumber & 0x07;  // lower 3-bits contains the bit number of a byte 
+  f6:	98 2f       	mov	r25, r24
+  f8:	97 70       	andi	r25, 0x07	; 7
+{
+
+    uint8_t v_portNumber_u8;
+
+
+    v_portNumber_u8 =  (enm_pinNumber>>3);  // Divide the pin number by 8 go get the PORT number
+  fa:	86 95       	lsr	r24
+  fc:	86 95       	lsr	r24
+  fe:	86 95       	lsr	r24
+    enm_pinNumber  =   enm_pinNumber & 0x07;  // lower 3-bits contains the bit number of a byte 
+
+    /* Go to particular port after decoding from the pin number and 
+        set the direction as specified*/
+    switch(v_portNumber_u8)
+ 100:	81 30       	cpi	r24, 0x01	; 1
+ 102:	01 f1       	breq	.+64     	; 0x144 <GPIO_PinDirection+0x4e>
+ 104:	30 f0       	brcs	.+12     	; 0x112 <GPIO_PinDirection+0x1c>
+ 106:	82 30       	cpi	r24, 0x02	; 2
+ 108:	b1 f1       	breq	.+108    	; 0x176 <GPIO_PinDirection+0x80>
+ 10a:	83 30       	cpi	r24, 0x03	; 3
+ 10c:	09 f4       	brne	.+2      	; 0x110 <GPIO_PinDirection+0x1a>
+ 10e:	4c c0       	rjmp	.+152    	; 0x1a8 <GPIO_PinDirection+0xb2>
+ 110:	08 95       	ret
+    {
+#ifdef DDRA        
+    case 0:
+        util_UpdateBit(DDRA,enm_pinNumber,v_pinDirn_u8);
+ 112:	4a b3       	in	r20, 0x1a	; 26
+ 114:	21 e0       	ldi	r18, 0x01	; 1
+ 116:	30 e0       	ldi	r19, 0x00	; 0
+ 118:	66 23       	and	r22, r22
+ 11a:	49 f0       	breq	.+18     	; 0x12e <GPIO_PinDirection+0x38>
+ 11c:	b9 01       	movw	r22, r18
+ 11e:	02 c0       	rjmp	.+4      	; 0x124 <GPIO_PinDirection+0x2e>
+ 120:	66 0f       	add	r22, r22
+ 122:	77 1f       	adc	r23, r23
+ 124:	9a 95       	dec	r25
+ 126:	e2 f7       	brpl	.-8      	; 0x120 <GPIO_PinDirection+0x2a>
+ 128:	cb 01       	movw	r24, r22
+ 12a:	84 2b       	or	r24, r20
+ 12c:	09 c0       	rjmp	.+18     	; 0x140 <GPIO_PinDirection+0x4a>
+ 12e:	b9 01       	movw	r22, r18
+ 130:	02 c0       	rjmp	.+4      	; 0x136 <GPIO_PinDirection+0x40>
+ 132:	66 0f       	add	r22, r22
+ 134:	77 1f       	adc	r23, r23
+ 136:	9a 95       	dec	r25
+ 138:	e2 f7       	brpl	.-8      	; 0x132 <GPIO_PinDirection+0x3c>
+ 13a:	cb 01       	movw	r24, r22
+ 13c:	80 95       	com	r24
+ 13e:	84 23       	and	r24, r20
+ 140:	8a bb       	out	0x1a, r24	; 26
+ 142:	08 95       	ret
+#endif        
+
+
+#ifdef DDRB
+    case 1:
+        util_UpdateBit(DDRB,enm_pinNumber,v_pinDirn_u8);
+ 144:	47 b3       	in	r20, 0x17	; 23
+ 146:	21 e0       	ldi	r18, 0x01	; 1
+ 148:	30 e0       	ldi	r19, 0x00	; 0
+ 14a:	66 23       	and	r22, r22
+ 14c:	49 f0       	breq	.+18     	; 0x160 <GPIO_PinDirection+0x6a>
+ 14e:	b9 01       	movw	r22, r18
+ 150:	02 c0       	rjmp	.+4      	; 0x156 <GPIO_PinDirection+0x60>
+ 152:	66 0f       	add	r22, r22
+ 154:	77 1f       	adc	r23, r23
+ 156:	9a 95       	dec	r25
+ 158:	e2 f7       	brpl	.-8      	; 0x152 <GPIO_PinDirection+0x5c>
+ 15a:	cb 01       	movw	r24, r22
+ 15c:	84 2b       	or	r24, r20
+ 15e:	09 c0       	rjmp	.+18     	; 0x172 <GPIO_PinDirection+0x7c>
+ 160:	b9 01       	movw	r22, r18
+ 162:	02 c0       	rjmp	.+4      	; 0x168 <GPIO_PinDirection+0x72>
+ 164:	66 0f       	add	r22, r22
+ 166:	77 1f       	adc	r23, r23
+ 168:	9a 95       	dec	r25
+ 16a:	e2 f7       	brpl	.-8      	; 0x164 <GPIO_PinDirection+0x6e>
+ 16c:	cb 01       	movw	r24, r22
+ 16e:	80 95       	com	r24
+ 170:	84 23       	and	r24, r20
+ 172:	87 bb       	out	0x17, r24	; 23
+ 174:	08 95       	ret
+#endif 
+
+        
+#ifdef DDRC
+    case 2:
+        util_UpdateBit(DDRC,enm_pinNumber,v_pinDirn_u8);
+ 176:	44 b3       	in	r20, 0x14	; 20
+ 178:	21 e0       	ldi	r18, 0x01	; 1
+ 17a:	30 e0       	ldi	r19, 0x00	; 0
+ 17c:	66 23       	and	r22, r22
+ 17e:	49 f0       	breq	.+18     	; 0x192 <GPIO_PinDirection+0x9c>
+ 180:	b9 01       	movw	r22, r18
+ 182:	02 c0       	rjmp	.+4      	; 0x188 <GPIO_PinDirection+0x92>
+ 184:	66 0f       	add	r22, r22
+ 186:	77 1f       	adc	r23, r23
+ 188:	9a 95       	dec	r25
+ 18a:	e2 f7       	brpl	.-8      	; 0x184 <GPIO_PinDirection+0x8e>
+ 18c:	cb 01       	movw	r24, r22
+ 18e:	84 2b       	or	r24, r20
+ 190:	09 c0       	rjmp	.+18     	; 0x1a4 <GPIO_PinDirection+0xae>
+ 192:	b9 01       	movw	r22, r18
+ 194:	02 c0       	rjmp	.+4      	; 0x19a <GPIO_PinDirection+0xa4>
+ 196:	66 0f       	add	r22, r22
+ 198:	77 1f       	adc	r23, r23
+ 19a:	9a 95       	dec	r25
+ 19c:	e2 f7       	brpl	.-8      	; 0x196 <GPIO_PinDirection+0xa0>
+ 19e:	cb 01       	movw	r24, r22
+ 1a0:	80 95       	com	r24
+ 1a2:	84 23       	and	r24, r20
+ 1a4:	84 bb       	out	0x14, r24	; 20
+ 1a6:	08 95       	ret
+#endif 
+
+        
+#ifdef DDRD        
+    case 3:
+        util_UpdateBit(DDRD,enm_pinNumber,v_pinDirn_u8);
+ 1a8:	41 b3       	in	r20, 0x11	; 17
+ 1aa:	21 e0       	ldi	r18, 0x01	; 1
+ 1ac:	30 e0       	ldi	r19, 0x00	; 0
+ 1ae:	66 23       	and	r22, r22
+ 1b0:	49 f0       	breq	.+18     	; 0x1c4 <GPIO_PinDirection+0xce>
+ 1b2:	b9 01       	movw	r22, r18
+ 1b4:	02 c0       	rjmp	.+4      	; 0x1ba <GPIO_PinDirection+0xc4>
+ 1b6:	66 0f       	add	r22, r22
+ 1b8:	77 1f       	adc	r23, r23
+ 1ba:	9a 95       	dec	r25
+ 1bc:	e2 f7       	brpl	.-8      	; 0x1b6 <GPIO_PinDirection+0xc0>
+ 1be:	cb 01       	movw	r24, r22
+ 1c0:	84 2b       	or	r24, r20
+ 1c2:	09 c0       	rjmp	.+18     	; 0x1d6 <GPIO_PinDirection+0xe0>
+ 1c4:	b9 01       	movw	r22, r18
+ 1c6:	02 c0       	rjmp	.+4      	; 0x1cc <GPIO_PinDirection+0xd6>
+ 1c8:	66 0f       	add	r22, r22
+ 1ca:	77 1f       	adc	r23, r23
+ 1cc:	9a 95       	dec	r25
+ 1ce:	e2 f7       	brpl	.-8      	; 0x1c8 <GPIO_PinDirection+0xd2>
+ 1d0:	cb 01       	movw	r24, r22
+ 1d2:	80 95       	com	r24
+ 1d4:	84 23       	and	r24, r20
+ 1d6:	81 bb       	out	0x11, r24	; 17
+ 1d8:	08 95       	ret
+
+000001da <GPIO_PinWrite>:
+
+    uint8_t v_portNumber_u8;
+
+
+    v_portNumber_u8 =  (enm_pinNumber>>3);  // Divide the pin number by 8 go get the PORT number
+    enm_pinNumber  =   enm_pinNumber & 0x07;  // lower 3-bits contains the bit number of a byte 
+ 1da:	98 2f       	mov	r25, r24
+ 1dc:	97 70       	andi	r25, 0x07	; 7
+{
+
+    uint8_t v_portNumber_u8;
+
+
+    v_portNumber_u8 =  (enm_pinNumber>>3);  // Divide the pin number by 8 go get the PORT number
+ 1de:	86 95       	lsr	r24
+ 1e0:	86 95       	lsr	r24
+ 1e2:	86 95       	lsr	r24
+    enm_pinNumber  =   enm_pinNumber & 0x07;  // lower 3-bits contains the bit number of a byte 
+
+    /* Go to particular port after decoding from the pin number and 
+        update the value of the specified pin*/
+    switch(v_portNumber_u8)
+ 1e4:	81 30       	cpi	r24, 0x01	; 1
+ 1e6:	01 f1       	breq	.+64     	; 0x228 <GPIO_PinWrite+0x4e>
+ 1e8:	30 f0       	brcs	.+12     	; 0x1f6 <GPIO_PinWrite+0x1c>
+ 1ea:	82 30       	cpi	r24, 0x02	; 2
+ 1ec:	b1 f1       	breq	.+108    	; 0x25a <GPIO_PinWrite+0x80>
+ 1ee:	83 30       	cpi	r24, 0x03	; 3
+ 1f0:	09 f4       	brne	.+2      	; 0x1f4 <GPIO_PinWrite+0x1a>
+ 1f2:	4c c0       	rjmp	.+152    	; 0x28c <GPIO_PinWrite+0xb2>
+ 1f4:	08 95       	ret
+    {
+#ifdef PORTA        
+    case 0:
+        util_UpdateBit(PORTA,enm_pinNumber,v_pinValue_u8);
+ 1f6:	4b b3       	in	r20, 0x1b	; 27
+ 1f8:	21 e0       	ldi	r18, 0x01	; 1
+ 1fa:	30 e0       	ldi	r19, 0x00	; 0
+ 1fc:	66 23       	and	r22, r22
+ 1fe:	49 f0       	breq	.+18     	; 0x212 <GPIO_PinWrite+0x38>
+ 200:	b9 01       	movw	r22, r18
+ 202:	02 c0       	rjmp	.+4      	; 0x208 <GPIO_PinWrite+0x2e>
+ 204:	66 0f       	add	r22, r22
+ 206:	77 1f       	adc	r23, r23
+ 208:	9a 95       	dec	r25
+ 20a:	e2 f7       	brpl	.-8      	; 0x204 <GPIO_PinWrite+0x2a>
+ 20c:	cb 01       	movw	r24, r22
+ 20e:	84 2b       	or	r24, r20
+ 210:	09 c0       	rjmp	.+18     	; 0x224 <GPIO_PinWrite+0x4a>
+ 212:	b9 01       	movw	r22, r18
+ 214:	02 c0       	rjmp	.+4      	; 0x21a <GPIO_PinWrite+0x40>
+ 216:	66 0f       	add	r22, r22
+ 218:	77 1f       	adc	r23, r23
+ 21a:	9a 95       	dec	r25
+ 21c:	e2 f7       	brpl	.-8      	; 0x216 <GPIO_PinWrite+0x3c>
+ 21e:	cb 01       	movw	r24, r22
+ 220:	80 95       	com	r24
+ 222:	84 23       	and	r24, r20
+ 224:	8b bb       	out	0x1b, r24	; 27
+ 226:	08 95       	ret
+#endif        
+
+        
+#ifdef PORTB
+    case 1:
+        util_UpdateBit(PORTB,enm_pinNumber,v_pinValue_u8);
+ 228:	48 b3       	in	r20, 0x18	; 24
+ 22a:	21 e0       	ldi	r18, 0x01	; 1
+ 22c:	30 e0       	ldi	r19, 0x00	; 0
+ 22e:	66 23       	and	r22, r22
+ 230:	49 f0       	breq	.+18     	; 0x244 <GPIO_PinWrite+0x6a>
+ 232:	b9 01       	movw	r22, r18
+ 234:	02 c0       	rjmp	.+4      	; 0x23a <GPIO_PinWrite+0x60>
+ 236:	66 0f       	add	r22, r22
+ 238:	77 1f       	adc	r23, r23
+ 23a:	9a 95       	dec	r25
+ 23c:	e2 f7       	brpl	.-8      	; 0x236 <GPIO_PinWrite+0x5c>
+ 23e:	cb 01       	movw	r24, r22
+ 240:	84 2b       	or	r24, r20
+ 242:	09 c0       	rjmp	.+18     	; 0x256 <GPIO_PinWrite+0x7c>
+ 244:	b9 01       	movw	r22, r18
+ 246:	02 c0       	rjmp	.+4      	; 0x24c <GPIO_PinWrite+0x72>
+ 248:	66 0f       	add	r22, r22
+ 24a:	77 1f       	adc	r23, r23
+ 24c:	9a 95       	dec	r25
+ 24e:	e2 f7       	brpl	.-8      	; 0x248 <GPIO_PinWrite+0x6e>
+ 250:	cb 01       	movw	r24, r22
+ 252:	80 95       	com	r24
+ 254:	84 23       	and	r24, r20
+ 256:	88 bb       	out	0x18, r24	; 24
+ 258:	08 95       	ret
+#endif        
+
+        
+#ifdef PORTC        
+    case 2:
+        util_UpdateBit(PORTC,enm_pinNumber,v_pinValue_u8);
+ 25a:	45 b3       	in	r20, 0x15	; 21
+ 25c:	21 e0       	ldi	r18, 0x01	; 1
+ 25e:	30 e0       	ldi	r19, 0x00	; 0
+ 260:	66 23       	and	r22, r22
+ 262:	49 f0       	breq	.+18     	; 0x276 <GPIO_PinWrite+0x9c>
+ 264:	b9 01       	movw	r22, r18
+ 266:	02 c0       	rjmp	.+4      	; 0x26c <GPIO_PinWrite+0x92>
+ 268:	66 0f       	add	r22, r22
+ 26a:	77 1f       	adc	r23, r23
+ 26c:	9a 95       	dec	r25
+ 26e:	e2 f7       	brpl	.-8      	; 0x268 <GPIO_PinWrite+0x8e>
+ 270:	cb 01       	movw	r24, r22
+ 272:	84 2b       	or	r24, r20
+ 274:	09 c0       	rjmp	.+18     	; 0x288 <GPIO_PinWrite+0xae>
+ 276:	b9 01       	movw	r22, r18
+ 278:	02 c0       	rjmp	.+4      	; 0x27e <GPIO_PinWrite+0xa4>
+ 27a:	66 0f       	add	r22, r22
+ 27c:	77 1f       	adc	r23, r23
+ 27e:	9a 95       	dec	r25
+ 280:	e2 f7       	brpl	.-8      	; 0x27a <GPIO_PinWrite+0xa0>
+ 282:	cb 01       	movw	r24, r22
+ 284:	80 95       	com	r24
+ 286:	84 23       	and	r24, r20
+ 288:	85 bb       	out	0x15, r24	; 21
+ 28a:	08 95       	ret
+#endif        
+
+        
+#ifdef PORTD        
+    case 3:
+        util_UpdateBit(PORTD,enm_pinNumber,v_pinValue_u8);
+ 28c:	42 b3       	in	r20, 0x12	; 18
+ 28e:	21 e0       	ldi	r18, 0x01	; 1
+ 290:	30 e0       	ldi	r19, 0x00	; 0
+ 292:	66 23       	and	r22, r22
+ 294:	49 f0       	breq	.+18     	; 0x2a8 <GPIO_PinWrite+0xce>
+ 296:	b9 01       	movw	r22, r18
+ 298:	02 c0       	rjmp	.+4      	; 0x29e <GPIO_PinWrite+0xc4>
+ 29a:	66 0f       	add	r22, r22
+ 29c:	77 1f       	adc	r23, r23
+ 29e:	9a 95       	dec	r25
+ 2a0:	e2 f7       	brpl	.-8      	; 0x29a <GPIO_PinWrite+0xc0>
+ 2a2:	cb 01       	movw	r24, r22
+ 2a4:	84 2b       	or	r24, r20
+ 2a6:	09 c0       	rjmp	.+18     	; 0x2ba <GPIO_PinWrite+0xe0>
+ 2a8:	b9 01       	movw	r22, r18
+ 2aa:	02 c0       	rjmp	.+4      	; 0x2b0 <GPIO_PinWrite+0xd6>
+ 2ac:	66 0f       	add	r22, r22
+ 2ae:	77 1f       	adc	r23, r23
+ 2b0:	9a 95       	dec	r25
+ 2b2:	e2 f7       	brpl	.-8      	; 0x2ac <GPIO_PinWrite+0xd2>
+ 2b4:	cb 01       	movw	r24, r22
+ 2b6:	80 95       	com	r24
+ 2b8:	84 23       	and	r24, r20
+ 2ba:	82 bb       	out	0x12, r24	; 18
+ 2bc:	08 95       	ret
+
+000002be <GPIO_PinRead>:
+{
+    uint8_t v_portNumber_u8;
+    uint8_t returnStatus = 0;
+
+    v_portNumber_u8 =  (enm_pinNumber>>3); // Divide the pin number by 8 go get the PORT number
+    enm_pinNumber  =     enm_pinNumber & 0x07; // lower 3-bits contains the bit number of a byte 
+ 2be:	28 2f       	mov	r18, r24
+ 2c0:	27 70       	andi	r18, 0x07	; 7
+uint8_t GPIO_PinRead(gpioPins_et enm_pinNumber)
+{
+    uint8_t v_portNumber_u8;
+    uint8_t returnStatus = 0;
+
+    v_portNumber_u8 =  (enm_pinNumber>>3); // Divide the pin number by 8 go get the PORT number
+ 2c2:	86 95       	lsr	r24
+ 2c4:	86 95       	lsr	r24
+ 2c6:	86 95       	lsr	r24
+    enm_pinNumber  =     enm_pinNumber & 0x07; // lower 3-bits contains the bit number of a byte 
+
+    /* Go to particular port after decoding from the pin number and read the pins status */
+    switch(v_portNumber_u8)     
+ 2c8:	81 30       	cpi	r24, 0x01	; 1
+ 2ca:	49 f0       	breq	.+18     	; 0x2de <GPIO_PinRead+0x20>
+ 2cc:	30 f0       	brcs	.+12     	; 0x2da <GPIO_PinRead+0x1c>
+ 2ce:	82 30       	cpi	r24, 0x02	; 2
+ 2d0:	41 f0       	breq	.+16     	; 0x2e2 <GPIO_PinRead+0x24>
+ 2d2:	83 30       	cpi	r24, 0x03	; 3
+ 2d4:	79 f4       	brne	.+30     	; 0x2f4 <GPIO_PinRead+0x36>
+#endif        
+        
+        
+#ifdef PIND
+    case 3:
+        returnStatus = util_IsBitSet(PIND,enm_pinNumber);
+ 2d6:	80 b3       	in	r24, 0x10	; 16
+ 2d8:	05 c0       	rjmp	.+10     	; 0x2e4 <GPIO_PinRead+0x26>
+    /* Go to particular port after decoding from the pin number and read the pins status */
+    switch(v_portNumber_u8)     
+    { 
+#ifdef PINA    
+    case 0: 
+        returnStatus = util_IsBitSet(PINA,enm_pinNumber);
+ 2da:	89 b3       	in	r24, 0x19	; 25
+ 2dc:	03 c0       	rjmp	.+6      	; 0x2e4 <GPIO_PinRead+0x26>
+        break;
+#endif        
+
+#ifdef PINB
+    case 1:
+        returnStatus = util_IsBitSet(PINB,enm_pinNumber);
+ 2de:	86 b3       	in	r24, 0x16	; 22
+ 2e0:	01 c0       	rjmp	.+2      	; 0x2e4 <GPIO_PinRead+0x26>
+        break;
+#endif          
+
+#ifdef PINC
+    case 2:
+        returnStatus = util_IsBitSet(PINC,enm_pinNumber);
+ 2e2:	83 b3       	in	r24, 0x13	; 19
+#endif        
+        
+        
+#ifdef PIND
+    case 3:
+        returnStatus = util_IsBitSet(PIND,enm_pinNumber);
+ 2e4:	90 e0       	ldi	r25, 0x00	; 0
+ 2e6:	02 c0       	rjmp	.+4      	; 0x2ec <GPIO_PinRead+0x2e>
+ 2e8:	95 95       	asr	r25
+ 2ea:	87 95       	ror	r24
+ 2ec:	2a 95       	dec	r18
+ 2ee:	e2 f7       	brpl	.-8      	; 0x2e8 <GPIO_PinRead+0x2a>
+ 2f0:	81 70       	andi	r24, 0x01	; 1
+        break;
+ 2f2:	08 95       	ret
+                Before reading the pins status, the pin should be configured as INPUT 
+ ***************************************************************************************************/
+uint8_t GPIO_PinRead(gpioPins_et enm_pinNumber)
+{
+    uint8_t v_portNumber_u8;
+    uint8_t returnStatus = 0;
+ 2f4:	80 e0       	ldi	r24, 0x00	; 0
+        returnStatus = util_IsBitSet(PING,enm_pinNumber);
+        break;
+#endif             
+    }                         
+    return returnStatus;
+}
+ 2f6:	08 95       	ret
+
+000002f8 <lcd_SendHigherNibble>:
+ * Return value    : none
+
+ * description : This functions is used to send the higher nibble of the data to LCD in 4-bit mode
+**************************************************************************************************/
+static void lcd_SendHigherNibble(uint8_t dataByte)
+{
+ 2f8:	0f 93       	push	r16
+ 2fa:	1f 93       	push	r17
+ 2fc:	cf 93       	push	r28
+ 2fe:	c8 2f       	mov	r28, r24
+    GPIO_PinWrite(LCDConfig.D4,util_IsBitSet(dataByte,4));
+ 300:	84 fb       	bst	r24, 4
+ 302:	66 27       	eor	r22, r22
+ 304:	60 f9       	bld	r22, 0
+ 306:	04 eb       	ldi	r16, 0xB4	; 180
+ 308:	11 e0       	ldi	r17, 0x01	; 1
+ 30a:	f8 01       	movw	r30, r16
+ 30c:	82 85       	ldd	r24, Z+10	; 0x0a
+ 30e:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    GPIO_PinWrite(LCDConfig.D5,util_IsBitSet(dataByte,5));
+ 312:	c5 fb       	bst	r28, 5
+ 314:	66 27       	eor	r22, r22
+ 316:	60 f9       	bld	r22, 0
+ 318:	f8 01       	movw	r30, r16
+ 31a:	83 85       	ldd	r24, Z+11	; 0x0b
+ 31c:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    GPIO_PinWrite(LCDConfig.D6,util_IsBitSet(dataByte,6));
+ 320:	c6 fb       	bst	r28, 6
+ 322:	66 27       	eor	r22, r22
+ 324:	60 f9       	bld	r22, 0
+ 326:	f8 01       	movw	r30, r16
+ 328:	84 85       	ldd	r24, Z+12	; 0x0c
+ 32a:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    GPIO_PinWrite(LCDConfig.D7,util_IsBitSet(dataByte,7));
+ 32e:	6c 2f       	mov	r22, r28
+ 330:	66 1f       	adc	r22, r22
+ 332:	66 27       	eor	r22, r22
+ 334:	66 1f       	adc	r22, r22
+ 336:	f8 01       	movw	r30, r16
+ 338:	85 85       	ldd	r24, Z+13	; 0x0d
+}
+ 33a:	cf 91       	pop	r28
+ 33c:	1f 91       	pop	r17
+ 33e:	0f 91       	pop	r16
+static void lcd_SendHigherNibble(uint8_t dataByte)
+{
+    GPIO_PinWrite(LCDConfig.D4,util_IsBitSet(dataByte,4));
+    GPIO_PinWrite(LCDConfig.D5,util_IsBitSet(dataByte,5));
+    GPIO_PinWrite(LCDConfig.D6,util_IsBitSet(dataByte,6));
+    GPIO_PinWrite(LCDConfig.D7,util_IsBitSet(dataByte,7));
+ 340:	0c 94 ed 00 	jmp	0x1da	; 0x1da <GPIO_PinWrite>
+
+00000344 <lcd_SendCmdSignals>:
+ * Return value    : none
+
+ * description : This functions generates the signals for sending the v_lcdCmd_u8 to LCD
+**************************************************************************************************/
+static void lcd_SendCmdSignals(void)
+{
+ 344:	cf 93       	push	r28
+ 346:	df 93       	push	r29
+     GPIO_PinWrite(LCDConfig.RS,0);
+ 348:	c4 eb       	ldi	r28, 0xB4	; 180
+ 34a:	d1 e0       	ldi	r29, 0x01	; 1
+ 34c:	60 e0       	ldi	r22, 0x00	; 0
+ 34e:	8b 81       	ldd	r24, Y+3	; 0x03
+ 350:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+     GPIO_PinWrite(LCDConfig.RW,0);
+ 354:	60 e0       	ldi	r22, 0x00	; 0
+ 356:	8c 81       	ldd	r24, Y+4	; 0x04
+ 358:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+     GPIO_PinWrite(LCDConfig.EN,1);
+ 35c:	61 e0       	ldi	r22, 0x01	; 1
+ 35e:	8d 81       	ldd	r24, Y+5	; 0x05
+ 360:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+     DELAY_us(10);
+ 364:	8a e0       	ldi	r24, 0x0A	; 10
+ 366:	90 e0       	ldi	r25, 0x00	; 0
+ 368:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+     GPIO_PinWrite(LCDConfig.EN,0);
+ 36c:	60 e0       	ldi	r22, 0x00	; 0
+ 36e:	8d 81       	ldd	r24, Y+5	; 0x05
+  
+}
+ 370:	df 91       	pop	r29
+ 372:	cf 91       	pop	r28
+{
+     GPIO_PinWrite(LCDConfig.RS,0);
+     GPIO_PinWrite(LCDConfig.RW,0);
+     GPIO_PinWrite(LCDConfig.EN,1);
+     DELAY_us(10);
+     GPIO_PinWrite(LCDConfig.EN,0);
+ 374:	0c 94 ed 00 	jmp	0x1da	; 0x1da <GPIO_PinWrite>
+
+00000378 <lcd_SendLowerNibble>:
+ * Return value    : none
+
+ * description : This functions is used to send the lower nibble of the data to LCD
+**************************************************************************************************/
+static void lcd_SendLowerNibble(uint8_t dataByte)
+{
+ 378:	0f 93       	push	r16
+ 37a:	1f 93       	push	r17
+ 37c:	cf 93       	push	r28
+ 37e:	c8 2f       	mov	r28, r24
+    GPIO_PinWrite(LCDConfig.D0,util_IsBitSet(dataByte,0));
+ 380:	68 2f       	mov	r22, r24
+ 382:	61 70       	andi	r22, 0x01	; 1
+ 384:	04 eb       	ldi	r16, 0xB4	; 180
+ 386:	11 e0       	ldi	r17, 0x01	; 1
+ 388:	f8 01       	movw	r30, r16
+ 38a:	86 81       	ldd	r24, Z+6	; 0x06
+ 38c:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    GPIO_PinWrite(LCDConfig.D1,util_IsBitSet(dataByte,1));
+ 390:	c1 fb       	bst	r28, 1
+ 392:	66 27       	eor	r22, r22
+ 394:	60 f9       	bld	r22, 0
+ 396:	f8 01       	movw	r30, r16
+ 398:	87 81       	ldd	r24, Z+7	; 0x07
+ 39a:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    GPIO_PinWrite(LCDConfig.D2,util_IsBitSet(dataByte,2));
+ 39e:	c2 fb       	bst	r28, 2
+ 3a0:	66 27       	eor	r22, r22
+ 3a2:	60 f9       	bld	r22, 0
+ 3a4:	f8 01       	movw	r30, r16
+ 3a6:	80 85       	ldd	r24, Z+8	; 0x08
+ 3a8:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    GPIO_PinWrite(LCDConfig.D3,util_IsBitSet(dataByte,3));
+ 3ac:	c3 fb       	bst	r28, 3
+ 3ae:	66 27       	eor	r22, r22
+ 3b0:	60 f9       	bld	r22, 0
+ 3b2:	f8 01       	movw	r30, r16
+ 3b4:	81 85       	ldd	r24, Z+9	; 0x09
+}
+ 3b6:	cf 91       	pop	r28
+ 3b8:	1f 91       	pop	r17
+ 3ba:	0f 91       	pop	r16
+static void lcd_SendLowerNibble(uint8_t dataByte)
+{
+    GPIO_PinWrite(LCDConfig.D0,util_IsBitSet(dataByte,0));
+    GPIO_PinWrite(LCDConfig.D1,util_IsBitSet(dataByte,1));
+    GPIO_PinWrite(LCDConfig.D2,util_IsBitSet(dataByte,2));
+    GPIO_PinWrite(LCDConfig.D3,util_IsBitSet(dataByte,3));
+ 3bc:	0c 94 ed 00 	jmp	0x1da	; 0x1da <GPIO_PinWrite>
+
+000003c0 <lcd_SendDataSignals>:
+ * Return value    : none
+
+ * description : This functions generates the signals for sending the Data to LCD
+**************************************************************************************************/
+static void lcd_SendDataSignals(void)
+{
+ 3c0:	cf 93       	push	r28
+ 3c2:	df 93       	push	r29
+     GPIO_PinWrite(LCDConfig.RS,1);
+ 3c4:	c4 eb       	ldi	r28, 0xB4	; 180
+ 3c6:	d1 e0       	ldi	r29, 0x01	; 1
+ 3c8:	61 e0       	ldi	r22, 0x01	; 1
+ 3ca:	8b 81       	ldd	r24, Y+3	; 0x03
+ 3cc:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+     GPIO_PinWrite(LCDConfig.RW,0);
+ 3d0:	60 e0       	ldi	r22, 0x00	; 0
+ 3d2:	8c 81       	ldd	r24, Y+4	; 0x04
+ 3d4:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+     GPIO_PinWrite(LCDConfig.EN,1);
+ 3d8:	61 e0       	ldi	r22, 0x01	; 1
+ 3da:	8d 81       	ldd	r24, Y+5	; 0x05
+ 3dc:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+     DELAY_us(10);
+ 3e0:	8a e0       	ldi	r24, 0x0A	; 10
+ 3e2:	90 e0       	ldi	r25, 0x00	; 0
+ 3e4:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+     GPIO_PinWrite(LCDConfig.EN,0);
+ 3e8:	60 e0       	ldi	r22, 0x00	; 0
+ 3ea:	8d 81       	ldd	r24, Y+5	; 0x05
+}
+ 3ec:	df 91       	pop	r29
+ 3ee:	cf 91       	pop	r28
+{
+     GPIO_PinWrite(LCDConfig.RS,1);
+     GPIO_PinWrite(LCDConfig.RW,0);
+     GPIO_PinWrite(LCDConfig.EN,1);
+     DELAY_us(10);
+     GPIO_PinWrite(LCDConfig.EN,0);
+ 3f0:	0c 94 ed 00 	jmp	0x1da	; 0x1da <GPIO_PinWrite>
+
+000003f4 <lcd_BusyCheck>:
+ * description : This functions is used check whether LCD is busy.
+                 It waits till the LCD is busy by polling the LCD busy flag.
+                 After completing the previous operation, LCDs clears its internal busy flag.
+**************************************************************************************************/
+static void lcd_BusyCheck(void)
+{
+ 3f4:	cf 93       	push	r28
+    uint8_t busyflag;
+ 
+  if(LCDConfig.RW != P_NC)                         //Perform Busy check if RW pin is used
+ 3f6:	80 91 b8 01 	lds	r24, 0x01B8
+ 3fa:	8f 3f       	cpi	r24, 0xFF	; 255
+ 3fc:	09 f4       	brne	.+2      	; 0x400 <lcd_BusyCheck+0xc>
+ 3fe:	44 c0       	rjmp	.+136    	; 0x488 <lcd_BusyCheck+0x94>
+   {
+    GPIO_PinDirection(LCDConfig.D7,INPUT); // Configure busy pin as input
+ 400:	60 e0       	ldi	r22, 0x00	; 0
+ 402:	80 91 c1 01 	lds	r24, 0x01C1
+ 406:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinWrite(LCDConfig.RS,0);           // Select the Command Register by pulling RS LOW
+ 40a:	60 e0       	ldi	r22, 0x00	; 0
+ 40c:	80 91 b7 01 	lds	r24, 0x01B7
+ 410:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    GPIO_PinWrite(LCDConfig.RW,1);           // Select the Read Operation for busy flag by setting RW
+ 414:	61 e0       	ldi	r22, 0x01	; 1
+ 416:	80 91 b8 01 	lds	r24, 0x01B8
+ 41a:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    do
+    {
+
+        GPIO_PinWrite(LCDConfig.EN,0);
+ 41e:	60 e0       	ldi	r22, 0x00	; 0
+ 420:	80 91 b9 01 	lds	r24, 0x01B9
+ 424:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+        DELAY_us(10);
+ 428:	8a e0       	ldi	r24, 0x0A	; 10
+ 42a:	90 e0       	ldi	r25, 0x00	; 0
+ 42c:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+        GPIO_PinWrite(LCDConfig.EN,1); 
+ 430:	61 e0       	ldi	r22, 0x01	; 1
+ 432:	80 91 b9 01 	lds	r24, 0x01B9
+ 436:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+        DELAY_us(10);
+ 43a:	8a e0       	ldi	r24, 0x0A	; 10
+ 43c:	90 e0       	ldi	r25, 0x00	; 0
+ 43e:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+        busyflag = GPIO_PinRead(LCDConfig.D7);
+ 442:	80 91 c1 01 	lds	r24, 0x01C1
+ 446:	0e 94 5f 01 	call	0x2be	; 0x2be <GPIO_PinRead>
+ 44a:	c8 2f       	mov	r28, r24
+
+
+        if(LCDConfig.v_LcdMode_U8 == 4)
+ 44c:	80 91 b6 01 	lds	r24, 0x01B6
+ 450:	84 30       	cpi	r24, 0x04	; 4
+ 452:	91 f4       	brne	.+36     	; 0x478 <lcd_BusyCheck+0x84>
+        {
+            /* Perform extra dummy read for 4-bit */            
+            GPIO_PinWrite(LCDConfig.EN,0);
+ 454:	60 e0       	ldi	r22, 0x00	; 0
+ 456:	80 91 b9 01 	lds	r24, 0x01B9
+ 45a:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+            DELAY_us(10);
+ 45e:	8a e0       	ldi	r24, 0x0A	; 10
+ 460:	90 e0       	ldi	r25, 0x00	; 0
+ 462:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+            GPIO_PinWrite(LCDConfig.EN,1); 
+ 466:	61 e0       	ldi	r22, 0x01	; 1
+ 468:	80 91 b9 01 	lds	r24, 0x01B9
+ 46c:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+            DELAY_us(10);
+ 470:	8a e0       	ldi	r24, 0x0A	; 10
+ 472:	90 e0       	ldi	r25, 0x00	; 0
+ 474:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+        }    
+    }while(busyflag!=0);
+ 478:	c1 11       	cpse	r28, r1
+ 47a:	d1 cf       	rjmp	.-94     	; 0x41e <lcd_BusyCheck+0x2a>
+
+    GPIO_PinDirection(LCDConfig.D7,OUTPUT); // Configure busy pin as Output
+ 47c:	61 e0       	ldi	r22, 0x01	; 1
+ 47e:	80 91 c1 01 	lds	r24, 0x01C1
+ {
+    /* Busy flag cannot be read as RW is not available hence Extra delay of 1ms is added 
+      to ensure the LCD completes previous operation and ready to receive new commands/data */
+    DELAY_ms(1);  
+ }
+}
+ 482:	cf 91       	pop	r28
+            GPIO_PinWrite(LCDConfig.EN,1); 
+            DELAY_us(10);
+        }    
+    }while(busyflag!=0);
+
+    GPIO_PinDirection(LCDConfig.D7,OUTPUT); // Configure busy pin as Output
+ 484:	0c 94 7b 00 	jmp	0xf6	; 0xf6 <GPIO_PinDirection>
+  }
+else
+ {
+    /* Busy flag cannot be read as RW is not available hence Extra delay of 1ms is added 
+      to ensure the LCD completes previous operation and ready to receive new commands/data */
+    DELAY_ms(1);  
+ 488:	81 e0       	ldi	r24, 0x01	; 1
+ 48a:	90 e0       	ldi	r25, 0x00	; 0
+ }
+}
+ 48c:	cf 91       	pop	r28
+  }
+else
+ {
+    /* Busy flag cannot be read as RW is not available hence Extra delay of 1ms is added 
+      to ensure the LCD completes previous operation and ready to receive new commands/data */
+    DELAY_ms(1);  
+ 48e:	0c 94 61 00 	jmp	0xc2	; 0xc2 <DELAY_ms>
+
+00000492 <LCD_SetUp>:
+               gpioPins_et D3,
+               gpioPins_et D4,
+               gpioPins_et D5,
+               gpioPins_et D6,
+               gpioPins_et D7 )
+{
+ 492:	8f 92       	push	r8
+ 494:	9f 92       	push	r9
+ 496:	af 92       	push	r10
+ 498:	bf 92       	push	r11
+ 49a:	cf 92       	push	r12
+ 49c:	df 92       	push	r13
+ 49e:	ef 92       	push	r14
+ 4a0:	ff 92       	push	r15
+ 4a2:	0f 93       	push	r16
+ 4a4:	1f 93       	push	r17
+ 4a6:	cf 93       	push	r28
+ 4a8:	df 93       	push	r29
+ 4aa:	cd b7       	in	r28, 0x3d	; 61
+ 4ac:	de b7       	in	r29, 0x3e	; 62
+ 4ae:	98 2e       	mov	r9, r24
+ 4b0:	b6 2e       	mov	r11, r22
+ 4b2:	d4 2e       	mov	r13, r20
+ 4b4:	ff 84       	ldd	r15, Y+15	; 0x0f
+ 4b6:	18 89       	ldd	r17, Y+16	; 0x10
+  /* Copy the PIN numbers where the LCD is connected */
+    LCDConfig.RS = RS;
+ 4b8:	80 93 b7 01 	sts	0x01B7, r24
+    LCDConfig.RW = RW;
+ 4bc:	60 93 b8 01 	sts	0x01B8, r22
+    LCDConfig.EN = EN;
+ 4c0:	40 93 b9 01 	sts	0x01B9, r20
+
+    LCDConfig.D0 = D0;
+ 4c4:	20 93 ba 01 	sts	0x01BA, r18
+    LCDConfig.D1 = D1;
+ 4c8:	00 93 bb 01 	sts	0x01BB, r16
+    LCDConfig.D2 = D2;
+ 4cc:	e0 92 bc 01 	sts	0x01BC, r14
+    LCDConfig.D3 = D3;
+ 4d0:	c0 92 bd 01 	sts	0x01BD, r12
+    LCDConfig.D4 = D4;
+ 4d4:	a0 92 be 01 	sts	0x01BE, r10
+    LCDConfig.D5 = D5;
+ 4d8:	80 92 bf 01 	sts	0x01BF, r8
+    LCDConfig.D6 = D6;
+ 4dc:	f0 92 c0 01 	sts	0x01C0, r15
+    LCDConfig.D7 = D7;
+ 4e0:	10 93 c1 01 	sts	0x01C1, r17
+
+
+    if((D0 == P_NC) || (D1 == P_NC) || (D2 == P_NC) || (D3 == P_NC))
+ 4e4:	2f 3f       	cpi	r18, 0xFF	; 255
+ 4e6:	39 f0       	breq	.+14     	; 0x4f6 <LCD_SetUp+0x64>
+ 4e8:	0f 3f       	cpi	r16, 0xFF	; 255
+ 4ea:	29 f0       	breq	.+10     	; 0x4f6 <LCD_SetUp+0x64>
+ 4ec:	8f ef       	ldi	r24, 0xFF	; 255
+ 4ee:	e8 16       	cp	r14, r24
+ 4f0:	11 f0       	breq	.+4      	; 0x4f6 <LCD_SetUp+0x64>
+ 4f2:	c8 12       	cpse	r12, r24
+ 4f4:	04 c0       	rjmp	.+8      	; 0x4fe <LCD_SetUp+0x6c>
+    {
+        LCDConfig.v_LcdMode_U8 = 4; // Select 4-bit mode as D0-D3 are not used(P_NC)
+ 4f6:	84 e0       	ldi	r24, 0x04	; 4
+ 4f8:	80 93 b6 01 	sts	0x01B6, r24
+ 4fc:	13 c0       	rjmp	.+38     	; 0x524 <LCD_SetUp+0x92>
+    }
+    else
+    {
+        LCDConfig.v_LcdMode_U8 = 8; // 8-bit mode configure D0-D3 as output.      
+ 4fe:	88 e0       	ldi	r24, 0x08	; 8
+ 500:	80 93 b6 01 	sts	0x01B6, r24
+        GPIO_PinDirection(D0,OUTPUT);
+ 504:	61 e0       	ldi	r22, 0x01	; 1
+ 506:	82 2f       	mov	r24, r18
+ 508:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+        GPIO_PinDirection(D1,OUTPUT);
+ 50c:	61 e0       	ldi	r22, 0x01	; 1
+ 50e:	80 2f       	mov	r24, r16
+ 510:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+        GPIO_PinDirection(D2,OUTPUT);
+ 514:	61 e0       	ldi	r22, 0x01	; 1
+ 516:	8e 2d       	mov	r24, r14
+ 518:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+        GPIO_PinDirection(D3,OUTPUT);
+ 51c:	61 e0       	ldi	r22, 0x01	; 1
+ 51e:	8c 2d       	mov	r24, r12
+ 520:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    }
+
+    /* Configure RS,RW,EN, D4-D7 as Output for both 4/8-bit mode.*/
+    GPIO_PinDirection(RS,OUTPUT);
+ 524:	61 e0       	ldi	r22, 0x01	; 1
+ 526:	89 2d       	mov	r24, r9
+ 528:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinDirection(RW,OUTPUT);
+ 52c:	61 e0       	ldi	r22, 0x01	; 1
+ 52e:	8b 2d       	mov	r24, r11
+ 530:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinDirection(EN,OUTPUT);
+ 534:	61 e0       	ldi	r22, 0x01	; 1
+ 536:	8d 2d       	mov	r24, r13
+ 538:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+
+    GPIO_PinDirection(D4,OUTPUT);
+ 53c:	61 e0       	ldi	r22, 0x01	; 1
+ 53e:	8a 2d       	mov	r24, r10
+ 540:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinDirection(D5,OUTPUT);
+ 544:	61 e0       	ldi	r22, 0x01	; 1
+ 546:	88 2d       	mov	r24, r8
+ 548:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinDirection(D6,OUTPUT);
+ 54c:	61 e0       	ldi	r22, 0x01	; 1
+ 54e:	8f 2d       	mov	r24, r15
+ 550:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinDirection(D7,OUTPUT);  
+ 554:	61 e0       	ldi	r22, 0x01	; 1
+ 556:	81 2f       	mov	r24, r17
+}
+ 558:	df 91       	pop	r29
+ 55a:	cf 91       	pop	r28
+ 55c:	1f 91       	pop	r17
+ 55e:	0f 91       	pop	r16
+ 560:	ff 90       	pop	r15
+ 562:	ef 90       	pop	r14
+ 564:	df 90       	pop	r13
+ 566:	cf 90       	pop	r12
+ 568:	bf 90       	pop	r11
+ 56a:	af 90       	pop	r10
+ 56c:	9f 90       	pop	r9
+ 56e:	8f 90       	pop	r8
+    GPIO_PinDirection(EN,OUTPUT);
+
+    GPIO_PinDirection(D4,OUTPUT);
+    GPIO_PinDirection(D5,OUTPUT);
+    GPIO_PinDirection(D6,OUTPUT);
+    GPIO_PinDirection(D7,OUTPUT);  
+ 570:	0c 94 7b 00 	jmp	0xf6	; 0xf6 <GPIO_PinDirection>
+
+00000574 <LCD_CmdWrite>:
+                Some of the commonly used commands are defined in lcd.h.
+                For more commands refer the data sheet and send the supported command.                
+                The behaviour is undefined if unsupported commands are sent.    
+****************************************************************************************************/
+void LCD_CmdWrite( uint8_t v_lcdCmd_u8)
+{
+ 574:	cf 93       	push	r28
+ 576:	c8 2f       	mov	r28, r24
+    lcd_BusyCheck();
+ 578:	0e 94 fa 01 	call	0x3f4	; 0x3f4 <lcd_BusyCheck>
+    if(LCDConfig.v_LcdMode_U8 == C_EightBitMode_U8)
+ 57c:	80 91 b6 01 	lds	r24, 0x01B6
+ 580:	88 30       	cpi	r24, 0x08	; 8
+ 582:	21 f4       	brne	.+8      	; 0x58c <LCD_CmdWrite+0x18>
+     {
+         lcd_SendLowerNibble(v_lcdCmd_u8);
+ 584:	8c 2f       	mov	r24, r28
+ 586:	0e 94 bc 01 	call	0x378	; 0x378 <lcd_SendLowerNibble>
+ 58a:	07 c0       	rjmp	.+14     	; 0x59a <LCD_CmdWrite+0x26>
+     }
+     else
+     {
+         lcd_SendHigherNibble(v_lcdCmd_u8);
+ 58c:	8c 2f       	mov	r24, r28
+ 58e:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <lcd_SendHigherNibble>
+         lcd_SendCmdSignals();
+ 592:	0e 94 a2 01 	call	0x344	; 0x344 <lcd_SendCmdSignals>
+         v_lcdCmd_u8 = v_lcdCmd_u8 << 4;
+ 596:	c2 95       	swap	r28
+ 598:	c0 7f       	andi	r28, 0xF0	; 240
+     }
+
+     lcd_SendHigherNibble(v_lcdCmd_u8);
+ 59a:	8c 2f       	mov	r24, r28
+ 59c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <lcd_SendHigherNibble>
+     lcd_SendCmdSignals();
+}
+ 5a0:	cf 91       	pop	r28
+         lcd_SendCmdSignals();
+         v_lcdCmd_u8 = v_lcdCmd_u8 << 4;
+     }
+
+     lcd_SendHigherNibble(v_lcdCmd_u8);
+     lcd_SendCmdSignals();
+ 5a2:	0c 94 a2 01 	jmp	0x344	; 0x344 <lcd_SendCmdSignals>
+
+000005a6 <LCD_GoToLine>:
+           C_LcdLineThree,
+
+****************************************************************************************************/
+void LCD_GoToLine(uint8_t v_lineNumber_u8)
+{
+    if(v_lineNumber_u8 < LCDConfig.v_MaxSupportedLines_U8)
+ 5a6:	90 91 b4 01 	lds	r25, 0x01B4
+ 5aa:	89 17       	cp	r24, r25
+ 5ac:	58 f4       	brcc	.+22     	; 0x5c4 <LCD_GoToLine+0x1e>
+    {
+        /* If the line number is within range then
+           Move the Cursor to beginning of the specified line */
+        v_LcdTrackCursorPos_U8 = 0x00;
+ 5ae:	10 92 c2 01 	sts	0x01C2, r1
+        v_LcdTrackLineNum_U8 = v_lineNumber_u8;
+ 5b2:	80 93 c3 01 	sts	0x01C3, r24
+        LCD_CmdWrite(ARR_LcdLineNumAddress_U8[v_lineNumber_u8]);
+ 5b6:	e8 2f       	mov	r30, r24
+ 5b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 5ba:	e0 5a       	subi	r30, 0xA0	; 160
+ 5bc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5be:	80 81       	ld	r24, Z
+ 5c0:	0c 94 ba 02 	jmp	0x574	; 0x574 <LCD_CmdWrite>
+ 5c4:	08 95       	ret
+
+000005c6 <LCD_Clear>:
+
+ * description  :This function clears the LCD and moves the cursor to beginning of first line
+****************************************************************************************************/
+void LCD_Clear()
+{
+    LCD_CmdWrite(CMD_LCD_CLEAR);    // Clear the LCD and go to First line First Position
+ 5c6:	81 e0       	ldi	r24, 0x01	; 1
+ 5c8:	0e 94 ba 02 	call	0x574	; 0x574 <LCD_CmdWrite>
+    LCD_GoToLine(C_LcdLineZero);
+ 5cc:	80 e0       	ldi	r24, 0x00	; 0
+ 5ce:	0c 94 d3 02 	jmp	0x5a6	; 0x5a6 <LCD_GoToLine>
+
+000005d2 <LCD_Init>:
+**************************************************************************************************/
+void LCD_Init(uint8_t v_lcdNoOfLines_u8, uint8_t v_MaxCharsPerLine_u8)
+{
+
+
+    LCDConfig.v_MaxSupportedChars_U8 = v_MaxCharsPerLine_u8; //Maintaian the LCD type
+ 5d2:	60 93 b5 01 	sts	0x01B5, r22
+    LCDConfig.v_MaxSupportedLines_U8 = v_lcdNoOfLines_u8;
+ 5d6:	80 93 b4 01 	sts	0x01B4, r24
+    if(v_lcdNoOfLines_u8 > C_LcdLineTwo)
+ 5da:	83 30       	cpi	r24, 0x03	; 3
+ 5dc:	40 f0       	brcs	.+16     	; 0x5ee <LCD_Init+0x1c>
+    {
+        ARR_LcdLineNumAddress_U8[C_LcdLineTwo] =  0x90 + (v_MaxCharsPerLine_u8 & 0x0fu);
+ 5de:	6f 70       	andi	r22, 0x0F	; 15
+ 5e0:	80 e9       	ldi	r24, 0x90	; 144
+ 5e2:	86 0f       	add	r24, r22
+ 5e4:	80 93 62 00 	sts	0x0062, r24
+        ARR_LcdLineNumAddress_U8[C_LcdLineThree] =  0xd0 + (v_MaxCharsPerLine_u8 & 0x0fu);
+ 5e8:	60 53       	subi	r22, 0x30	; 48
+ 5ea:	60 93 63 00 	sts	0x0063, r22
+    }
+
+    DELAY_ms(100);
+ 5ee:	84 e6       	ldi	r24, 0x64	; 100
+ 5f0:	90 e0       	ldi	r25, 0x00	; 0
+ 5f2:	0e 94 61 00 	call	0xc2	; 0xc2 <DELAY_ms>
+
+    if(LCDConfig.v_LcdMode_U8 == C_EightBitMode_U8)
+ 5f6:	80 91 b6 01 	lds	r24, 0x01B6
+ 5fa:	88 30       	cpi	r24, 0x08	; 8
+ 5fc:	11 f4       	brne	.+4      	; 0x602 <LCD_Init+0x30>
+    {
+        LCD_CmdWrite(CMD_LCD_EIGHT_BIT_MODE); // Initialize the LCD for 8-bit 5x7 matrix type
+ 5fe:	88 e3       	ldi	r24, 0x38	; 56
+ 600:	27 c0       	rjmp	.+78     	; 0x650 <LCD_Init+0x7e>
+    }
+    else if(LCDConfig.v_LcdMode_U8 == C_FourBitMode_U8)
+ 602:	84 30       	cpi	r24, 0x04	; 4
+ 604:	39 f5       	brne	.+78     	; 0x654 <LCD_Init+0x82>
+                 This is used only in 4-bit mode as the LCD by default boots in 8-Bit mode.
+----------------------------------------------------------------------------------*/
+static void lcd_Reset(void)
+{
+    /* LCD reset sequence for 4-bit mode, refer data sheet for more info */
+    lcd_SendHigherNibble(0x30);
+ 606:	80 e3       	ldi	r24, 0x30	; 48
+ 608:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <lcd_SendHigherNibble>
+    lcd_SendCmdSignals();
+ 60c:	0e 94 a2 01 	call	0x344	; 0x344 <lcd_SendCmdSignals>
+    DELAY_ms(100);
+ 610:	84 e6       	ldi	r24, 0x64	; 100
+ 612:	90 e0       	ldi	r25, 0x00	; 0
+ 614:	0e 94 61 00 	call	0xc2	; 0xc2 <DELAY_ms>
+    lcd_SendHigherNibble(0x30);
+ 618:	80 e3       	ldi	r24, 0x30	; 48
+ 61a:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <lcd_SendHigherNibble>
+    lcd_SendCmdSignals();
+ 61e:	0e 94 a2 01 	call	0x344	; 0x344 <lcd_SendCmdSignals>
+    DELAY_us(200);
+ 622:	88 ec       	ldi	r24, 0xC8	; 200
+ 624:	90 e0       	ldi	r25, 0x00	; 0
+ 626:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+    lcd_SendHigherNibble(0x30);
+ 62a:	80 e3       	ldi	r24, 0x30	; 48
+ 62c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <lcd_SendHigherNibble>
+    lcd_SendCmdSignals();
+ 630:	0e 94 a2 01 	call	0x344	; 0x344 <lcd_SendCmdSignals>
+    DELAY_us(200);
+ 634:	88 ec       	ldi	r24, 0xC8	; 200
+ 636:	90 e0       	ldi	r25, 0x00	; 0
+ 638:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+    lcd_SendHigherNibble(0x20);
+ 63c:	80 e2       	ldi	r24, 0x20	; 32
+ 63e:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <lcd_SendHigherNibble>
+    lcd_SendCmdSignals();
+ 642:	0e 94 a2 01 	call	0x344	; 0x344 <lcd_SendCmdSignals>
+    DELAY_us(200);
+ 646:	88 ec       	ldi	r24, 0xC8	; 200
+ 648:	90 e0       	ldi	r25, 0x00	; 0
+ 64a:	0e 94 58 00 	call	0xb0	; 0xb0 <DELAY_us>
+        LCD_CmdWrite(CMD_LCD_EIGHT_BIT_MODE); // Initialize the LCD for 8-bit 5x7 matrix type
+    }
+    else if(LCDConfig.v_LcdMode_U8 == C_FourBitMode_U8)
+    {
+        lcd_Reset();
+        LCD_CmdWrite(CMD_LCD_FOUR_BIT_MODE); // Initialize the LCD for 4-bit 5x7 matrix type 
+ 64e:	88 e2       	ldi	r24, 0x28	; 40
+ 650:	0e 94 ba 02 	call	0x574	; 0x574 <LCD_CmdWrite>
+    }
+
+    LCD_CmdWrite(CMD_DISPLAY_ON_CURSOR_ON);     // Display ON cursor ON
+ 654:	8e e0       	ldi	r24, 0x0E	; 14
+ 656:	0e 94 ba 02 	call	0x574	; 0x574 <LCD_CmdWrite>
+    LCD_Clear();                             // Clear the LCD and go to First line First Position
+ 65a:	0c 94 e3 02 	jmp	0x5c6	; 0x5c6 <LCD_Clear>
+
+0000065e <LCD_GoToNextLine>:
+****************************************************************************************************/
+void  LCD_GoToNextLine(void)
+{
+    /*Increment the current line number.
+      In case it exceeds the limit, rool it back to first line */
+    v_LcdTrackLineNum_U8++;
+ 65e:	80 91 c3 01 	lds	r24, 0x01C3
+ 662:	8f 5f       	subi	r24, 0xFF	; 255
+ 664:	80 93 c3 01 	sts	0x01C3, r24
+    v_LcdTrackCursorPos_U8 = 0x00;
+ 668:	10 92 c2 01 	sts	0x01C2, r1
+    if(v_LcdTrackLineNum_U8 >= LCDConfig.v_MaxSupportedLines_U8)
+ 66c:	90 91 b4 01 	lds	r25, 0x01B4
+ 670:	89 17       	cp	r24, r25
+ 672:	10 f0       	brcs	.+4      	; 0x678 <LCD_GoToNextLine+0x1a>
+        v_LcdTrackLineNum_U8 = C_LcdLineZero;
+ 674:	10 92 c3 01 	sts	0x01C3, r1
+    LCD_CmdWrite(ARR_LcdLineNumAddress_U8[v_LcdTrackLineNum_U8]);
+ 678:	e0 91 c3 01 	lds	r30, 0x01C3
+ 67c:	f0 e0       	ldi	r31, 0x00	; 0
+ 67e:	e0 5a       	subi	r30, 0xA0	; 160
+ 680:	ff 4f       	sbci	r31, 0xFF	; 255
+ 682:	80 81       	ld	r24, Z
+ 684:	0c 94 ba 02 	jmp	0x574	; 0x574 <LCD_CmdWrite>
+
+00000688 <LCD_DisplayChar>:
+ * description  : This function sends a character to be displayed on LCD.
+                  Any valid ascii value can be passed to display respective character
+
+****************************************************************************************************/
+void LCD_DisplayChar(char v_lcdData_u8)
+{
+ 688:	cf 93       	push	r28
+ 68a:	c8 2f       	mov	r28, r24
+    if((v_LcdTrackCursorPos_U8>=LCDConfig.v_MaxSupportedChars_U8) || (v_lcdData_u8=='\n'))
+ 68c:	90 91 c2 01 	lds	r25, 0x01C2
+ 690:	80 91 b5 01 	lds	r24, 0x01B5
+ 694:	98 17       	cp	r25, r24
+ 696:	60 f4       	brcc	.+24     	; 0x6b0 <LCD_DisplayChar+0x28>
+ 698:	ca 30       	cpi	r28, 0x0A	; 10
+ 69a:	51 f0       	breq	.+20     	; 0x6b0 <LCD_DisplayChar+0x28>
+
+ * description : This functions is used to send a byte of data to LCD.                 .    
+**************************************************************************************************/
+static void lcd_DataWrite( uint8_t dataByte)
+{
+    lcd_BusyCheck();
+ 69c:	0e 94 fa 01 	call	0x3f4	; 0x3f4 <lcd_BusyCheck>
+    if(LCDConfig.v_LcdMode_U8 == C_EightBitMode_U8)
+ 6a0:	80 91 b6 01 	lds	r24, 0x01B6
+ 6a4:	88 30       	cpi	r24, 0x08	; 8
+ 6a6:	49 f4       	brne	.+18     	; 0x6ba <LCD_DisplayChar+0x32>
+     {
+         lcd_SendLowerNibble(dataByte);
+ 6a8:	8c 2f       	mov	r24, r28
+ 6aa:	0e 94 bc 01 	call	0x378	; 0x378 <lcd_SendLowerNibble>
+ 6ae:	0c c0       	rjmp	.+24     	; 0x6c8 <LCD_DisplayChar+0x40>
+{
+    if((v_LcdTrackCursorPos_U8>=LCDConfig.v_MaxSupportedChars_U8) || (v_lcdData_u8=='\n'))
+    {
+        /* If the cursor has reached to end of line on page1
+        OR NewLine command is issued Then Move the cursor to next line */
+        LCD_GoToNextLine();
+ 6b0:	0e 94 2f 03 	call	0x65e	; 0x65e <LCD_GoToNextLine>
+    }
+    if(v_lcdData_u8!='\n') /* Display the character if its not newLine Char */
+ 6b4:	ca 30       	cpi	r28, 0x0A	; 10
+ 6b6:	91 f0       	breq	.+36     	; 0x6dc <LCD_DisplayChar+0x54>
+ 6b8:	f1 cf       	rjmp	.-30     	; 0x69c <LCD_DisplayChar+0x14>
+     {
+         lcd_SendLowerNibble(dataByte);
+     }
+     else
+     {
+         lcd_SendHigherNibble(dataByte);
+ 6ba:	8c 2f       	mov	r24, r28
+ 6bc:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <lcd_SendHigherNibble>
+         lcd_SendDataSignals();
+ 6c0:	0e 94 e0 01 	call	0x3c0	; 0x3c0 <lcd_SendDataSignals>
+         dataByte = dataByte << 4;
+ 6c4:	c2 95       	swap	r28
+ 6c6:	c0 7f       	andi	r28, 0xF0	; 240
+     }
+
+     lcd_SendHigherNibble(dataByte);
+ 6c8:	8c 2f       	mov	r24, r28
+ 6ca:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <lcd_SendHigherNibble>
+     lcd_SendDataSignals();
+ 6ce:	0e 94 e0 01 	call	0x3c0	; 0x3c0 <lcd_SendDataSignals>
+    }
+    if(v_lcdData_u8!='\n') /* Display the character if its not newLine Char */
+    {
+
+        lcd_DataWrite(v_lcdData_u8); /* Display the data and keep track of cursor */
+        v_LcdTrackCursorPos_U8++;
+ 6d2:	80 91 c2 01 	lds	r24, 0x01C2
+ 6d6:	8f 5f       	subi	r24, 0xFF	; 255
+ 6d8:	80 93 c2 01 	sts	0x01C2, r24
+    }
+}
+ 6dc:	cf 91       	pop	r28
+ 6de:	08 95       	ret
+
+000006e0 <LCD_DisplayString>:
+                    and traverses till the end(NULL CHAR)and displays a char each time.
+
+****************************************************************************************************/
+#if (Enable_LCD_DisplayString==1)
+void LCD_DisplayString(const char *ptr_stringPointer_u8)
+{
+ 6e0:	cf 93       	push	r28
+ 6e2:	df 93       	push	r29
+ 6e4:	ec 01       	movw	r28, r24
+    while((*ptr_stringPointer_u8)!=0)
+ 6e6:	89 91       	ld	r24, Y+
+ 6e8:	88 23       	and	r24, r24
+ 6ea:	19 f0       	breq	.+6      	; 0x6f2 <LCD_DisplayString+0x12>
+        LCD_DisplayChar(*ptr_stringPointer_u8++); // Loop through the string and display char by char
+ 6ec:	0e 94 44 03 	call	0x688	; 0x688 <LCD_DisplayChar>
+ 6f0:	fa cf       	rjmp	.-12     	; 0x6e6 <LCD_DisplayString+0x6>
+}
+ 6f2:	df 91       	pop	r29
+ 6f4:	cf 91       	pop	r28
+ 6f6:	08 95       	ret
+
+000006f8 <UART_SetBaudRate>:
+                 the default baudrate of 9600 is set.
+
+		    Refer uart.h file for Supported range of baud rates.
+***************************************************************************************************/
+void UART_SetBaudRate(uint32_t v_baudRate_u32)
+{
+ 6f8:	cf 92       	push	r12
+ 6fa:	df 92       	push	r13
+ 6fc:	ef 92       	push	r14
+ 6fe:	ff 92       	push	r15
+ 700:	6b 01       	movw	r12, r22
+ 702:	7c 01       	movw	r14, r24
+	uint16_t RegValue;
+
+	if((v_baudRate_u32 >= C_MinBaudRate_U32) && (v_baudRate_u32<=C_MaxBaudRate_U32))
+ 704:	dc 01       	movw	r26, r24
+ 706:	cb 01       	movw	r24, r22
+ 708:	80 56       	subi	r24, 0x60	; 96
+ 70a:	99 40       	sbci	r25, 0x09	; 9
+ 70c:	a1 09       	sbc	r26, r1
+ 70e:	b1 09       	sbc	r27, r1
+ 710:	81 3a       	cpi	r24, 0xA1	; 161
+ 712:	98 4b       	sbci	r25, 0xB8	; 184
+ 714:	a1 40       	sbci	r26, 0x01	; 1
+ 716:	b1 05       	cpc	r27, r1
+ 718:	98 f4       	brcc	.+38     	; 0x740 <UART_SetBaudRate+0x48>
+	{
+		/* Check if the requested baudate is within range,
+	     If yes then calculate the value to be loaded into baud rate generator. */
+		RegValue = M_GetBaudRateGeneratorValue(v_baudRate_u32);
+ 71a:	a8 ef       	ldi	r26, 0xF8	; 248
+ 71c:	bf ef       	ldi	r27, 0xFF	; 255
+ 71e:	a7 01       	movw	r20, r14
+ 720:	96 01       	movw	r18, r12
+ 722:	0e 94 c1 06 	call	0xd82	; 0xd82 <__mulohisi3>
+ 726:	7c 5d       	subi	r23, 0xDC	; 220
+ 728:	8b 40       	sbci	r24, 0x0B	; 11
+ 72a:	9f 4f       	sbci	r25, 0xFF	; 255
+ 72c:	e4 e0       	ldi	r30, 0x04	; 4
+ 72e:	22 0f       	add	r18, r18
+ 730:	33 1f       	adc	r19, r19
+ 732:	44 1f       	adc	r20, r20
+ 734:	55 1f       	adc	r21, r21
+ 736:	ea 95       	dec	r30
+ 738:	d1 f7       	brne	.-12     	; 0x72e <UART_SetBaudRate+0x36>
+ 73a:	0e 94 9c 06 	call	0xd38	; 0xd38 <__udivmodsi4>
+ 73e:	02 c0       	rjmp	.+4      	; 0x744 <UART_SetBaudRate+0x4c>
+	}
+	else
+	{
+		/*	 Invalid baudrate requested, hence set it to default baudrate of 9600 */
+		RegValue = M_GetBaudRateGeneratorValue(9600);
+ 740:	27 e6       	ldi	r18, 0x67	; 103
+ 742:	30 e0       	ldi	r19, 0x00	; 0
+	}
+
+	UBRRL = util_ExtractByte0to8(RegValue);
+ 744:	29 b9       	out	0x09, r18	; 9
+	UBRRH = util_ExtractByte8to16(RegValue);
+ 746:	30 bd       	out	0x20, r19	; 32
+}
+ 748:	ff 90       	pop	r15
+ 74a:	ef 90       	pop	r14
+ 74c:	df 90       	pop	r13
+ 74e:	cf 90       	pop	r12
+ 750:	08 95       	ret
+
+00000752 <UART_Init>:
+
+		    Refer uart.h file for Supported(range) baud rates.		
+***************************************************************************************************/
+void UART_Init(uint32_t v_baudRate_u32)
+{
+	UCSRB= (1<<RXEN) | (1<<TXEN);                  // Enable Receiver and Transmitter
+ 752:	28 e1       	ldi	r18, 0x18	; 24
+ 754:	2a b9       	out	0x0a, r18	; 10
+	UCSRC= (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);   // Asynchronous mode 8-bit data and 1-stop bit
+ 756:	26 e8       	ldi	r18, 0x86	; 134
+ 758:	20 bd       	out	0x20, r18	; 32
+	UCSRA= 0x00;                                   // Clear the UASRT status register
+ 75a:	1b b8       	out	0x0b, r1	; 11
+	UART_SetBaudRate(v_baudRate_u32);
+ 75c:	0c 94 7c 03 	jmp	0x6f8	; 0x6f8 <UART_SetBaudRate>
+
+00000760 <UART_RxChar>:
+ * description :This function is used to receive a char from UART module.
+                It waits till a char is received and returns it after reception.
+***************************************************************************************************/
+char UART_RxChar(void)
+{
+	while(util_IsBitCleared(UCSRA,RXC));  // Wait till the data is received
+ 760:	5f 9b       	sbis	0x0b, 7	; 11
+ 762:	fe cf       	rjmp	.-4      	; 0x760 <UART_RxChar>
+	return(UDR);                          // return the received char
+ 764:	8c b1       	in	r24, 0x0c	; 12
+}
+ 766:	08 95       	ret
+
+00000768 <UART_TxChar>:
+
+ * description  :This function is used to transmit a char through UART module.
+***************************************************************************************************/
+void UART_TxChar(char v_uartData_u8)
+{
+	while(util_IsBitCleared(UCSRA,UDRE)); // Wait till Transmitter(UDR) register becomes Empty
+ 768:	5d 9b       	sbis	0x0b, 5	; 11
+ 76a:	fe cf       	rjmp	.-4      	; 0x768 <UART_TxChar>
+	UDR =v_uartData_u8;                              // Load the data to be transmitted
+ 76c:	8c b9       	out	0x0c, r24	; 12
+ 76e:	08 95       	ret
+
+00000770 <UART_TxNumber.part.0>:
+                7.(0x12AB,3) then 3-digits ie. 2AB will be transmitted
+                8.(0x12AB,6) then 6-digits ie. 0012AB will be transmitted
+                9.(0x12AB,C_DefaultDigitsToTransmit_U8) then 12AB will be transmitted.    
+ ***************************************************************************************************/
+#if ((Enable_UART_TxNumber==1) || (Enable_UART_TxFloatNumber==1) || (Enable_UART_Printf == 1))
+void UART_TxNumber(uint8_t v_numericSystem_u8, uint32_t v_number_u32, uint8_t v_numOfDigitsToTransmit_u8)
+ 770:	af 92       	push	r10
+ 772:	bf 92       	push	r11
+ 774:	cf 92       	push	r12
+ 776:	df 92       	push	r13
+ 778:	ef 92       	push	r14
+ 77a:	ff 92       	push	r15
+ 77c:	0f 93       	push	r16
+ 77e:	1f 93       	push	r17
+ 780:	cf 93       	push	r28
+ 782:	df 93       	push	r29
+ 784:	1f 92       	push	r1
+ 786:	cd b7       	in	r28, 0x3d	; 61
+ 788:	de b7       	in	r29, 0x3e	; 62
+ 78a:	6b 01       	movw	r12, r22
+ 78c:	7c 01       	movw	r14, r24
+    {
+        while(v_numOfDigitsToTransmit_u8!=0)
+        {
+            /* Start Extracting the bits from the specified bit positions.
+             Get the Acsii values of the bits and transmit */
+            i = util_GetBitStatus(v_number_u32,(v_numOfDigitsToTransmit_u8-1));
+ 78e:	aa 24       	eor	r10, r10
+ 790:	a3 94       	inc	r10
+ 792:	b1 2c       	mov	r11, r1
+{
+    uint8_t i=0,a[10];
+
+    if(C_BINARY_U8 == v_numericSystem_u8)
+    {
+        while(v_numOfDigitsToTransmit_u8!=0)
+ 794:	44 23       	and	r20, r20
+ 796:	e9 f0       	breq	.+58     	; 0x7d2 <UART_TxNumber.part.0+0x62>
+        {
+            /* Start Extracting the bits from the specified bit positions.
+             Get the Acsii values of the bits and transmit */
+            i = util_GetBitStatus(v_number_u32,(v_numOfDigitsToTransmit_u8-1));
+ 798:	8f ef       	ldi	r24, 0xFF	; 255
+ 79a:	84 0f       	add	r24, r20
+ 79c:	85 01       	movw	r16, r10
+ 79e:	02 c0       	rjmp	.+4      	; 0x7a4 <UART_TxNumber.part.0+0x34>
+ 7a0:	00 0f       	add	r16, r16
+ 7a2:	11 1f       	adc	r17, r17
+ 7a4:	8a 95       	dec	r24
+ 7a6:	e2 f7       	brpl	.-8      	; 0x7a0 <UART_TxNumber.part.0+0x30>
+ 7a8:	01 2e       	mov	r0, r17
+ 7aa:	00 0c       	add	r0, r0
+ 7ac:	22 0b       	sbc	r18, r18
+ 7ae:	33 0b       	sbc	r19, r19
+ 7b0:	0c 21       	and	r16, r12
+ 7b2:	1d 21       	and	r17, r13
+ 7b4:	2e 21       	and	r18, r14
+ 7b6:	3f 21       	and	r19, r15
+ 7b8:	81 e0       	ldi	r24, 0x01	; 1
+ 7ba:	01 2b       	or	r16, r17
+ 7bc:	02 2b       	or	r16, r18
+ 7be:	03 2b       	or	r16, r19
+ 7c0:	09 f4       	brne	.+2      	; 0x7c4 <UART_TxNumber.part.0+0x54>
+ 7c2:	80 e0       	ldi	r24, 0x00	; 0
+            UART_TxChar(util_Dec2Ascii(i));
+ 7c4:	80 5d       	subi	r24, 0xD0	; 208
+ 7c6:	49 83       	std	Y+1, r20	; 0x01
+ 7c8:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+            v_numOfDigitsToTransmit_u8--;
+ 7cc:	49 81       	ldd	r20, Y+1	; 0x01
+ 7ce:	41 50       	subi	r20, 0x01	; 1
+ 7d0:	e1 cf       	rjmp	.-62     	; 0x794 <UART_TxNumber.part.0+0x24>
+            i--;
+        }
+    }
+
+
+}
+ 7d2:	0f 90       	pop	r0
+ 7d4:	df 91       	pop	r29
+ 7d6:	cf 91       	pop	r28
+ 7d8:	1f 91       	pop	r17
+ 7da:	0f 91       	pop	r16
+ 7dc:	ff 90       	pop	r15
+ 7de:	ef 90       	pop	r14
+ 7e0:	df 90       	pop	r13
+ 7e2:	cf 90       	pop	r12
+ 7e4:	bf 90       	pop	r11
+ 7e6:	af 90       	pop	r10
+ 7e8:	08 95       	ret
+
+000007ea <UART_TxString>:
+               1.The ptr_string points to the first char of the string
+                    and traverses till the end(NULL CHAR) and transmits a char each time
+***************************************************************************************************/
+#if ((Enable_UART_TxString==1)|| (Enable_UART_Printf == 1))
+void UART_TxString(char *ptr_string)
+{
+ 7ea:	cf 93       	push	r28
+ 7ec:	df 93       	push	r29
+ 7ee:	ec 01       	movw	r28, r24
+	while(*ptr_string)
+ 7f0:	89 91       	ld	r24, Y+
+ 7f2:	88 23       	and	r24, r24
+ 7f4:	19 f0       	breq	.+6      	; 0x7fc <UART_TxString+0x12>
+		UART_TxChar(*ptr_string++);// Loop through the string and transmit char by char
+ 7f6:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+ 7fa:	fa cf       	rjmp	.-12     	; 0x7f0 <UART_TxString+0x6>
+}
+ 7fc:	df 91       	pop	r29
+ 7fe:	cf 91       	pop	r28
+ 800:	08 95       	ret
+
+00000802 <UART_TxNumber>:
+                8.(0x12AB,6) then 6-digits ie. 0012AB will be transmitted
+                9.(0x12AB,C_DefaultDigitsToTransmit_U8) then 12AB will be transmitted.    
+ ***************************************************************************************************/
+#if ((Enable_UART_TxNumber==1) || (Enable_UART_TxFloatNumber==1) || (Enable_UART_Printf == 1))
+void UART_TxNumber(uint8_t v_numericSystem_u8, uint32_t v_number_u32, uint8_t v_numOfDigitsToTransmit_u8)
+{
+ 802:	4f 92       	push	r4
+ 804:	5f 92       	push	r5
+ 806:	6f 92       	push	r6
+ 808:	7f 92       	push	r7
+ 80a:	bf 92       	push	r11
+ 80c:	cf 92       	push	r12
+ 80e:	df 92       	push	r13
+ 810:	ef 92       	push	r14
+ 812:	ff 92       	push	r15
+ 814:	0f 93       	push	r16
+ 816:	1f 93       	push	r17
+ 818:	cf 93       	push	r28
+ 81a:	df 93       	push	r29
+ 81c:	cd b7       	in	r28, 0x3d	; 61
+ 81e:	de b7       	in	r29, 0x3e	; 62
+ 820:	2a 97       	sbiw	r28, 0x0a	; 10
+ 822:	0f b6       	in	r0, 0x3f	; 63
+ 824:	f8 94       	cli
+ 826:	de bf       	out	0x3e, r29	; 62
+ 828:	0f be       	out	0x3f, r0	; 63
+ 82a:	cd bf       	out	0x3d, r28	; 61
+ 82c:	b8 2e       	mov	r11, r24
+ 82e:	cb 01       	movw	r24, r22
+ 830:	ba 01       	movw	r22, r20
+ 832:	02 2f       	mov	r16, r18
+    uint8_t i=0,a[10];
+
+    if(C_BINARY_U8 == v_numericSystem_u8)
+ 834:	22 e0       	ldi	r18, 0x02	; 2
+ 836:	b2 12       	cpse	r11, r18
+ 838:	16 c0       	rjmp	.+44     	; 0x866 <__stack+0x7>
+ 83a:	40 2f       	mov	r20, r16
+            i--;
+        }
+    }
+
+
+}
+ 83c:	2a 96       	adiw	r28, 0x0a	; 10
+ 83e:	0f b6       	in	r0, 0x3f	; 63
+ 840:	f8 94       	cli
+ 842:	de bf       	out	0x3e, r29	; 62
+ 844:	0f be       	out	0x3f, r0	; 63
+ 846:	cd bf       	out	0x3d, r28	; 61
+ 848:	df 91       	pop	r29
+ 84a:	cf 91       	pop	r28
+ 84c:	1f 91       	pop	r17
+ 84e:	0f 91       	pop	r16
+ 850:	ff 90       	pop	r15
+ 852:	ef 90       	pop	r14
+ 854:	df 90       	pop	r13
+ 856:	cf 90       	pop	r12
+ 858:	bf 90       	pop	r11
+ 85a:	7f 90       	pop	r7
+ 85c:	6f 90       	pop	r6
+ 85e:	5f 90       	pop	r5
+ 860:	4f 90       	pop	r4
+ 862:	0c 94 b8 03 	jmp	0x770	; 0x770 <UART_TxNumber.part.0>
+            i = util_GetBitStatus(v_number_u32,(v_numOfDigitsToTransmit_u8-1));
+            UART_TxChar(util_Dec2Ascii(i));
+            v_numOfDigitsToTransmit_u8--;
+        }    
+    }     
+    else if(v_number_u32==0)
+ 866:	61 15       	cp	r22, r1
+ 868:	71 05       	cpc	r23, r1
+ 86a:	81 05       	cpc	r24, r1
+ 86c:	91 05       	cpc	r25, r1
+ 86e:	49 f0       	breq	.+18     	; 0x882 <__stack+0x23>
+ 870:	fe 01       	movw	r30, r28
+ 872:	31 96       	adiw	r30, 0x01	; 1
+ 874:	6f 01       	movw	r12, r30
+ 876:	7f 01       	movw	r14, r30
+                First get the remainder and divide the number by 10 each time.
+
+                example for Decimal number:
+                If v_number_u32 = 123 then extracted remainder will be 3 and number will be 12.
+                The process continues till it becomes zero or max digits reached*/
+                a[i]=util_GetMod32(v_number_u32,v_numericSystem_u8);
+ 878:	4b 2c       	mov	r4, r11
+ 87a:	51 2c       	mov	r5, r1
+ 87c:	61 2c       	mov	r6, r1
+ 87e:	71 2c       	mov	r7, r1
+ 880:	1e c0       	rjmp	.+60     	; 0x8be <__stack+0x5f>
+ 882:	10 e0       	ldi	r17, 0x00	; 0
+        }    
+    }     
+    else if(v_number_u32==0)
+    {
+        /* If the number is zero then update the array with the same for transmitting */
+        for(i=0;((i<v_numOfDigitsToTransmit_u8) && (i<C_MaxDigitsToTransmit_U8)) ;i++)
+ 884:	10 17       	cp	r17, r16
+ 886:	a1 f1       	breq	.+104    	; 0x8f0 <__stack+0x91>
+ 888:	1a 30       	cpi	r17, 0x0A	; 10
+ 88a:	91 f1       	breq	.+100    	; 0x8f0 <__stack+0x91>
+            UART_TxChar('0');
+ 88c:	80 e3       	ldi	r24, 0x30	; 48
+ 88e:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+        }    
+    }     
+    else if(v_number_u32==0)
+    {
+        /* If the number is zero then update the array with the same for transmitting */
+        for(i=0;((i<v_numOfDigitsToTransmit_u8) && (i<C_MaxDigitsToTransmit_U8)) ;i++)
+ 892:	1f 5f       	subi	r17, 0xFF	; 255
+ 894:	f7 cf       	rjmp	.-18     	; 0x884 <__stack+0x25>
+    {
+        for(i=0;i<v_numOfDigitsToTransmit_u8;i++)
+        {
+            /* Continue extracting the digits from right side
+               till the Specified v_numOfDigitsToTransmit_u8 */
+            if(v_number_u32!=0)
+ 896:	61 15       	cp	r22, r1
+ 898:	71 05       	cpc	r23, r1
+ 89a:	81 05       	cpc	r24, r1
+ 89c:	91 05       	cpc	r25, r1
+ 89e:	a1 f0       	breq	.+40     	; 0x8c8 <__stack+0x69>
+                First get the remainder and divide the number by 10 each time.
+
+                example for Decimal number:
+                If v_number_u32 = 123 then extracted remainder will be 3 and number will be 12.
+                The process continues till it becomes zero or max digits reached*/
+                a[i]=util_GetMod32(v_number_u32,v_numericSystem_u8);
+ 8a0:	16 2f       	mov	r17, r22
+ 8a2:	a3 01       	movw	r20, r6
+ 8a4:	92 01       	movw	r18, r4
+ 8a6:	0e 94 9c 06 	call	0xd38	; 0xd38 <__udivmodsi4>
+ 8aa:	ca 01       	movw	r24, r20
+ 8ac:	b9 01       	movw	r22, r18
+ 8ae:	b2 9e       	mul	r11, r18
+ 8b0:	10 19       	sub	r17, r0
+ 8b2:	11 24       	eor	r1, r1
+ 8b4:	f7 01       	movw	r30, r14
+ 8b6:	10 83       	st	Z, r17
+ 8b8:	ff ef       	ldi	r31, 0xFF	; 255
+ 8ba:	ef 1a       	sub	r14, r31
+ 8bc:	ff 0a       	sbc	r15, r31
+ 8be:	1e 2d       	mov	r17, r14
+ 8c0:	1c 19       	sub	r17, r12
+        for(i=0;((i<v_numOfDigitsToTransmit_u8) && (i<C_MaxDigitsToTransmit_U8)) ;i++)
+            UART_TxChar('0');
+    }
+    else
+    {
+        for(i=0;i<v_numOfDigitsToTransmit_u8;i++)
+ 8c2:	10 17       	cp	r17, r16
+ 8c4:	40 f3       	brcs	.-48     	; 0x896 <__stack+0x37>
+ 8c6:	0f c0       	rjmp	.+30     	; 0x8e6 <__stack+0x87>
+                If v_number_u32 = 123 then extracted remainder will be 3 and number will be 12.
+                The process continues till it becomes zero or max digits reached*/
+                a[i]=util_GetMod32(v_number_u32,v_numericSystem_u8);
+                v_number_u32=v_number_u32/v_numericSystem_u8;
+            }
+            else if( (v_numOfDigitsToTransmit_u8 == C_DefaultDigitsToTransmit_U8) ||
+ 8c8:	0b 30       	cpi	r16, 0x0B	; 11
+ 8ca:	68 f4       	brcc	.+26     	; 0x8e6 <__stack+0x87>
+            else
+            {
+                /*In case user expects more digits to be transmitted than the actual digits in number,
+                  then update the remaining digits with zero.
+                Ex: v_number_u32 is 123 and user wants five digits then 00123 has to be transmitted */
+                a[i]=0;
+ 8cc:	f7 01       	movw	r30, r14
+ 8ce:	10 82       	st	Z, r1
+ 8d0:	f3 cf       	rjmp	.-26     	; 0x8b8 <__stack+0x59>
+        }
+
+        while(i)
+        { 
+            /* Finally get the ascii values of the digits and transmit*/
+            UART_TxChar(util_Hex2Ascii(a[i-1]));
+ 8d2:	fe 01       	movw	r30, r28
+ 8d4:	e1 0f       	add	r30, r17
+ 8d6:	f1 1d       	adc	r31, r1
+ 8d8:	80 81       	ld	r24, Z
+ 8da:	8a 30       	cpi	r24, 0x0A	; 10
+ 8dc:	38 f0       	brcs	.+14     	; 0x8ec <__stack+0x8d>
+ 8de:	89 5c       	subi	r24, 0xC9	; 201
+ 8e0:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+            i--;
+ 8e4:	11 50       	subi	r17, 0x01	; 1
+                Ex: v_number_u32 is 123 and user wants five digits then 00123 has to be transmitted */
+                a[i]=0;
+            }
+        }
+
+        while(i)
+ 8e6:	11 11       	cpse	r17, r1
+ 8e8:	f4 cf       	rjmp	.-24     	; 0x8d2 <__stack+0x73>
+ 8ea:	02 c0       	rjmp	.+4      	; 0x8f0 <__stack+0x91>
+        { 
+            /* Finally get the ascii values of the digits and transmit*/
+            UART_TxChar(util_Hex2Ascii(a[i-1]));
+ 8ec:	80 5d       	subi	r24, 0xD0	; 208
+ 8ee:	f8 cf       	rjmp	.-16     	; 0x8e0 <__stack+0x81>
+            i--;
+        }
+    }
+
+
+}
+ 8f0:	2a 96       	adiw	r28, 0x0a	; 10
+ 8f2:	0f b6       	in	r0, 0x3f	; 63
+ 8f4:	f8 94       	cli
+ 8f6:	de bf       	out	0x3e, r29	; 62
+ 8f8:	0f be       	out	0x3f, r0	; 63
+ 8fa:	cd bf       	out	0x3d, r28	; 61
+ 8fc:	df 91       	pop	r29
+ 8fe:	cf 91       	pop	r28
+ 900:	1f 91       	pop	r17
+ 902:	0f 91       	pop	r16
+ 904:	ff 90       	pop	r15
+ 906:	ef 90       	pop	r14
+ 908:	df 90       	pop	r13
+ 90a:	cf 90       	pop	r12
+ 90c:	bf 90       	pop	r11
+ 90e:	7f 90       	pop	r7
+ 910:	6f 90       	pop	r6
+ 912:	5f 90       	pop	r5
+ 914:	4f 90       	pop	r4
+ 916:	08 95       	ret
+
+00000918 <UART_Printf>:
+        uint8_t v_Num_u8;
+		UART_Printf("num1:%u",(uint16_t)v_Num_u8); 		 
+***************************************************************************************************/
+#if ( Enable_UART_Printf   == 1 ) 
+void UART_Printf(const char *argList, ...)
+{
+ 918:	cf 92       	push	r12
+ 91a:	df 92       	push	r13
+ 91c:	ef 92       	push	r14
+ 91e:	ff 92       	push	r15
+ 920:	0f 93       	push	r16
+ 922:	1f 93       	push	r17
+ 924:	cf 93       	push	r28
+ 926:	df 93       	push	r29
+ 928:	00 d0       	rcall	.+0      	; 0x92a <UART_Printf+0x12>
+ 92a:	00 d0       	rcall	.+0      	; 0x92c <UART_Printf+0x14>
+ 92c:	1f 92       	push	r1
+ 92e:	cd b7       	in	r28, 0x3d	; 61
+ 930:	de b7       	in	r29, 0x3e	; 62
+ 932:	fe 01       	movw	r30, r28
+ 934:	70 96       	adiw	r30, 0x10	; 16
+ 936:	c1 90       	ld	r12, Z+
+ 938:	d1 90       	ld	r13, Z+
+#if (Enable_UART_TxFloatNumber==1)
+	double v_floatNum_f32;
+#endif	
+
+
+	va_start(argp, argList);
+ 93a:	8f 01       	movw	r16, r30
+
+	/* Loop through the list to extract all the input arguments */
+	for(ptr = argList; *ptr != '\0'; ptr++)
+ 93c:	f6 01       	movw	r30, r12
+ 93e:	80 81       	ld	r24, Z
+ 940:	88 23       	and	r24, r24
+ 942:	09 f4       	brne	.+2      	; 0x946 <UART_Printf+0x2e>
+ 944:	1d c1       	rjmp	.+570    	; 0xb80 <UART_Printf+0x268>
+	{
+
+		ch= *ptr;
+		if(ch == '%')         /*Check for '%' as there will be format specifier after it */
+ 946:	85 32       	cpi	r24, 0x25	; 37
+ 948:	09 f0       	breq	.+2      	; 0x94c <UART_Printf+0x34>
+ 94a:	02 c1       	rjmp	.+516    	; 0xb50 <UART_Printf+0x238>
+		{
+		    ptr++;
+ 94c:	76 01       	movw	r14, r12
+ 94e:	8f ef       	ldi	r24, 0xFF	; 255
+ 950:	e8 1a       	sub	r14, r24
+ 952:	f8 0a       	sbc	r15, r24
+		    ch = *ptr;
+ 954:	f6 01       	movw	r30, r12
+ 956:	81 81       	ldd	r24, Z+1	; 0x01
+		   if((ch>=0x30) && (ch<=0x39))
+ 958:	90 ed       	ldi	r25, 0xD0	; 208
+ 95a:	98 0f       	add	r25, r24
+ 95c:	9a 30       	cpi	r25, 0x0A	; 10
+ 95e:	08 f0       	brcs	.+2      	; 0x962 <UART_Printf+0x4a>
+ 960:	b2 c0       	rjmp	.+356    	; 0xac6 <UART_Printf+0x1ae>
+ 962:	20 e0       	ldi	r18, 0x00	; 0
+			{
+			   v_numOfDigitsToTransmit_u8 = 0;
+			   while((ch>=0x30) && (ch<=0x39))
+ 964:	90 ed       	ldi	r25, 0xD0	; 208
+ 966:	98 0f       	add	r25, r24
+ 968:	9a 30       	cpi	r25, 0x0A	; 10
+ 96a:	58 f4       	brcc	.+22     	; 0x982 <UART_Printf+0x6a>
+			    {
+				   v_numOfDigitsToTransmit_u8 = (v_numOfDigitsToTransmit_u8 * 10) + (ch-0x30);
+ 96c:	fa e0       	ldi	r31, 0x0A	; 10
+ 96e:	2f 9f       	mul	r18, r31
+ 970:	90 0d       	add	r25, r0
+ 972:	11 24       	eor	r1, r1
+ 974:	29 2f       	mov	r18, r25
+				   ptr++;
+ 976:	8f ef       	ldi	r24, 0xFF	; 255
+ 978:	e8 1a       	sub	r14, r24
+ 97a:	f8 0a       	sbc	r15, r24
+				   ch = *ptr;
+ 97c:	f7 01       	movw	r30, r14
+ 97e:	80 81       	ld	r24, Z
+ 980:	f1 cf       	rjmp	.-30     	; 0x964 <UART_Printf+0x4c>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 982:	88 35       	cpi	r24, 0x58	; 88
+ 984:	09 f4       	brne	.+2      	; 0x988 <UART_Printf+0x70>
+ 986:	a3 c0       	rjmp	.+326    	; 0xace <UART_Printf+0x1b6>
+ 988:	a0 f4       	brcc	.+40     	; 0x9b2 <UART_Printf+0x9a>
+ 98a:	83 34       	cpi	r24, 0x43	; 67
+ 98c:	29 f1       	breq	.+74     	; 0x9d8 <UART_Printf+0xc0>
+ 98e:	38 f4       	brcc	.+14     	; 0x99e <UART_Printf+0x86>
+ 990:	85 32       	cpi	r24, 0x25	; 37
+ 992:	09 f4       	brne	.+2      	; 0x996 <UART_Printf+0x7e>
+ 994:	d9 c0       	rjmp	.+434    	; 0xb48 <UART_Printf+0x230>
+ 996:	82 34       	cpi	r24, 0x42	; 66
+ 998:	09 f4       	brne	.+2      	; 0x99c <UART_Printf+0x84>
+ 99a:	b7 c0       	rjmp	.+366    	; 0xb0a <UART_Printf+0x1f2>
+ 99c:	dc c0       	rjmp	.+440    	; 0xb56 <UART_Printf+0x23e>
+ 99e:	83 35       	cpi	r24, 0x53	; 83
+ 9a0:	09 f4       	brne	.+2      	; 0x9a4 <UART_Printf+0x8c>
+ 9a2:	c5 c0       	rjmp	.+394    	; 0xb2e <UART_Printf+0x216>
+ 9a4:	85 35       	cpi	r24, 0x55	; 85
+ 9a6:	09 f4       	brne	.+2      	; 0x9aa <UART_Printf+0x92>
+ 9a8:	76 c0       	rjmp	.+236    	; 0xa96 <UART_Printf+0x17e>
+ 9aa:	84 34       	cpi	r24, 0x44	; 68
+ 9ac:	09 f0       	breq	.+2      	; 0x9b0 <UART_Printf+0x98>
+ 9ae:	d3 c0       	rjmp	.+422    	; 0xb56 <UART_Printf+0x23e>
+ 9b0:	39 c0       	rjmp	.+114    	; 0xa24 <UART_Printf+0x10c>
+ 9b2:	84 36       	cpi	r24, 0x64	; 100
+ 9b4:	e9 f0       	breq	.+58     	; 0x9f0 <UART_Printf+0xd8>
+ 9b6:	20 f4       	brcc	.+8      	; 0x9c0 <UART_Printf+0xa8>
+ 9b8:	82 36       	cpi	r24, 0x62	; 98
+ 9ba:	09 f4       	brne	.+2      	; 0x9be <UART_Printf+0xa6>
+ 9bc:	99 c0       	rjmp	.+306    	; 0xaf0 <UART_Printf+0x1d8>
+ 9be:	dc c0       	rjmp	.+440    	; 0xb78 <UART_Printf+0x260>
+ 9c0:	85 37       	cpi	r24, 0x75	; 117
+ 9c2:	09 f4       	brne	.+2      	; 0x9c6 <UART_Printf+0xae>
+ 9c4:	55 c0       	rjmp	.+170    	; 0xa70 <UART_Printf+0x158>
+ 9c6:	88 37       	cpi	r24, 0x78	; 120
+ 9c8:	09 f4       	brne	.+2      	; 0x9cc <UART_Printf+0xb4>
+ 9ca:	73 c0       	rjmp	.+230    	; 0xab2 <UART_Printf+0x19a>
+ 9cc:	ae c0       	rjmp	.+348    	; 0xb2a <UART_Printf+0x212>
+ 9ce:	89 35       	cpi	r24, 0x59	; 89
+ 9d0:	60 f4       	brcc	.+24     	; 0x9ea <UART_Printf+0xd2>
+ 9d2:	83 34       	cpi	r24, 0x43	; 67
+ 9d4:	09 f0       	breq	.+2      	; 0x9d8 <UART_Printf+0xc0>
+ 9d6:	56 c0       	rjmp	.+172    	; 0xa84 <UART_Printf+0x16c>
+			{
+			case 'C':
+			case 'c':     /* Argument type is of char, hence read char data from the argp */
+				ch = va_arg(argp, int);
+ 9d8:	68 01       	movw	r12, r16
+ 9da:	f2 e0       	ldi	r31, 0x02	; 2
+ 9dc:	cf 0e       	add	r12, r31
+ 9de:	d1 1c       	adc	r13, r1
+				UART_TxChar(ch);
+ 9e0:	f8 01       	movw	r30, r16
+ 9e2:	80 81       	ld	r24, Z
+ 9e4:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+ 9e8:	ab c0       	rjmp	.+342    	; 0xb40 <UART_Printf+0x228>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 9ea:	84 36       	cpi	r24, 0x64	; 100
+ 9ec:	d9 f5       	brne	.+118    	; 0xa64 <UART_Printf+0x14c>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 9ee:	2f ef       	ldi	r18, 0xFF	; 255
+				ch = va_arg(argp, int);
+				UART_TxChar(ch);
+				break;
+
+			case 'd':    /* Argument type is of signed integer, hence read 16bit data from the argp */
+				v_num_s16 = va_arg(argp, sint16_t);
+ 9f0:	68 01       	movw	r12, r16
+ 9f2:	f2 e0       	ldi	r31, 0x02	; 2
+ 9f4:	cf 0e       	add	r12, r31
+ 9f6:	d1 1c       	adc	r13, r1
+ 9f8:	f8 01       	movw	r30, r16
+ 9fa:	00 81       	ld	r16, Z
+ 9fc:	11 81       	ldd	r17, Z+1	; 0x01
+				if(v_num_s16<0)
+ 9fe:	17 ff       	sbrs	r17, 7
+ a00:	08 c0       	rjmp	.+16     	; 0xa12 <UART_Printf+0xfa>
+				 { /* If the number is -ve then display the 2's complement along with '-' sign */ 
+				   v_num_s16 = -v_num_s16;
+ a02:	11 95       	neg	r17
+ a04:	01 95       	neg	r16
+ a06:	11 09       	sbc	r17, r1
+				   UART_TxChar('-');
+ a08:	8d e2       	ldi	r24, 0x2D	; 45
+ a0a:	2d 83       	std	Y+5, r18	; 0x05
+ a0c:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+ a10:	2d 81       	ldd	r18, Y+5	; 0x05
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s16,v_numOfDigitsToTransmit_u8);
+ a12:	a8 01       	movw	r20, r16
+ a14:	11 0f       	add	r17, r17
+ a16:	66 0b       	sbc	r22, r22
+ a18:	77 0b       	sbc	r23, r23
+ a1a:	46 c0       	rjmp	.+140    	; 0xaa8 <UART_Printf+0x190>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ a1c:	84 34       	cpi	r24, 0x44	; 68
+ a1e:	09 f0       	breq	.+2      	; 0xa22 <UART_Printf+0x10a>
+ a20:	9a c0       	rjmp	.+308    	; 0xb56 <UART_Printf+0x23e>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ a22:	2f ef       	ldi	r18, 0xFF	; 255
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s16,v_numOfDigitsToTransmit_u8);
+				break;
+				
+			case 'D':    /* Argument type is of integer, hence read 16bit data from the argp */
+				v_num_s32 = va_arg(argp, sint32_t);				
+ a24:	68 01       	movw	r12, r16
+ a26:	f4 e0       	ldi	r31, 0x04	; 4
+ a28:	cf 0e       	add	r12, r31
+ a2a:	d1 1c       	adc	r13, r1
+ a2c:	f8 01       	movw	r30, r16
+ a2e:	40 81       	ld	r20, Z
+ a30:	51 81       	ldd	r21, Z+1	; 0x01
+ a32:	62 81       	ldd	r22, Z+2	; 0x02
+ a34:	73 81       	ldd	r23, Z+3	; 0x03
+				if(v_num_s32<0)
+ a36:	77 ff       	sbrs	r23, 7
+ a38:	37 c0       	rjmp	.+110    	; 0xaa8 <UART_Printf+0x190>
+				 { /* If the number is -ve then display the 2's complement along with '-' sign */
+				   v_num_s32 = -v_num_s32;
+ a3a:	70 95       	com	r23
+ a3c:	60 95       	com	r22
+ a3e:	50 95       	com	r21
+ a40:	41 95       	neg	r20
+ a42:	5f 4f       	sbci	r21, 0xFF	; 255
+ a44:	6f 4f       	sbci	r22, 0xFF	; 255
+ a46:	7f 4f       	sbci	r23, 0xFF	; 255
+				   UART_TxChar('-');
+ a48:	8d e2       	ldi	r24, 0x2D	; 45
+ a4a:	2d 83       	std	Y+5, r18	; 0x05
+ a4c:	49 83       	std	Y+1, r20	; 0x01
+ a4e:	5a 83       	std	Y+2, r21	; 0x02
+ a50:	6b 83       	std	Y+3, r22	; 0x03
+ a52:	7c 83       	std	Y+4, r23	; 0x04
+ a54:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+ a58:	7c 81       	ldd	r23, Y+4	; 0x04
+ a5a:	6b 81       	ldd	r22, Y+3	; 0x03
+ a5c:	5a 81       	ldd	r21, Y+2	; 0x02
+ a5e:	49 81       	ldd	r20, Y+1	; 0x01
+ a60:	2d 81       	ldd	r18, Y+5	; 0x05
+ a62:	22 c0       	rjmp	.+68     	; 0xaa8 <UART_Printf+0x190>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ a64:	85 36       	cpi	r24, 0x65	; 101
+ a66:	08 f4       	brcc	.+2      	; 0xa6a <UART_Printf+0x152>
+ a68:	3f c0       	rjmp	.+126    	; 0xae8 <UART_Printf+0x1d0>
+ a6a:	85 37       	cpi	r24, 0x75	; 117
+ a6c:	f9 f4       	brne	.+62     	; 0xaac <UART_Printf+0x194>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ a6e:	2f ef       	ldi	r18, 0xFF	; 255
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s32,v_numOfDigitsToTransmit_u8);			
+				break;	
+
+			case 'u':    /* Argument type is of unsigned integer, hence read 16bit unsigned data */
+				v_num_u16 = va_arg(argp, uint16_t);			
+ a70:	68 01       	movw	r12, r16
+ a72:	f2 e0       	ldi	r31, 0x02	; 2
+ a74:	cf 0e       	add	r12, r31
+ a76:	d1 1c       	adc	r13, r1
+				UART_TxNumber(C_DECIMAL_U8,v_num_u16,v_numOfDigitsToTransmit_u8);				
+ a78:	f8 01       	movw	r30, r16
+ a7a:	40 81       	ld	r20, Z
+ a7c:	51 81       	ldd	r21, Z+1	; 0x01
+ a7e:	60 e0       	ldi	r22, 0x00	; 0
+ a80:	70 e0       	ldi	r23, 0x00	; 0
+ a82:	12 c0       	rjmp	.+36     	; 0xaa8 <UART_Printf+0x190>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ a84:	84 34       	cpi	r24, 0x44	; 68
+ a86:	08 f4       	brcc	.+2      	; 0xa8a <UART_Printf+0x172>
+ a88:	5d c0       	rjmp	.+186    	; 0xb44 <UART_Printf+0x22c>
+ a8a:	83 35       	cpi	r24, 0x53	; 83
+ a8c:	09 f4       	brne	.+2      	; 0xa90 <UART_Printf+0x178>
+ a8e:	4f c0       	rjmp	.+158    	; 0xb2e <UART_Printf+0x216>
+ a90:	85 35       	cpi	r24, 0x55	; 85
+ a92:	21 f6       	brne	.-120    	; 0xa1c <UART_Printf+0x104>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ a94:	2f ef       	ldi	r18, 0xFF	; 255
+				v_num_u16 = va_arg(argp, uint16_t);			
+				UART_TxNumber(C_DECIMAL_U8,v_num_u16,v_numOfDigitsToTransmit_u8);				
+				break;
+			
+			case 'U':    /* Argument type is of integer, hence read 32bit unsigend data */
+				v_num_u32 = va_arg(argp, uint32_t);			
+ a96:	68 01       	movw	r12, r16
+ a98:	f4 e0       	ldi	r31, 0x04	; 4
+ a9a:	cf 0e       	add	r12, r31
+ a9c:	d1 1c       	adc	r13, r1
+				UART_TxNumber(C_DECIMAL_U8,v_num_u32,v_numOfDigitsToTransmit_u8);				
+ a9e:	f8 01       	movw	r30, r16
+ aa0:	40 81       	ld	r20, Z
+ aa2:	51 81       	ldd	r21, Z+1	; 0x01
+ aa4:	62 81       	ldd	r22, Z+2	; 0x02
+ aa6:	73 81       	ldd	r23, Z+3	; 0x03
+ aa8:	8a e0       	ldi	r24, 0x0A	; 10
+ aaa:	1b c0       	rjmp	.+54     	; 0xae2 <UART_Printf+0x1ca>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ aac:	88 37       	cpi	r24, 0x78	; 120
+ aae:	e9 f5       	brne	.+122    	; 0xb2a <UART_Printf+0x212>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ ab0:	2f ef       	ldi	r18, 0xFF	; 255
+				v_num_u32 = va_arg(argp, uint32_t);			
+				UART_TxNumber(C_DECIMAL_U8,v_num_u32,v_numOfDigitsToTransmit_u8);				
+				break;			
+
+			case 'x':  /* Argument type is of hex, hence hexadecimal data from the argp */
+				v_num_u16 = va_arg(argp, uint16_t);				
+ ab2:	68 01       	movw	r12, r16
+ ab4:	f2 e0       	ldi	r31, 0x02	; 2
+ ab6:	cf 0e       	add	r12, r31
+ ab8:	d1 1c       	adc	r13, r1
+				UART_TxNumber(C_HEX_U8,v_num_u16,v_numOfDigitsToTransmit_u8);			
+ aba:	f8 01       	movw	r30, r16
+ abc:	40 81       	ld	r20, Z
+ abe:	51 81       	ldd	r21, Z+1	; 0x01
+ ac0:	60 e0       	ldi	r22, 0x00	; 0
+ ac2:	70 e0       	ldi	r23, 0x00	; 0
+ ac4:	0d c0       	rjmp	.+26     	; 0xae0 <UART_Printf+0x1c8>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ ac6:	88 35       	cpi	r24, 0x58	; 88
+ ac8:	09 f0       	breq	.+2      	; 0xacc <UART_Printf+0x1b4>
+ aca:	81 cf       	rjmp	.-254    	; 0x9ce <UART_Printf+0xb6>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ acc:	2f ef       	ldi	r18, 0xFF	; 255
+				v_num_u16 = va_arg(argp, uint16_t);				
+				UART_TxNumber(C_HEX_U8,v_num_u16,v_numOfDigitsToTransmit_u8);			
+				break;
+
+			case 'X':  /* Argument type is of hex, hence hexadecimal data from the argp */
+				v_num_u32 = va_arg(argp, uint32_t);						
+ ace:	68 01       	movw	r12, r16
+ ad0:	f4 e0       	ldi	r31, 0x04	; 4
+ ad2:	cf 0e       	add	r12, r31
+ ad4:	d1 1c       	adc	r13, r1
+				UART_TxNumber(C_HEX_U8,v_num_u32,v_numOfDigitsToTransmit_u8);				
+ ad6:	f8 01       	movw	r30, r16
+ ad8:	40 81       	ld	r20, Z
+ ada:	51 81       	ldd	r21, Z+1	; 0x01
+ adc:	62 81       	ldd	r22, Z+2	; 0x02
+ ade:	73 81       	ldd	r23, Z+3	; 0x03
+ ae0:	80 e1       	ldi	r24, 0x10	; 16
+ ae2:	0e 94 01 04 	call	0x802	; 0x802 <UART_TxNumber>
+ ae6:	2c c0       	rjmp	.+88     	; 0xb40 <UART_Printf+0x228>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ ae8:	82 36       	cpi	r24, 0x62	; 98
+ aea:	09 f0       	breq	.+2      	; 0xaee <UART_Printf+0x1d6>
+ aec:	45 c0       	rjmp	.+138    	; 0xb78 <UART_Printf+0x260>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ aee:	2f ef       	ldi	r18, 0xFF	; 255
+				UART_TxNumber(C_HEX_U8,v_num_u32,v_numOfDigitsToTransmit_u8);				
+				break;
+
+			
+			case 'b':  /* Argument type is of binary,Read int and convert to binary */
+				v_num_u16 = va_arg(argp, uint16_t);		
+ af0:	68 01       	movw	r12, r16
+ af2:	f2 e0       	ldi	r31, 0x02	; 2
+ af4:	cf 0e       	add	r12, r31
+ af6:	d1 1c       	adc	r13, r1
+ af8:	f8 01       	movw	r30, r16
+ afa:	60 81       	ld	r22, Z
+ afc:	71 81       	ldd	r23, Z+1	; 0x01
+				
+				if(v_numOfDigitsToTransmit_u8 == C_MaxDigitsToTransmitUsingPrintf_U8)
+ afe:	2f 3f       	cpi	r18, 0xFF	; 255
+ b00:	09 f4       	brne	.+2      	; 0xb04 <UART_Printf+0x1ec>
+				   v_numOfDigitsToTransmit_u8 = 16;
+ b02:	20 e1       	ldi	r18, 0x10	; 16
+               
+				UART_TxNumber(C_BINARY_U8,v_num_u16,v_numOfDigitsToTransmit_u8);			
+ b04:	80 e0       	ldi	r24, 0x00	; 0
+ b06:	90 e0       	ldi	r25, 0x00	; 0
+ b08:	0c c0       	rjmp	.+24     	; 0xb22 <UART_Printf+0x20a>
+				break;
+
+			case 'B':  /* Argument type is of binary,Read int and convert to binary */
+				v_num_u32 = va_arg(argp, uint32_t);			
+ b0a:	68 01       	movw	r12, r16
+ b0c:	f4 e0       	ldi	r31, 0x04	; 4
+ b0e:	cf 0e       	add	r12, r31
+ b10:	d1 1c       	adc	r13, r1
+ b12:	f8 01       	movw	r30, r16
+ b14:	60 81       	ld	r22, Z
+ b16:	71 81       	ldd	r23, Z+1	; 0x01
+ b18:	82 81       	ldd	r24, Z+2	; 0x02
+ b1a:	93 81       	ldd	r25, Z+3	; 0x03
+                
+				if(v_numOfDigitsToTransmit_u8 == C_MaxDigitsToTransmitUsingPrintf_U8)
+ b1c:	2f 3f       	cpi	r18, 0xFF	; 255
+ b1e:	09 f4       	brne	.+2      	; 0xb22 <UART_Printf+0x20a>
+				   v_numOfDigitsToTransmit_u8 = 32;		
+ b20:	20 e2       	ldi	r18, 0x20	; 32
+ b22:	42 2f       	mov	r20, r18
+ b24:	0e 94 b8 03 	call	0x770	; 0x770 <UART_TxNumber.part.0>
+ b28:	0b c0       	rjmp	.+22     	; 0xb40 <UART_Printf+0x228>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ b2a:	83 37       	cpi	r24, 0x73	; 115
+ b2c:	a1 f4       	brne	.+40     	; 0xb56 <UART_Printf+0x23e>
+				break;                
+
+
+			case 'S':
+			case 's': /* Argument type is of string, hence get the pointer to sting passed */
+				str = va_arg(argp, char *);
+ b2e:	68 01       	movw	r12, r16
+ b30:	f2 e0       	ldi	r31, 0x02	; 2
+ b32:	cf 0e       	add	r12, r31
+ b34:	d1 1c       	adc	r13, r1
+				UART_TxString(str);			
+ b36:	f8 01       	movw	r30, r16
+ b38:	80 81       	ld	r24, Z
+ b3a:	91 81       	ldd	r25, Z+1	; 0x01
+ b3c:	0e 94 f5 03 	call	0x7ea	; 0x7ea <UART_TxString>
+				break;                
+
+
+			case 'S':
+			case 's': /* Argument type is of string, hence get the pointer to sting passed */
+				str = va_arg(argp, char *);
+ b40:	86 01       	movw	r16, r12
+				UART_TxString(str);			
+				break;
+ b42:	09 c0       	rjmp	.+18     	; 0xb56 <UART_Printf+0x23e>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ b44:	85 32       	cpi	r24, 0x25	; 37
+ b46:	61 f4       	brne	.+24     	; 0xb60 <UART_Printf+0x248>
+				str = va_arg(argp, char *);
+				UART_TxString(str);			
+				break;
+
+			case '%':
+				UART_TxChar('%');
+ b48:	85 e2       	ldi	r24, 0x25	; 37
+ b4a:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+				break;
+ b4e:	03 c0       	rjmp	.+6      	; 0xb56 <UART_Printf+0x23e>
+			}
+		}
+		else
+		{
+			/* As '%' is not detected transmit the char passed */
+			UART_TxChar(ch);
+ b50:	0e 94 b4 03 	call	0x768	; 0x768 <UART_TxChar>
+ b54:	76 01       	movw	r14, r12
+
+
+	va_start(argp, argList);
+
+	/* Loop through the list to extract all the input arguments */
+	for(ptr = argList; *ptr != '\0'; ptr++)
+ b56:	67 01       	movw	r12, r14
+ b58:	ff ef       	ldi	r31, 0xFF	; 255
+ b5a:	cf 1a       	sub	r12, r31
+ b5c:	df 0a       	sbc	r13, r31
+ b5e:	ee ce       	rjmp	.-548    	; 0x93c <UART_Printf+0x24>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ b60:	82 34       	cpi	r24, 0x42	; 66
+ b62:	c9 f7       	brne	.-14     	; 0xb56 <UART_Printf+0x23e>
+               
+				UART_TxNumber(C_BINARY_U8,v_num_u16,v_numOfDigitsToTransmit_u8);			
+				break;
+
+			case 'B':  /* Argument type is of binary,Read int and convert to binary */
+				v_num_u32 = va_arg(argp, uint32_t);			
+ b64:	68 01       	movw	r12, r16
+ b66:	f4 e0       	ldi	r31, 0x04	; 4
+ b68:	cf 0e       	add	r12, r31
+ b6a:	d1 1c       	adc	r13, r1
+ b6c:	f8 01       	movw	r30, r16
+ b6e:	60 81       	ld	r22, Z
+ b70:	71 81       	ldd	r23, Z+1	; 0x01
+ b72:	82 81       	ldd	r24, Z+2	; 0x02
+ b74:	93 81       	ldd	r25, Z+3	; 0x03
+ b76:	d4 cf       	rjmp	.-88     	; 0xb20 <UART_Printf+0x208>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ b78:	83 36       	cpi	r24, 0x63	; 99
+ b7a:	09 f4       	brne	.+2      	; 0xb7e <UART_Printf+0x266>
+ b7c:	2d cf       	rjmp	.-422    	; 0x9d8 <UART_Printf+0xc0>
+ b7e:	eb cf       	rjmp	.-42     	; 0xb56 <UART_Printf+0x23e>
+			UART_TxChar(ch);
+		}
+	}
+
+	va_end(argp);
+}
+ b80:	0f 90       	pop	r0
+ b82:	0f 90       	pop	r0
+ b84:	0f 90       	pop	r0
+ b86:	0f 90       	pop	r0
+ b88:	0f 90       	pop	r0
+ b8a:	df 91       	pop	r29
+ b8c:	cf 91       	pop	r28
+ b8e:	1f 91       	pop	r17
+ b90:	0f 91       	pop	r16
+ b92:	ff 90       	pop	r15
+ b94:	ef 90       	pop	r14
+ b96:	df 90       	pop	r13
+ b98:	cf 90       	pop	r12
+ b9a:	08 95       	ret
+
+00000b9c <led_Test>:
+
+
+void led_Test(void)
+{
+    uint8_t i,pattern;
+    DDRA = C_PortOutput_U8;
+ b9c:	8f ef       	ldi	r24, 0xFF	; 255
+ b9e:	8a bb       	out	0x1a, r24	; 26
+    DDRB = C_PortOutput_U8;
+ ba0:	87 bb       	out	0x17, r24	; 23
+    DDRC = C_PortOutput_U8;
+ ba2:	84 bb       	out	0x14, r24	; 20
+    DDRD = C_PortOutput_U8;
+ ba4:	81 bb       	out	0x11, r24	; 17
+  
+    
+    while(1)
+    {
+        
+        PORTA = 0xff; /* Turn ON all the leds connected to Ports */
+ ba6:	df ef       	ldi	r29, 0xFF	; 255
+ ba8:	db bb       	out	0x1b, r29	; 27
+        PORTB = 0xff;
+ baa:	d8 bb       	out	0x18, r29	; 24
+        PORTC = 0xff;
+ bac:	d5 bb       	out	0x15, r29	; 21
+        PORTD = 0xff;
+ bae:	d2 bb       	out	0x12, r29	; 18
+        DELAY_ms(500);
+ bb0:	84 ef       	ldi	r24, 0xF4	; 244
+ bb2:	91 e0       	ldi	r25, 0x01	; 1
+ bb4:	0e 94 61 00 	call	0xc2	; 0xc2 <DELAY_ms>
+        
+        PORTA = 0x00; /* Turn OFF all the leds connected to Ports */
+ bb8:	1b ba       	out	0x1b, r1	; 27
+        PORTB = 0x00;
+ bba:	18 ba       	out	0x18, r1	; 24
+        PORTC = 0x00;
+ bbc:	15 ba       	out	0x15, r1	; 21
+        PORTD = 0x00;
+ bbe:	12 ba       	out	0x12, r1	; 18
+        DELAY_ms(500);
+ bc0:	84 ef       	ldi	r24, 0xF4	; 244
+ bc2:	91 e0       	ldi	r25, 0x01	; 1
+ bc4:	0e 94 61 00 	call	0xc2	; 0xc2 <DELAY_ms>
+ bc8:	18 e0       	ldi	r17, 0x08	; 8
+        
+        pattern=0x01;
+ bca:	c1 e0       	ldi	r28, 0x01	; 1
+        for(i=0;i<8;i++)
+        {
+            PORTA = pattern;
+ bcc:	cb bb       	out	0x1b, r28	; 27
+            PORTB = pattern;
+ bce:	c8 bb       	out	0x18, r28	; 24
+            PORTC = pattern;
+ bd0:	c5 bb       	out	0x15, r28	; 21
+            PORTD = pattern;  
+ bd2:	c2 bb       	out	0x12, r28	; 18
+            pattern = pattern<<1;
+ bd4:	cc 0f       	add	r28, r28
+            DELAY_ms(200);
+ bd6:	88 ec       	ldi	r24, 0xC8	; 200
+ bd8:	90 e0       	ldi	r25, 0x00	; 0
+ bda:	0e 94 61 00 	call	0xc2	; 0xc2 <DELAY_ms>
+ bde:	11 50       	subi	r17, 0x01	; 1
+        PORTC = 0x00;
+        PORTD = 0x00;
+        DELAY_ms(500);
+        
+        pattern=0x01;
+        for(i=0;i<8;i++)
+ be0:	a9 f7       	brne	.-22     	; 0xbcc <led_Test+0x30>
+ be2:	e2 cf       	rjmp	.-60     	; 0xba8 <led_Test+0xc>
+
+00000be4 <lcd_Test>:
+
+
+
+void lcd_Test(void)
+{
+    LCD_SetUp(PB_0,PB_1,PB_2,P_NC,P_NC,P_NC,P_NC,PC_4,PC_5,PC_6,PC_7);
+ be4:	87 e1       	ldi	r24, 0x17	; 23
+ be6:	8f 93       	push	r24
+ be8:	86 e1       	ldi	r24, 0x16	; 22
+ bea:	8f 93       	push	r24
+ bec:	85 e1       	ldi	r24, 0x15	; 21
+ bee:	88 2e       	mov	r8, r24
+ bf0:	94 e1       	ldi	r25, 0x14	; 20
+ bf2:	a9 2e       	mov	r10, r25
+ bf4:	cc 24       	eor	r12, r12
+ bf6:	ca 94       	dec	r12
+ bf8:	ee 24       	eor	r14, r14
+ bfa:	ea 94       	dec	r14
+ bfc:	0f ef       	ldi	r16, 0xFF	; 255
+ bfe:	2f ef       	ldi	r18, 0xFF	; 255
+ c00:	4a e0       	ldi	r20, 0x0A	; 10
+ c02:	69 e0       	ldi	r22, 0x09	; 9
+ c04:	88 e0       	ldi	r24, 0x08	; 8
+ c06:	0e 94 49 02 	call	0x492	; 0x492 <LCD_SetUp>
+    LCD_Init(2,16);
+ c0a:	60 e1       	ldi	r22, 0x10	; 16
+ c0c:	82 e0       	ldi	r24, 0x02	; 2
+ c0e:	0e 94 e9 02 	call	0x5d2	; 0x5d2 <LCD_Init>
+    LCD_DisplayString("Explore\n Starter Avr..."); 
+ c12:	84 e6       	ldi	r24, 0x64	; 100
+ c14:	90 e0       	ldi	r25, 0x00	; 0
+ c16:	0e 94 70 03 	call	0x6e0	; 0x6e0 <LCD_DisplayString>
+ c1a:	0f 90       	pop	r0
+ c1c:	0f 90       	pop	r0
+    
+    while(1);
+ c1e:	ff cf       	rjmp	.-2      	; 0xc1e <lcd_Test+0x3a>
+
+00000c20 <switch_Test>:
+
+
+
+void switch_Test(void)
+{
+    GPIO_PinDirection(LED1,OUTPUT);
+ c20:	61 e0       	ldi	r22, 0x01	; 1
+ c22:	8c e1       	ldi	r24, 0x1C	; 28
+ c24:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinDirection(LED2,OUTPUT);
+ c28:	61 e0       	ldi	r22, 0x01	; 1
+ c2a:	8d e1       	ldi	r24, 0x1D	; 29
+ c2c:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinDirection(SWITCH1,INPUT);
+ c30:	60 e0       	ldi	r22, 0x00	; 0
+ c32:	8a e1       	ldi	r24, 0x1A	; 26
+ c34:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    GPIO_PinDirection(SWITCH2,INPUT);
+ c38:	60 e0       	ldi	r22, 0x00	; 0
+ c3a:	8b e1       	ldi	r24, 0x1B	; 27
+ c3c:	0e 94 7b 00 	call	0xf6	; 0xf6 <GPIO_PinDirection>
+    UART_TxString("\n\n\n\rPress the switches and observe the output on Leds");
+ c40:	8c e7       	ldi	r24, 0x7C	; 124
+ c42:	90 e0       	ldi	r25, 0x00	; 0
+ c44:	0e 94 f5 03 	call	0x7ea	; 0x7ea <UART_TxString>
+    while(1)
+    {
+        GPIO_PinWrite(LED1,GPIO_PinRead(SWITCH1));
+ c48:	8a e1       	ldi	r24, 0x1A	; 26
+ c4a:	0e 94 5f 01 	call	0x2be	; 0x2be <GPIO_PinRead>
+ c4e:	68 2f       	mov	r22, r24
+ c50:	8c e1       	ldi	r24, 0x1C	; 28
+ c52:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+        GPIO_PinWrite(LED2,GPIO_PinRead(SWITCH2));        
+ c56:	8b e1       	ldi	r24, 0x1B	; 27
+ c58:	0e 94 5f 01 	call	0x2be	; 0x2be <GPIO_PinRead>
+ c5c:	68 2f       	mov	r22, r24
+ c5e:	8d e1       	ldi	r24, 0x1D	; 29
+ c60:	0e 94 ed 00 	call	0x1da	; 0x1da <GPIO_PinWrite>
+    }
+ c64:	f1 cf       	rjmp	.-30     	; 0xc48 <switch_Test+0x28>
+
+00000c66 <adc_Test>:
+
+
+
+void adc_Test(void)
+{
+    ADC_Init();
+ c66:	0e 94 49 00 	call	0x92	; 0x92 <ADC_Init>
+    
+    while(1)
+    {
+        UART_Printf("\n\rADC0 value= %4d",ADC_GetAdcValue(0));
+ c6a:	c2 eb       	ldi	r28, 0xB2	; 178
+ c6c:	d0 e0       	ldi	r29, 0x00	; 0
+ c6e:	80 e0       	ldi	r24, 0x00	; 0
+ c70:	0e 94 4d 00 	call	0x9a	; 0x9a <ADC_GetAdcValue>
+ c74:	9f 93       	push	r25
+ c76:	8f 93       	push	r24
+ c78:	df 93       	push	r29
+ c7a:	cf 93       	push	r28
+ c7c:	0e 94 8c 04 	call	0x918	; 0x918 <UART_Printf>
+    }            
+ c80:	0f 90       	pop	r0
+ c82:	0f 90       	pop	r0
+ c84:	0f 90       	pop	r0
+ c86:	0f 90       	pop	r0
+ c88:	f2 cf       	rjmp	.-28     	; 0xc6e <adc_Test+0x8>
+
+00000c8a <eeprom_Test>:
+
+void eeprom_Test(void)
+{
+    unsigned char eeprom_address = 0x00, write_char = 'X', read_char;
+
+     UART_Printf("\n\r\n\rInbuilt Eeprom Test. Writing and reading A-Z to and from Eeprom.");
+ c8a:	84 ec       	ldi	r24, 0xC4	; 196
+ c8c:	90 e0       	ldi	r25, 0x00	; 0
+ c8e:	9f 93       	push	r25
+ c90:	8f 93       	push	r24
+ c92:	0e 94 8c 04 	call	0x918	; 0x918 <UART_Printf>
+ c96:	0f 90       	pop	r0
+ c98:	0f 90       	pop	r0
+ c9a:	c1 e4       	ldi	r28, 0x41	; 65
+ c9c:	d0 e0       	ldi	r29, 0x00	; 0
+
+    for(write_char='A';write_char<='Z';write_char++)
+    {
+	    UART_Printf("\n\rEeprom Write: %c    ",write_char); //Print the message on UART
+ c9e:	89 e0       	ldi	r24, 0x09	; 9
+ ca0:	e8 2e       	mov	r14, r24
+ ca2:	81 e0       	ldi	r24, 0x01	; 1
+ ca4:	f8 2e       	mov	r15, r24
+	    EEPROM_WriteByte(eeprom_address, write_char); // Write the data at memoryLocation	0x00
+
+
+	    read_char = EEPROM_ReadByte(eeprom_address);  // Read the data from memoryLocation 0x00
+	    UART_Printf("Eeprom Read: %c",read_char); //Print the message on UART
+ ca6:	00 e2       	ldi	r16, 0x20	; 32
+ ca8:	11 e0       	ldi	r17, 0x01	; 1
+
+     UART_Printf("\n\r\n\rInbuilt Eeprom Test. Writing and reading A-Z to and from Eeprom.");
+
+    for(write_char='A';write_char<='Z';write_char++)
+    {
+	    UART_Printf("\n\rEeprom Write: %c    ",write_char); //Print the message on UART
+ caa:	df 93       	push	r29
+ cac:	cf 93       	push	r28
+ cae:	ff 92       	push	r15
+ cb0:	ef 92       	push	r14
+ cb2:	0e 94 8c 04 	call	0x918	; 0x918 <UART_Printf>
+	    EEPROM_WriteByte(eeprom_address, write_char); // Write the data at memoryLocation	0x00
+ cb6:	6c 2f       	mov	r22, r28
+ cb8:	80 e0       	ldi	r24, 0x00	; 0
+ cba:	90 e0       	ldi	r25, 0x00	; 0
+ cbc:	0e 94 6c 00 	call	0xd8	; 0xd8 <EEPROM_WriteByte>
+
+
+	    read_char = EEPROM_ReadByte(eeprom_address);  // Read the data from memoryLocation 0x00
+ cc0:	80 e0       	ldi	r24, 0x00	; 0
+ cc2:	90 e0       	ldi	r25, 0x00	; 0
+ cc4:	0e 94 74 00 	call	0xe8	; 0xe8 <EEPROM_ReadByte>
+	    UART_Printf("Eeprom Read: %c",read_char); //Print the message on UART
+ cc8:	1f 92       	push	r1
+ cca:	8f 93       	push	r24
+ ccc:	1f 93       	push	r17
+ cce:	0f 93       	push	r16
+ cd0:	0e 94 8c 04 	call	0x918	; 0x918 <UART_Printf>
+ cd4:	21 96       	adiw	r28, 0x01	; 1
+{
+    unsigned char eeprom_address = 0x00, write_char = 'X', read_char;
+
+     UART_Printf("\n\r\n\rInbuilt Eeprom Test. Writing and reading A-Z to and from Eeprom.");
+
+    for(write_char='A';write_char<='Z';write_char++)
+ cd6:	8d b7       	in	r24, 0x3d	; 61
+ cd8:	9e b7       	in	r25, 0x3e	; 62
+ cda:	08 96       	adiw	r24, 0x08	; 8
+ cdc:	0f b6       	in	r0, 0x3f	; 63
+ cde:	f8 94       	cli
+ ce0:	9e bf       	out	0x3e, r25	; 62
+ ce2:	0f be       	out	0x3f, r0	; 63
+ ce4:	8d bf       	out	0x3d, r24	; 61
+ ce6:	cb 35       	cpi	r28, 0x5B	; 91
+ ce8:	d1 05       	cpc	r29, r1
+ cea:	f9 f6       	brne	.-66     	; 0xcaa <eeprom_Test+0x20>
+
+	    read_char = EEPROM_ReadByte(eeprom_address);  // Read the data from memoryLocation 0x00
+	    UART_Printf("Eeprom Read: %c",read_char); //Print the message on UART
+    }
+    
+    while (1);	
+ cec:	ff cf       	rjmp	.-2      	; 0xcec <eeprom_Test+0x62>
+
+00000cee <main>:
+int main() 
+{
+  
+    char option; 
+      
+    UART_Init(9600);
+ cee:	60 e8       	ldi	r22, 0x80	; 128
+ cf0:	75 e2       	ldi	r23, 0x25	; 37
+ cf2:	80 e0       	ldi	r24, 0x00	; 0
+ cf4:	90 e0       	ldi	r25, 0x00	; 0
+ cf6:	0e 94 a9 03 	call	0x752	; 0x752 <UART_Init>
+    UART_Printf("\n\r\n\rStarter AVR test Menu\n\r 1.Led test\n\r 2.Lcd test\n\r 3.Switch test\n\r 4.Adc Test\n\r 5.Eeprom Test \n\rSelect One of the above options");
+ cfa:	80 e3       	ldi	r24, 0x30	; 48
+ cfc:	91 e0       	ldi	r25, 0x01	; 1
+ cfe:	9f 93       	push	r25
+ d00:	8f 93       	push	r24
+ d02:	0e 94 8c 04 	call	0x918	; 0x918 <UART_Printf>
+ d06:	0f 90       	pop	r0
+ d08:	0f 90       	pop	r0
+    
+    while(1)
+    {
+        option = UART_RxChar();
+ d0a:	0e 94 b0 03 	call	0x760	; 0x760 <UART_RxChar>
+        switch(option)
+ d0e:	83 33       	cpi	r24, 0x33	; 51
+ d10:	79 f0       	breq	.+30     	; 0xd30 <main+0x42>
+ d12:	30 f4       	brcc	.+12     	; 0xd20 <main+0x32>
+ d14:	81 33       	cpi	r24, 0x31	; 49
+ d16:	51 f0       	breq	.+20     	; 0xd2c <main+0x3e>
+ d18:	82 33       	cpi	r24, 0x32	; 50
+ d1a:	b9 f7       	brne	.-18     	; 0xd0a <main+0x1c>
+            case '1':
+                led_Test();
+                break;
+                
+            case '2':
+                lcd_Test();
+ d1c:	0e 94 f2 05 	call	0xbe4	; 0xbe4 <lcd_Test>
+    UART_Printf("\n\r\n\rStarter AVR test Menu\n\r 1.Led test\n\r 2.Lcd test\n\r 3.Switch test\n\r 4.Adc Test\n\r 5.Eeprom Test \n\rSelect One of the above options");
+    
+    while(1)
+    {
+        option = UART_RxChar();
+        switch(option)
+ d20:	84 33       	cpi	r24, 0x34	; 52
+ d22:	41 f0       	breq	.+16     	; 0xd34 <main+0x46>
+ d24:	85 33       	cpi	r24, 0x35	; 53
+ d26:	89 f7       	brne	.-30     	; 0xd0a <main+0x1c>
+            case '4':
+                adc_Test();
+                break;
+				
+		     case '5':
+			    eeprom_Test();
+ d28:	0e 94 45 06 	call	0xc8a	; 0xc8a <eeprom_Test>
+    {
+        option = UART_RxChar();
+        switch(option)
+        {
+            case '1':
+                led_Test();
+ d2c:	0e 94 ce 05 	call	0xb9c	; 0xb9c <led_Test>
+            case '2':
+                lcd_Test();
+                break;
+                
+            case '3':
+                switch_Test();
+ d30:	0e 94 10 06 	call	0xc20	; 0xc20 <switch_Test>
+                break;
+                
+            case '4':
+                adc_Test();
+ d34:	0e 94 33 06 	call	0xc66	; 0xc66 <adc_Test>
+
+00000d38 <__udivmodsi4>:
+ d38:	a1 e2       	ldi	r26, 0x21	; 33
+ d3a:	1a 2e       	mov	r1, r26
+ d3c:	aa 1b       	sub	r26, r26
+ d3e:	bb 1b       	sub	r27, r27
+ d40:	fd 01       	movw	r30, r26
+ d42:	0d c0       	rjmp	.+26     	; 0xd5e <__udivmodsi4_ep>
+
+00000d44 <__udivmodsi4_loop>:
+ d44:	aa 1f       	adc	r26, r26
+ d46:	bb 1f       	adc	r27, r27
+ d48:	ee 1f       	adc	r30, r30
+ d4a:	ff 1f       	adc	r31, r31
+ d4c:	a2 17       	cp	r26, r18
+ d4e:	b3 07       	cpc	r27, r19
+ d50:	e4 07       	cpc	r30, r20
+ d52:	f5 07       	cpc	r31, r21
+ d54:	20 f0       	brcs	.+8      	; 0xd5e <__udivmodsi4_ep>
+ d56:	a2 1b       	sub	r26, r18
+ d58:	b3 0b       	sbc	r27, r19
+ d5a:	e4 0b       	sbc	r30, r20
+ d5c:	f5 0b       	sbc	r31, r21
+
+00000d5e <__udivmodsi4_ep>:
+ d5e:	66 1f       	adc	r22, r22
+ d60:	77 1f       	adc	r23, r23
+ d62:	88 1f       	adc	r24, r24
+ d64:	99 1f       	adc	r25, r25
+ d66:	1a 94       	dec	r1
+ d68:	69 f7       	brne	.-38     	; 0xd44 <__udivmodsi4_loop>
+ d6a:	60 95       	com	r22
+ d6c:	70 95       	com	r23
+ d6e:	80 95       	com	r24
+ d70:	90 95       	com	r25
+ d72:	9b 01       	movw	r18, r22
+ d74:	ac 01       	movw	r20, r24
+ d76:	bd 01       	movw	r22, r26
+ d78:	cf 01       	movw	r24, r30
+ d7a:	08 95       	ret
+
+00000d7c <__mulshisi3>:
+ d7c:	b7 ff       	sbrs	r27, 7
+ d7e:	0c 94 c6 06 	jmp	0xd8c	; 0xd8c <__muluhisi3>
+
+00000d82 <__mulohisi3>:
+ d82:	0e 94 c6 06 	call	0xd8c	; 0xd8c <__muluhisi3>
+ d86:	82 1b       	sub	r24, r18
+ d88:	93 0b       	sbc	r25, r19
+ d8a:	08 95       	ret
+
+00000d8c <__muluhisi3>:
+ d8c:	0e 94 d1 06 	call	0xda2	; 0xda2 <__umulhisi3>
+ d90:	a5 9f       	mul	r26, r21
+ d92:	90 0d       	add	r25, r0
+ d94:	b4 9f       	mul	r27, r20
+ d96:	90 0d       	add	r25, r0
+ d98:	a4 9f       	mul	r26, r20
+ d9a:	80 0d       	add	r24, r0
+ d9c:	91 1d       	adc	r25, r1
+ d9e:	11 24       	eor	r1, r1
+ da0:	08 95       	ret
+
+00000da2 <__umulhisi3>:
+ da2:	a2 9f       	mul	r26, r18
+ da4:	b0 01       	movw	r22, r0
+ da6:	b3 9f       	mul	r27, r19
+ da8:	c0 01       	movw	r24, r0
+ daa:	a3 9f       	mul	r26, r19
+ dac:	70 0d       	add	r23, r0
+ dae:	81 1d       	adc	r24, r1
+ db0:	11 24       	eor	r1, r1
+ db2:	91 1d       	adc	r25, r1
+ db4:	b2 9f       	mul	r27, r18
+ db6:	70 0d       	add	r23, r0
+ db8:	81 1d       	adc	r24, r1
+ dba:	11 24       	eor	r1, r1
+ dbc:	91 1d       	adc	r25, r1
+ dbe:	08 95       	ret
+
+00000dc0 <_exit>:
+ dc0:	f8 94       	cli
+
+00000dc2 <__stop_program>:
+ dc2:	ff cf       	rjmp	.-2      	; 0xdc2 <__stop_program>

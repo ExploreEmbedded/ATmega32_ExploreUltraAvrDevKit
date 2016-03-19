@@ -1,0 +1,129 @@
+
+01b-LedUpCounter.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000009a  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000000ee  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000000ee  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000120  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  0000015c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000118  00000000  00000000  0000017c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000000cf  00000000  00000000  00000294  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000134  00000000  00000000  00000363  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000024  00000000  00000000  00000498  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000180  00000000  00000000  000004bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000001f  00000000  00000000  0000063c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  0000065b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 4b 00 	jmp	0x96	; 0x96 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <main>:
+
+int main() 
+{
+    unsigned char count = 0;
+  /* Configure all the ports as Output */
+    DDRA = 0xff;
+  6c:	8f ef       	ldi	r24, 0xFF	; 255
+  6e:	8a bb       	out	0x1a, r24	; 26
+    DDRB = 0xff;
+  70:	87 bb       	out	0x17, r24	; 23
+    DDRC = 0xff;
+  72:	84 bb       	out	0x14, r24	; 20
+    DDRD = 0xff; 
+  74:	81 bb       	out	0x11, r24	; 17
+#include <util/delay.h>
+
+
+int main() 
+{
+    unsigned char count = 0;
+  76:	80 e0       	ldi	r24, 0x00	; 0
+    DDRC = 0xff;
+    DDRD = 0xff; 
+    
+    while(1)
+    {
+        PORTA = count; /* Display the count value on Leds connected to Ports */
+  78:	8b bb       	out	0x1b, r24	; 27
+        PORTB = count;
+  7a:	88 bb       	out	0x18, r24	; 24
+        PORTC = count;
+  7c:	85 bb       	out	0x15, r24	; 21
+        PORTD = count;
+  7e:	82 bb       	out	0x12, r24	; 18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  80:	2f ef       	ldi	r18, 0xFF	; 255
+  82:	39 e6       	ldi	r19, 0x69	; 105
+  84:	98 e1       	ldi	r25, 0x18	; 24
+  86:	21 50       	subi	r18, 0x01	; 1
+  88:	30 40       	sbci	r19, 0x00	; 0
+  8a:	90 40       	sbci	r25, 0x00	; 0
+  8c:	e1 f7       	brne	.-8      	; 0x86 <main+0x1a>
+  8e:	00 c0       	rjmp	.+0      	; 0x90 <main+0x24>
+  90:	00 00       	nop
+        _delay_ms(500);
+        count++;       /* Increment the Counter value */
+  92:	8f 5f       	subi	r24, 0xFF	; 255
+    }
+  94:	f1 cf       	rjmp	.-30     	; 0x78 <main+0xc>
+
+00000096 <_exit>:
+  96:	f8 94       	cli
+
+00000098 <__stop_program>:
+  98:	ff cf       	rjmp	.-2      	; 0x98 <__stop_program>

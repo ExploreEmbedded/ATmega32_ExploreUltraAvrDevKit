@@ -1,0 +1,1276 @@
+
+06d-UART_Tx_Numbers.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000610  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000020  00800060  00000610  00000684  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000006a4  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006d4  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000a8  00000000  00000000  00000710  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000006a2  00000000  00000000  000007b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000366  00000000  00000000  00000e5a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000003cc  00000000  00000000  000011c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000001fc  00000000  00000000  0000158c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000312  00000000  00000000  00001788  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000c5d  00000000  00000000  00001a9a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000078  00000000  00000000  000026f7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 e1       	ldi	r30, 0x10	; 16
+  68:	f6 e0       	ldi	r31, 0x06	; 6
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 38       	cpi	r26, 0x80	; 128
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 9a 02 	call	0x534	; 0x534 <main>
+  7a:	0c 94 06 03 	jmp	0x60c	; 0x60c <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <DELAY_ms>:
+     It generates a delay of 1ms for each count,
+     if 1000 is passed as the argument then it generates delay of 1000ms(1sec)
+ ***************************************************************************************************/
+void DELAY_ms(uint16_t ms_count) 
+{
+    while (ms_count != 0) 
+  82:	00 97       	sbiw	r24, 0x00	; 0
+  84:	41 f0       	breq	.+16     	; 0x96 <DELAY_ms+0x14>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  86:	ef e9       	ldi	r30, 0x9F	; 159
+  88:	ff e0       	ldi	r31, 0x0F	; 15
+  8a:	31 97       	sbiw	r30, 0x01	; 1
+  8c:	f1 f7       	brne	.-4      	; 0x8a <DELAY_ms+0x8>
+  8e:	00 c0       	rjmp	.+0      	; 0x90 <DELAY_ms+0xe>
+  90:	00 00       	nop
+    {
+        _delay_us(1000); //DELAY_us is called to generate 1ms delay
+        ms_count--;
+  92:	01 97       	sbiw	r24, 0x01	; 1
+  94:	f6 cf       	rjmp	.-20     	; 0x82 <DELAY_ms>
+    }
+}
+  96:	08 95       	ret
+
+00000098 <UART_SetBaudRate>:
+                 the default baudrate of 9600 is set.
+
+		    Refer uart.h file for Supported range of baud rates.
+***************************************************************************************************/
+void UART_SetBaudRate(uint32_t v_baudRate_u32)
+{
+  98:	cf 92       	push	r12
+  9a:	df 92       	push	r13
+  9c:	ef 92       	push	r14
+  9e:	ff 92       	push	r15
+  a0:	6b 01       	movw	r12, r22
+  a2:	7c 01       	movw	r14, r24
+	uint16_t RegValue;
+
+	if((v_baudRate_u32 >= C_MinBaudRate_U32) && (v_baudRate_u32<=C_MaxBaudRate_U32))
+  a4:	dc 01       	movw	r26, r24
+  a6:	cb 01       	movw	r24, r22
+  a8:	80 56       	subi	r24, 0x60	; 96
+  aa:	99 40       	sbci	r25, 0x09	; 9
+  ac:	a1 09       	sbc	r26, r1
+  ae:	b1 09       	sbc	r27, r1
+  b0:	81 3a       	cpi	r24, 0xA1	; 161
+  b2:	98 4b       	sbci	r25, 0xB8	; 184
+  b4:	a1 40       	sbci	r26, 0x01	; 1
+  b6:	b1 05       	cpc	r27, r1
+  b8:	98 f4       	brcc	.+38     	; 0xe0 <UART_SetBaudRate+0x48>
+	{
+		/* Check if the requested baudate is within range,
+	     If yes then calculate the value to be loaded into baud rate generator. */
+		RegValue = M_GetBaudRateGeneratorValue(v_baudRate_u32);
+  ba:	a8 ef       	ldi	r26, 0xF8	; 248
+  bc:	bf ef       	ldi	r27, 0xFF	; 255
+  be:	a7 01       	movw	r20, r14
+  c0:	96 01       	movw	r18, r12
+  c2:	0e 94 e7 02 	call	0x5ce	; 0x5ce <__mulohisi3>
+  c6:	7c 5d       	subi	r23, 0xDC	; 220
+  c8:	8b 40       	sbci	r24, 0x0B	; 11
+  ca:	9f 4f       	sbci	r25, 0xFF	; 255
+  cc:	e4 e0       	ldi	r30, 0x04	; 4
+  ce:	22 0f       	add	r18, r18
+  d0:	33 1f       	adc	r19, r19
+  d2:	44 1f       	adc	r20, r20
+  d4:	55 1f       	adc	r21, r21
+  d6:	ea 95       	dec	r30
+  d8:	d1 f7       	brne	.-12     	; 0xce <UART_SetBaudRate+0x36>
+  da:	0e 94 c2 02 	call	0x584	; 0x584 <__udivmodsi4>
+  de:	02 c0       	rjmp	.+4      	; 0xe4 <UART_SetBaudRate+0x4c>
+	}
+	else
+	{
+		/*	 Invalid baudrate requested, hence set it to default baudrate of 9600 */
+		RegValue = M_GetBaudRateGeneratorValue(9600);
+  e0:	27 e6       	ldi	r18, 0x67	; 103
+  e2:	30 e0       	ldi	r19, 0x00	; 0
+	}
+
+	UBRRL = util_ExtractByte0to8(RegValue);
+  e4:	29 b9       	out	0x09, r18	; 9
+	UBRRH = util_ExtractByte8to16(RegValue);
+  e6:	30 bd       	out	0x20, r19	; 32
+}
+  e8:	ff 90       	pop	r15
+  ea:	ef 90       	pop	r14
+  ec:	df 90       	pop	r13
+  ee:	cf 90       	pop	r12
+  f0:	08 95       	ret
+
+000000f2 <UART_Init>:
+
+		    Refer uart.h file for Supported(range) baud rates.		
+***************************************************************************************************/
+void UART_Init(uint32_t v_baudRate_u32)
+{
+	UCSRB= (1<<RXEN) | (1<<TXEN);                  // Enable Receiver and Transmitter
+  f2:	28 e1       	ldi	r18, 0x18	; 24
+  f4:	2a b9       	out	0x0a, r18	; 10
+	UCSRC= (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);   // Asynchronous mode 8-bit data and 1-stop bit
+  f6:	26 e8       	ldi	r18, 0x86	; 134
+  f8:	20 bd       	out	0x20, r18	; 32
+	UCSRA= 0x00;                                   // Clear the UASRT status register
+  fa:	1b b8       	out	0x0b, r1	; 11
+	UART_SetBaudRate(v_baudRate_u32);
+  fc:	0c 94 4c 00 	jmp	0x98	; 0x98 <UART_SetBaudRate>
+
+00000100 <UART_TxChar>:
+
+ * description  :This function is used to transmit a char through UART module.
+***************************************************************************************************/
+void UART_TxChar(char v_uartData_u8)
+{
+	while(util_IsBitCleared(UCSRA,UDRE)); // Wait till Transmitter(UDR) register becomes Empty
+ 100:	5d 9b       	sbis	0x0b, 5	; 11
+ 102:	fe cf       	rjmp	.-4      	; 0x100 <UART_TxChar>
+	UDR =v_uartData_u8;                              // Load the data to be transmitted
+ 104:	8c b9       	out	0x0c, r24	; 12
+ 106:	08 95       	ret
+
+00000108 <UART_TxNumber.part.0>:
+                7.(0x12AB,3) then 3-digits ie. 2AB will be transmitted
+                8.(0x12AB,6) then 6-digits ie. 0012AB will be transmitted
+                9.(0x12AB,C_DefaultDigitsToTransmit_U8) then 12AB will be transmitted.    
+ ***************************************************************************************************/
+#if ((Enable_UART_TxNumber==1) || (Enable_UART_TxFloatNumber==1) || (Enable_UART_Printf == 1))
+void UART_TxNumber(uint8_t v_numericSystem_u8, uint32_t v_number_u32, uint8_t v_numOfDigitsToTransmit_u8)
+ 108:	af 92       	push	r10
+ 10a:	bf 92       	push	r11
+ 10c:	cf 92       	push	r12
+ 10e:	df 92       	push	r13
+ 110:	ef 92       	push	r14
+ 112:	ff 92       	push	r15
+ 114:	0f 93       	push	r16
+ 116:	1f 93       	push	r17
+ 118:	cf 93       	push	r28
+ 11a:	df 93       	push	r29
+ 11c:	1f 92       	push	r1
+ 11e:	cd b7       	in	r28, 0x3d	; 61
+ 120:	de b7       	in	r29, 0x3e	; 62
+ 122:	6b 01       	movw	r12, r22
+ 124:	7c 01       	movw	r14, r24
+    {
+        while(v_numOfDigitsToTransmit_u8!=0)
+        {
+            /* Start Extracting the bits from the specified bit positions.
+             Get the Acsii values of the bits and transmit */
+            i = util_GetBitStatus(v_number_u32,(v_numOfDigitsToTransmit_u8-1));
+ 126:	aa 24       	eor	r10, r10
+ 128:	a3 94       	inc	r10
+ 12a:	b1 2c       	mov	r11, r1
+{
+    uint8_t i=0,a[10];
+
+    if(C_BINARY_U8 == v_numericSystem_u8)
+    {
+        while(v_numOfDigitsToTransmit_u8!=0)
+ 12c:	44 23       	and	r20, r20
+ 12e:	e9 f0       	breq	.+58     	; 0x16a <UART_TxNumber.part.0+0x62>
+        {
+            /* Start Extracting the bits from the specified bit positions.
+             Get the Acsii values of the bits and transmit */
+            i = util_GetBitStatus(v_number_u32,(v_numOfDigitsToTransmit_u8-1));
+ 130:	8f ef       	ldi	r24, 0xFF	; 255
+ 132:	84 0f       	add	r24, r20
+ 134:	85 01       	movw	r16, r10
+ 136:	02 c0       	rjmp	.+4      	; 0x13c <UART_TxNumber.part.0+0x34>
+ 138:	00 0f       	add	r16, r16
+ 13a:	11 1f       	adc	r17, r17
+ 13c:	8a 95       	dec	r24
+ 13e:	e2 f7       	brpl	.-8      	; 0x138 <UART_TxNumber.part.0+0x30>
+ 140:	01 2e       	mov	r0, r17
+ 142:	00 0c       	add	r0, r0
+ 144:	22 0b       	sbc	r18, r18
+ 146:	33 0b       	sbc	r19, r19
+ 148:	0c 21       	and	r16, r12
+ 14a:	1d 21       	and	r17, r13
+ 14c:	2e 21       	and	r18, r14
+ 14e:	3f 21       	and	r19, r15
+ 150:	81 e0       	ldi	r24, 0x01	; 1
+ 152:	01 2b       	or	r16, r17
+ 154:	02 2b       	or	r16, r18
+ 156:	03 2b       	or	r16, r19
+ 158:	09 f4       	brne	.+2      	; 0x15c <UART_TxNumber.part.0+0x54>
+ 15a:	80 e0       	ldi	r24, 0x00	; 0
+            UART_TxChar(util_Dec2Ascii(i));
+ 15c:	80 5d       	subi	r24, 0xD0	; 208
+ 15e:	49 83       	std	Y+1, r20	; 0x01
+ 160:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+            v_numOfDigitsToTransmit_u8--;
+ 164:	49 81       	ldd	r20, Y+1	; 0x01
+ 166:	41 50       	subi	r20, 0x01	; 1
+ 168:	e1 cf       	rjmp	.-62     	; 0x12c <UART_TxNumber.part.0+0x24>
+            i--;
+        }
+    }
+
+
+}
+ 16a:	0f 90       	pop	r0
+ 16c:	df 91       	pop	r29
+ 16e:	cf 91       	pop	r28
+ 170:	1f 91       	pop	r17
+ 172:	0f 91       	pop	r16
+ 174:	ff 90       	pop	r15
+ 176:	ef 90       	pop	r14
+ 178:	df 90       	pop	r13
+ 17a:	cf 90       	pop	r12
+ 17c:	bf 90       	pop	r11
+ 17e:	af 90       	pop	r10
+ 180:	08 95       	ret
+
+00000182 <UART_TxString>:
+               1.The ptr_string points to the first char of the string
+                    and traverses till the end(NULL CHAR) and transmits a char each time
+***************************************************************************************************/
+#if ((Enable_UART_TxString==1)|| (Enable_UART_Printf == 1))
+void UART_TxString(char *ptr_string)
+{
+ 182:	cf 93       	push	r28
+ 184:	df 93       	push	r29
+ 186:	ec 01       	movw	r28, r24
+	while(*ptr_string)
+ 188:	89 91       	ld	r24, Y+
+ 18a:	88 23       	and	r24, r24
+ 18c:	19 f0       	breq	.+6      	; 0x194 <UART_TxString+0x12>
+		UART_TxChar(*ptr_string++);// Loop through the string and transmit char by char
+ 18e:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+ 192:	fa cf       	rjmp	.-12     	; 0x188 <UART_TxString+0x6>
+}
+ 194:	df 91       	pop	r29
+ 196:	cf 91       	pop	r28
+ 198:	08 95       	ret
+
+0000019a <UART_TxNumber>:
+                8.(0x12AB,6) then 6-digits ie. 0012AB will be transmitted
+                9.(0x12AB,C_DefaultDigitsToTransmit_U8) then 12AB will be transmitted.    
+ ***************************************************************************************************/
+#if ((Enable_UART_TxNumber==1) || (Enable_UART_TxFloatNumber==1) || (Enable_UART_Printf == 1))
+void UART_TxNumber(uint8_t v_numericSystem_u8, uint32_t v_number_u32, uint8_t v_numOfDigitsToTransmit_u8)
+{
+ 19a:	4f 92       	push	r4
+ 19c:	5f 92       	push	r5
+ 19e:	6f 92       	push	r6
+ 1a0:	7f 92       	push	r7
+ 1a2:	bf 92       	push	r11
+ 1a4:	cf 92       	push	r12
+ 1a6:	df 92       	push	r13
+ 1a8:	ef 92       	push	r14
+ 1aa:	ff 92       	push	r15
+ 1ac:	0f 93       	push	r16
+ 1ae:	1f 93       	push	r17
+ 1b0:	cf 93       	push	r28
+ 1b2:	df 93       	push	r29
+ 1b4:	cd b7       	in	r28, 0x3d	; 61
+ 1b6:	de b7       	in	r29, 0x3e	; 62
+ 1b8:	2a 97       	sbiw	r28, 0x0a	; 10
+ 1ba:	0f b6       	in	r0, 0x3f	; 63
+ 1bc:	f8 94       	cli
+ 1be:	de bf       	out	0x3e, r29	; 62
+ 1c0:	0f be       	out	0x3f, r0	; 63
+ 1c2:	cd bf       	out	0x3d, r28	; 61
+ 1c4:	b8 2e       	mov	r11, r24
+ 1c6:	cb 01       	movw	r24, r22
+ 1c8:	ba 01       	movw	r22, r20
+ 1ca:	02 2f       	mov	r16, r18
+    uint8_t i=0,a[10];
+
+    if(C_BINARY_U8 == v_numericSystem_u8)
+ 1cc:	22 e0       	ldi	r18, 0x02	; 2
+ 1ce:	b2 12       	cpse	r11, r18
+ 1d0:	16 c0       	rjmp	.+44     	; 0x1fe <UART_TxNumber+0x64>
+ 1d2:	40 2f       	mov	r20, r16
+            i--;
+        }
+    }
+
+
+}
+ 1d4:	2a 96       	adiw	r28, 0x0a	; 10
+ 1d6:	0f b6       	in	r0, 0x3f	; 63
+ 1d8:	f8 94       	cli
+ 1da:	de bf       	out	0x3e, r29	; 62
+ 1dc:	0f be       	out	0x3f, r0	; 63
+ 1de:	cd bf       	out	0x3d, r28	; 61
+ 1e0:	df 91       	pop	r29
+ 1e2:	cf 91       	pop	r28
+ 1e4:	1f 91       	pop	r17
+ 1e6:	0f 91       	pop	r16
+ 1e8:	ff 90       	pop	r15
+ 1ea:	ef 90       	pop	r14
+ 1ec:	df 90       	pop	r13
+ 1ee:	cf 90       	pop	r12
+ 1f0:	bf 90       	pop	r11
+ 1f2:	7f 90       	pop	r7
+ 1f4:	6f 90       	pop	r6
+ 1f6:	5f 90       	pop	r5
+ 1f8:	4f 90       	pop	r4
+ 1fa:	0c 94 84 00 	jmp	0x108	; 0x108 <UART_TxNumber.part.0>
+            i = util_GetBitStatus(v_number_u32,(v_numOfDigitsToTransmit_u8-1));
+            UART_TxChar(util_Dec2Ascii(i));
+            v_numOfDigitsToTransmit_u8--;
+        }    
+    }     
+    else if(v_number_u32==0)
+ 1fe:	61 15       	cp	r22, r1
+ 200:	71 05       	cpc	r23, r1
+ 202:	81 05       	cpc	r24, r1
+ 204:	91 05       	cpc	r25, r1
+ 206:	49 f0       	breq	.+18     	; 0x21a <UART_TxNumber+0x80>
+ 208:	fe 01       	movw	r30, r28
+ 20a:	31 96       	adiw	r30, 0x01	; 1
+ 20c:	6f 01       	movw	r12, r30
+ 20e:	7f 01       	movw	r14, r30
+                First get the remainder and divide the number by 10 each time.
+
+                example for Decimal number:
+                If v_number_u32 = 123 then extracted remainder will be 3 and number will be 12.
+                The process continues till it becomes zero or max digits reached*/
+                a[i]=util_GetMod32(v_number_u32,v_numericSystem_u8);
+ 210:	4b 2c       	mov	r4, r11
+ 212:	51 2c       	mov	r5, r1
+ 214:	61 2c       	mov	r6, r1
+ 216:	71 2c       	mov	r7, r1
+ 218:	1e c0       	rjmp	.+60     	; 0x256 <UART_TxNumber+0xbc>
+ 21a:	10 e0       	ldi	r17, 0x00	; 0
+        }    
+    }     
+    else if(v_number_u32==0)
+    {
+        /* If the number is zero then update the array with the same for transmitting */
+        for(i=0;((i<v_numOfDigitsToTransmit_u8) && (i<C_MaxDigitsToTransmit_U8)) ;i++)
+ 21c:	10 17       	cp	r17, r16
+ 21e:	a1 f1       	breq	.+104    	; 0x288 <UART_TxNumber+0xee>
+ 220:	1a 30       	cpi	r17, 0x0A	; 10
+ 222:	91 f1       	breq	.+100    	; 0x288 <UART_TxNumber+0xee>
+            UART_TxChar('0');
+ 224:	80 e3       	ldi	r24, 0x30	; 48
+ 226:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+        }    
+    }     
+    else if(v_number_u32==0)
+    {
+        /* If the number is zero then update the array with the same for transmitting */
+        for(i=0;((i<v_numOfDigitsToTransmit_u8) && (i<C_MaxDigitsToTransmit_U8)) ;i++)
+ 22a:	1f 5f       	subi	r17, 0xFF	; 255
+ 22c:	f7 cf       	rjmp	.-18     	; 0x21c <UART_TxNumber+0x82>
+    {
+        for(i=0;i<v_numOfDigitsToTransmit_u8;i++)
+        {
+            /* Continue extracting the digits from right side
+               till the Specified v_numOfDigitsToTransmit_u8 */
+            if(v_number_u32!=0)
+ 22e:	61 15       	cp	r22, r1
+ 230:	71 05       	cpc	r23, r1
+ 232:	81 05       	cpc	r24, r1
+ 234:	91 05       	cpc	r25, r1
+ 236:	a1 f0       	breq	.+40     	; 0x260 <UART_TxNumber+0xc6>
+                First get the remainder and divide the number by 10 each time.
+
+                example for Decimal number:
+                If v_number_u32 = 123 then extracted remainder will be 3 and number will be 12.
+                The process continues till it becomes zero or max digits reached*/
+                a[i]=util_GetMod32(v_number_u32,v_numericSystem_u8);
+ 238:	16 2f       	mov	r17, r22
+ 23a:	a3 01       	movw	r20, r6
+ 23c:	92 01       	movw	r18, r4
+ 23e:	0e 94 c2 02 	call	0x584	; 0x584 <__udivmodsi4>
+ 242:	ca 01       	movw	r24, r20
+ 244:	b9 01       	movw	r22, r18
+ 246:	b2 9e       	mul	r11, r18
+ 248:	10 19       	sub	r17, r0
+ 24a:	11 24       	eor	r1, r1
+ 24c:	f7 01       	movw	r30, r14
+ 24e:	10 83       	st	Z, r17
+ 250:	ff ef       	ldi	r31, 0xFF	; 255
+ 252:	ef 1a       	sub	r14, r31
+ 254:	ff 0a       	sbc	r15, r31
+ 256:	1e 2d       	mov	r17, r14
+ 258:	1c 19       	sub	r17, r12
+        for(i=0;((i<v_numOfDigitsToTransmit_u8) && (i<C_MaxDigitsToTransmit_U8)) ;i++)
+            UART_TxChar('0');
+    }
+    else
+    {
+        for(i=0;i<v_numOfDigitsToTransmit_u8;i++)
+ 25a:	10 17       	cp	r17, r16
+ 25c:	40 f3       	brcs	.-48     	; 0x22e <UART_TxNumber+0x94>
+ 25e:	0f c0       	rjmp	.+30     	; 0x27e <UART_TxNumber+0xe4>
+                If v_number_u32 = 123 then extracted remainder will be 3 and number will be 12.
+                The process continues till it becomes zero or max digits reached*/
+                a[i]=util_GetMod32(v_number_u32,v_numericSystem_u8);
+                v_number_u32=v_number_u32/v_numericSystem_u8;
+            }
+            else if( (v_numOfDigitsToTransmit_u8 == C_DefaultDigitsToTransmit_U8) ||
+ 260:	0b 30       	cpi	r16, 0x0B	; 11
+ 262:	68 f4       	brcc	.+26     	; 0x27e <UART_TxNumber+0xe4>
+            else
+            {
+                /*In case user expects more digits to be transmitted than the actual digits in number,
+                  then update the remaining digits with zero.
+                Ex: v_number_u32 is 123 and user wants five digits then 00123 has to be transmitted */
+                a[i]=0;
+ 264:	f7 01       	movw	r30, r14
+ 266:	10 82       	st	Z, r1
+ 268:	f3 cf       	rjmp	.-26     	; 0x250 <UART_TxNumber+0xb6>
+        }
+
+        while(i)
+        { 
+            /* Finally get the ascii values of the digits and transmit*/
+            UART_TxChar(util_Hex2Ascii(a[i-1]));
+ 26a:	fe 01       	movw	r30, r28
+ 26c:	e1 0f       	add	r30, r17
+ 26e:	f1 1d       	adc	r31, r1
+ 270:	80 81       	ld	r24, Z
+ 272:	8a 30       	cpi	r24, 0x0A	; 10
+ 274:	38 f0       	brcs	.+14     	; 0x284 <UART_TxNumber+0xea>
+ 276:	89 5c       	subi	r24, 0xC9	; 201
+ 278:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+            i--;
+ 27c:	11 50       	subi	r17, 0x01	; 1
+                Ex: v_number_u32 is 123 and user wants five digits then 00123 has to be transmitted */
+                a[i]=0;
+            }
+        }
+
+        while(i)
+ 27e:	11 11       	cpse	r17, r1
+ 280:	f4 cf       	rjmp	.-24     	; 0x26a <UART_TxNumber+0xd0>
+ 282:	02 c0       	rjmp	.+4      	; 0x288 <UART_TxNumber+0xee>
+        { 
+            /* Finally get the ascii values of the digits and transmit*/
+            UART_TxChar(util_Hex2Ascii(a[i-1]));
+ 284:	80 5d       	subi	r24, 0xD0	; 208
+ 286:	f8 cf       	rjmp	.-16     	; 0x278 <UART_TxNumber+0xde>
+            i--;
+        }
+    }
+
+
+}
+ 288:	2a 96       	adiw	r28, 0x0a	; 10
+ 28a:	0f b6       	in	r0, 0x3f	; 63
+ 28c:	f8 94       	cli
+ 28e:	de bf       	out	0x3e, r29	; 62
+ 290:	0f be       	out	0x3f, r0	; 63
+ 292:	cd bf       	out	0x3d, r28	; 61
+ 294:	df 91       	pop	r29
+ 296:	cf 91       	pop	r28
+ 298:	1f 91       	pop	r17
+ 29a:	0f 91       	pop	r16
+ 29c:	ff 90       	pop	r15
+ 29e:	ef 90       	pop	r14
+ 2a0:	df 90       	pop	r13
+ 2a2:	cf 90       	pop	r12
+ 2a4:	bf 90       	pop	r11
+ 2a6:	7f 90       	pop	r7
+ 2a8:	6f 90       	pop	r6
+ 2aa:	5f 90       	pop	r5
+ 2ac:	4f 90       	pop	r4
+ 2ae:	08 95       	ret
+
+000002b0 <UART_Printf>:
+        uint8_t v_Num_u8;
+		UART_Printf("num1:%u",(uint16_t)v_Num_u8); 		 
+***************************************************************************************************/
+#if ( Enable_UART_Printf   == 1 ) 
+void UART_Printf(const char *argList, ...)
+{
+ 2b0:	cf 92       	push	r12
+ 2b2:	df 92       	push	r13
+ 2b4:	ef 92       	push	r14
+ 2b6:	ff 92       	push	r15
+ 2b8:	0f 93       	push	r16
+ 2ba:	1f 93       	push	r17
+ 2bc:	cf 93       	push	r28
+ 2be:	df 93       	push	r29
+ 2c0:	00 d0       	rcall	.+0      	; 0x2c2 <UART_Printf+0x12>
+ 2c2:	00 d0       	rcall	.+0      	; 0x2c4 <UART_Printf+0x14>
+ 2c4:	1f 92       	push	r1
+ 2c6:	cd b7       	in	r28, 0x3d	; 61
+ 2c8:	de b7       	in	r29, 0x3e	; 62
+ 2ca:	fe 01       	movw	r30, r28
+ 2cc:	70 96       	adiw	r30, 0x10	; 16
+ 2ce:	c1 90       	ld	r12, Z+
+ 2d0:	d1 90       	ld	r13, Z+
+#if (Enable_UART_TxFloatNumber==1)
+	double v_floatNum_f32;
+#endif	
+
+
+	va_start(argp, argList);
+ 2d2:	8f 01       	movw	r16, r30
+
+	/* Loop through the list to extract all the input arguments */
+	for(ptr = argList; *ptr != '\0'; ptr++)
+ 2d4:	f6 01       	movw	r30, r12
+ 2d6:	80 81       	ld	r24, Z
+ 2d8:	88 23       	and	r24, r24
+ 2da:	09 f4       	brne	.+2      	; 0x2de <UART_Printf+0x2e>
+ 2dc:	1d c1       	rjmp	.+570    	; 0x518 <UART_Printf+0x268>
+	{
+
+		ch= *ptr;
+		if(ch == '%')         /*Check for '%' as there will be format specifier after it */
+ 2de:	85 32       	cpi	r24, 0x25	; 37
+ 2e0:	09 f0       	breq	.+2      	; 0x2e4 <UART_Printf+0x34>
+ 2e2:	02 c1       	rjmp	.+516    	; 0x4e8 <UART_Printf+0x238>
+		{
+		    ptr++;
+ 2e4:	76 01       	movw	r14, r12
+ 2e6:	8f ef       	ldi	r24, 0xFF	; 255
+ 2e8:	e8 1a       	sub	r14, r24
+ 2ea:	f8 0a       	sbc	r15, r24
+		    ch = *ptr;
+ 2ec:	f6 01       	movw	r30, r12
+ 2ee:	81 81       	ldd	r24, Z+1	; 0x01
+		   if((ch>=0x30) && (ch<=0x39))
+ 2f0:	90 ed       	ldi	r25, 0xD0	; 208
+ 2f2:	98 0f       	add	r25, r24
+ 2f4:	9a 30       	cpi	r25, 0x0A	; 10
+ 2f6:	08 f0       	brcs	.+2      	; 0x2fa <UART_Printf+0x4a>
+ 2f8:	b2 c0       	rjmp	.+356    	; 0x45e <UART_Printf+0x1ae>
+ 2fa:	20 e0       	ldi	r18, 0x00	; 0
+			{
+			   v_numOfDigitsToTransmit_u8 = 0;
+			   while((ch>=0x30) && (ch<=0x39))
+ 2fc:	90 ed       	ldi	r25, 0xD0	; 208
+ 2fe:	98 0f       	add	r25, r24
+ 300:	9a 30       	cpi	r25, 0x0A	; 10
+ 302:	58 f4       	brcc	.+22     	; 0x31a <UART_Printf+0x6a>
+			    {
+				   v_numOfDigitsToTransmit_u8 = (v_numOfDigitsToTransmit_u8 * 10) + (ch-0x30);
+ 304:	fa e0       	ldi	r31, 0x0A	; 10
+ 306:	2f 9f       	mul	r18, r31
+ 308:	90 0d       	add	r25, r0
+ 30a:	11 24       	eor	r1, r1
+ 30c:	29 2f       	mov	r18, r25
+				   ptr++;
+ 30e:	8f ef       	ldi	r24, 0xFF	; 255
+ 310:	e8 1a       	sub	r14, r24
+ 312:	f8 0a       	sbc	r15, r24
+				   ch = *ptr;
+ 314:	f7 01       	movw	r30, r14
+ 316:	80 81       	ld	r24, Z
+ 318:	f1 cf       	rjmp	.-30     	; 0x2fc <UART_Printf+0x4c>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 31a:	88 35       	cpi	r24, 0x58	; 88
+ 31c:	09 f4       	brne	.+2      	; 0x320 <UART_Printf+0x70>
+ 31e:	a3 c0       	rjmp	.+326    	; 0x466 <UART_Printf+0x1b6>
+ 320:	a0 f4       	brcc	.+40     	; 0x34a <UART_Printf+0x9a>
+ 322:	83 34       	cpi	r24, 0x43	; 67
+ 324:	29 f1       	breq	.+74     	; 0x370 <UART_Printf+0xc0>
+ 326:	38 f4       	brcc	.+14     	; 0x336 <UART_Printf+0x86>
+ 328:	85 32       	cpi	r24, 0x25	; 37
+ 32a:	09 f4       	brne	.+2      	; 0x32e <UART_Printf+0x7e>
+ 32c:	d9 c0       	rjmp	.+434    	; 0x4e0 <UART_Printf+0x230>
+ 32e:	82 34       	cpi	r24, 0x42	; 66
+ 330:	09 f4       	brne	.+2      	; 0x334 <UART_Printf+0x84>
+ 332:	b7 c0       	rjmp	.+366    	; 0x4a2 <UART_Printf+0x1f2>
+ 334:	dc c0       	rjmp	.+440    	; 0x4ee <UART_Printf+0x23e>
+ 336:	83 35       	cpi	r24, 0x53	; 83
+ 338:	09 f4       	brne	.+2      	; 0x33c <UART_Printf+0x8c>
+ 33a:	c5 c0       	rjmp	.+394    	; 0x4c6 <UART_Printf+0x216>
+ 33c:	85 35       	cpi	r24, 0x55	; 85
+ 33e:	09 f4       	brne	.+2      	; 0x342 <UART_Printf+0x92>
+ 340:	76 c0       	rjmp	.+236    	; 0x42e <UART_Printf+0x17e>
+ 342:	84 34       	cpi	r24, 0x44	; 68
+ 344:	09 f0       	breq	.+2      	; 0x348 <UART_Printf+0x98>
+ 346:	d3 c0       	rjmp	.+422    	; 0x4ee <UART_Printf+0x23e>
+ 348:	39 c0       	rjmp	.+114    	; 0x3bc <UART_Printf+0x10c>
+ 34a:	84 36       	cpi	r24, 0x64	; 100
+ 34c:	e9 f0       	breq	.+58     	; 0x388 <UART_Printf+0xd8>
+ 34e:	20 f4       	brcc	.+8      	; 0x358 <UART_Printf+0xa8>
+ 350:	82 36       	cpi	r24, 0x62	; 98
+ 352:	09 f4       	brne	.+2      	; 0x356 <UART_Printf+0xa6>
+ 354:	99 c0       	rjmp	.+306    	; 0x488 <UART_Printf+0x1d8>
+ 356:	dc c0       	rjmp	.+440    	; 0x510 <UART_Printf+0x260>
+ 358:	85 37       	cpi	r24, 0x75	; 117
+ 35a:	09 f4       	brne	.+2      	; 0x35e <UART_Printf+0xae>
+ 35c:	55 c0       	rjmp	.+170    	; 0x408 <UART_Printf+0x158>
+ 35e:	88 37       	cpi	r24, 0x78	; 120
+ 360:	09 f4       	brne	.+2      	; 0x364 <UART_Printf+0xb4>
+ 362:	73 c0       	rjmp	.+230    	; 0x44a <UART_Printf+0x19a>
+ 364:	ae c0       	rjmp	.+348    	; 0x4c2 <UART_Printf+0x212>
+ 366:	89 35       	cpi	r24, 0x59	; 89
+ 368:	60 f4       	brcc	.+24     	; 0x382 <UART_Printf+0xd2>
+ 36a:	83 34       	cpi	r24, 0x43	; 67
+ 36c:	09 f0       	breq	.+2      	; 0x370 <UART_Printf+0xc0>
+ 36e:	56 c0       	rjmp	.+172    	; 0x41c <UART_Printf+0x16c>
+			{
+			case 'C':
+			case 'c':     /* Argument type is of char, hence read char data from the argp */
+				ch = va_arg(argp, int);
+ 370:	68 01       	movw	r12, r16
+ 372:	f2 e0       	ldi	r31, 0x02	; 2
+ 374:	cf 0e       	add	r12, r31
+ 376:	d1 1c       	adc	r13, r1
+				UART_TxChar(ch);
+ 378:	f8 01       	movw	r30, r16
+ 37a:	80 81       	ld	r24, Z
+ 37c:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+ 380:	ab c0       	rjmp	.+342    	; 0x4d8 <UART_Printf+0x228>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 382:	84 36       	cpi	r24, 0x64	; 100
+ 384:	d9 f5       	brne	.+118    	; 0x3fc <UART_Printf+0x14c>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 386:	2f ef       	ldi	r18, 0xFF	; 255
+				ch = va_arg(argp, int);
+				UART_TxChar(ch);
+				break;
+
+			case 'd':    /* Argument type is of signed integer, hence read 16bit data from the argp */
+				v_num_s16 = va_arg(argp, sint16_t);
+ 388:	68 01       	movw	r12, r16
+ 38a:	f2 e0       	ldi	r31, 0x02	; 2
+ 38c:	cf 0e       	add	r12, r31
+ 38e:	d1 1c       	adc	r13, r1
+ 390:	f8 01       	movw	r30, r16
+ 392:	00 81       	ld	r16, Z
+ 394:	11 81       	ldd	r17, Z+1	; 0x01
+				if(v_num_s16<0)
+ 396:	17 ff       	sbrs	r17, 7
+ 398:	08 c0       	rjmp	.+16     	; 0x3aa <UART_Printf+0xfa>
+				 { /* If the number is -ve then display the 2's complement along with '-' sign */ 
+				   v_num_s16 = -v_num_s16;
+ 39a:	11 95       	neg	r17
+ 39c:	01 95       	neg	r16
+ 39e:	11 09       	sbc	r17, r1
+				   UART_TxChar('-');
+ 3a0:	8d e2       	ldi	r24, 0x2D	; 45
+ 3a2:	2d 83       	std	Y+5, r18	; 0x05
+ 3a4:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+ 3a8:	2d 81       	ldd	r18, Y+5	; 0x05
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s16,v_numOfDigitsToTransmit_u8);
+ 3aa:	a8 01       	movw	r20, r16
+ 3ac:	11 0f       	add	r17, r17
+ 3ae:	66 0b       	sbc	r22, r22
+ 3b0:	77 0b       	sbc	r23, r23
+ 3b2:	46 c0       	rjmp	.+140    	; 0x440 <UART_Printf+0x190>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 3b4:	84 34       	cpi	r24, 0x44	; 68
+ 3b6:	09 f0       	breq	.+2      	; 0x3ba <UART_Printf+0x10a>
+ 3b8:	9a c0       	rjmp	.+308    	; 0x4ee <UART_Printf+0x23e>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 3ba:	2f ef       	ldi	r18, 0xFF	; 255
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s16,v_numOfDigitsToTransmit_u8);
+				break;
+				
+			case 'D':    /* Argument type is of integer, hence read 16bit data from the argp */
+				v_num_s32 = va_arg(argp, sint32_t);				
+ 3bc:	68 01       	movw	r12, r16
+ 3be:	f4 e0       	ldi	r31, 0x04	; 4
+ 3c0:	cf 0e       	add	r12, r31
+ 3c2:	d1 1c       	adc	r13, r1
+ 3c4:	f8 01       	movw	r30, r16
+ 3c6:	40 81       	ld	r20, Z
+ 3c8:	51 81       	ldd	r21, Z+1	; 0x01
+ 3ca:	62 81       	ldd	r22, Z+2	; 0x02
+ 3cc:	73 81       	ldd	r23, Z+3	; 0x03
+				if(v_num_s32<0)
+ 3ce:	77 ff       	sbrs	r23, 7
+ 3d0:	37 c0       	rjmp	.+110    	; 0x440 <UART_Printf+0x190>
+				 { /* If the number is -ve then display the 2's complement along with '-' sign */
+				   v_num_s32 = -v_num_s32;
+ 3d2:	70 95       	com	r23
+ 3d4:	60 95       	com	r22
+ 3d6:	50 95       	com	r21
+ 3d8:	41 95       	neg	r20
+ 3da:	5f 4f       	sbci	r21, 0xFF	; 255
+ 3dc:	6f 4f       	sbci	r22, 0xFF	; 255
+ 3de:	7f 4f       	sbci	r23, 0xFF	; 255
+				   UART_TxChar('-');
+ 3e0:	8d e2       	ldi	r24, 0x2D	; 45
+ 3e2:	2d 83       	std	Y+5, r18	; 0x05
+ 3e4:	49 83       	std	Y+1, r20	; 0x01
+ 3e6:	5a 83       	std	Y+2, r21	; 0x02
+ 3e8:	6b 83       	std	Y+3, r22	; 0x03
+ 3ea:	7c 83       	std	Y+4, r23	; 0x04
+ 3ec:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+ 3f0:	7c 81       	ldd	r23, Y+4	; 0x04
+ 3f2:	6b 81       	ldd	r22, Y+3	; 0x03
+ 3f4:	5a 81       	ldd	r21, Y+2	; 0x02
+ 3f6:	49 81       	ldd	r20, Y+1	; 0x01
+ 3f8:	2d 81       	ldd	r18, Y+5	; 0x05
+ 3fa:	22 c0       	rjmp	.+68     	; 0x440 <UART_Printf+0x190>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 3fc:	85 36       	cpi	r24, 0x65	; 101
+ 3fe:	08 f4       	brcc	.+2      	; 0x402 <UART_Printf+0x152>
+ 400:	3f c0       	rjmp	.+126    	; 0x480 <UART_Printf+0x1d0>
+ 402:	85 37       	cpi	r24, 0x75	; 117
+ 404:	f9 f4       	brne	.+62     	; 0x444 <UART_Printf+0x194>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 406:	2f ef       	ldi	r18, 0xFF	; 255
+				 }
+				UART_TxNumber(C_DECIMAL_U8,v_num_s32,v_numOfDigitsToTransmit_u8);			
+				break;	
+
+			case 'u':    /* Argument type is of unsigned integer, hence read 16bit unsigned data */
+				v_num_u16 = va_arg(argp, uint16_t);			
+ 408:	68 01       	movw	r12, r16
+ 40a:	f2 e0       	ldi	r31, 0x02	; 2
+ 40c:	cf 0e       	add	r12, r31
+ 40e:	d1 1c       	adc	r13, r1
+				UART_TxNumber(C_DECIMAL_U8,v_num_u16,v_numOfDigitsToTransmit_u8);				
+ 410:	f8 01       	movw	r30, r16
+ 412:	40 81       	ld	r20, Z
+ 414:	51 81       	ldd	r21, Z+1	; 0x01
+ 416:	60 e0       	ldi	r22, 0x00	; 0
+ 418:	70 e0       	ldi	r23, 0x00	; 0
+ 41a:	12 c0       	rjmp	.+36     	; 0x440 <UART_Printf+0x190>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 41c:	84 34       	cpi	r24, 0x44	; 68
+ 41e:	08 f4       	brcc	.+2      	; 0x422 <UART_Printf+0x172>
+ 420:	5d c0       	rjmp	.+186    	; 0x4dc <UART_Printf+0x22c>
+ 422:	83 35       	cpi	r24, 0x53	; 83
+ 424:	09 f4       	brne	.+2      	; 0x428 <UART_Printf+0x178>
+ 426:	4f c0       	rjmp	.+158    	; 0x4c6 <UART_Printf+0x216>
+ 428:	85 35       	cpi	r24, 0x55	; 85
+ 42a:	21 f6       	brne	.-120    	; 0x3b4 <UART_Printf+0x104>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 42c:	2f ef       	ldi	r18, 0xFF	; 255
+				v_num_u16 = va_arg(argp, uint16_t);			
+				UART_TxNumber(C_DECIMAL_U8,v_num_u16,v_numOfDigitsToTransmit_u8);				
+				break;
+			
+			case 'U':    /* Argument type is of integer, hence read 32bit unsigend data */
+				v_num_u32 = va_arg(argp, uint32_t);			
+ 42e:	68 01       	movw	r12, r16
+ 430:	f4 e0       	ldi	r31, 0x04	; 4
+ 432:	cf 0e       	add	r12, r31
+ 434:	d1 1c       	adc	r13, r1
+				UART_TxNumber(C_DECIMAL_U8,v_num_u32,v_numOfDigitsToTransmit_u8);				
+ 436:	f8 01       	movw	r30, r16
+ 438:	40 81       	ld	r20, Z
+ 43a:	51 81       	ldd	r21, Z+1	; 0x01
+ 43c:	62 81       	ldd	r22, Z+2	; 0x02
+ 43e:	73 81       	ldd	r23, Z+3	; 0x03
+ 440:	8a e0       	ldi	r24, 0x0A	; 10
+ 442:	1b c0       	rjmp	.+54     	; 0x47a <UART_Printf+0x1ca>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 444:	88 37       	cpi	r24, 0x78	; 120
+ 446:	e9 f5       	brne	.+122    	; 0x4c2 <UART_Printf+0x212>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 448:	2f ef       	ldi	r18, 0xFF	; 255
+				v_num_u32 = va_arg(argp, uint32_t);			
+				UART_TxNumber(C_DECIMAL_U8,v_num_u32,v_numOfDigitsToTransmit_u8);				
+				break;			
+
+			case 'x':  /* Argument type is of hex, hence hexadecimal data from the argp */
+				v_num_u16 = va_arg(argp, uint16_t);				
+ 44a:	68 01       	movw	r12, r16
+ 44c:	f2 e0       	ldi	r31, 0x02	; 2
+ 44e:	cf 0e       	add	r12, r31
+ 450:	d1 1c       	adc	r13, r1
+				UART_TxNumber(C_HEX_U8,v_num_u16,v_numOfDigitsToTransmit_u8);			
+ 452:	f8 01       	movw	r30, r16
+ 454:	40 81       	ld	r20, Z
+ 456:	51 81       	ldd	r21, Z+1	; 0x01
+ 458:	60 e0       	ldi	r22, 0x00	; 0
+ 45a:	70 e0       	ldi	r23, 0x00	; 0
+ 45c:	0d c0       	rjmp	.+26     	; 0x478 <UART_Printf+0x1c8>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 45e:	88 35       	cpi	r24, 0x58	; 88
+ 460:	09 f0       	breq	.+2      	; 0x464 <UART_Printf+0x1b4>
+ 462:	81 cf       	rjmp	.-254    	; 0x366 <UART_Printf+0xb6>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 464:	2f ef       	ldi	r18, 0xFF	; 255
+				v_num_u16 = va_arg(argp, uint16_t);				
+				UART_TxNumber(C_HEX_U8,v_num_u16,v_numOfDigitsToTransmit_u8);			
+				break;
+
+			case 'X':  /* Argument type is of hex, hence hexadecimal data from the argp */
+				v_num_u32 = va_arg(argp, uint32_t);						
+ 466:	68 01       	movw	r12, r16
+ 468:	f4 e0       	ldi	r31, 0x04	; 4
+ 46a:	cf 0e       	add	r12, r31
+ 46c:	d1 1c       	adc	r13, r1
+				UART_TxNumber(C_HEX_U8,v_num_u32,v_numOfDigitsToTransmit_u8);				
+ 46e:	f8 01       	movw	r30, r16
+ 470:	40 81       	ld	r20, Z
+ 472:	51 81       	ldd	r21, Z+1	; 0x01
+ 474:	62 81       	ldd	r22, Z+2	; 0x02
+ 476:	73 81       	ldd	r23, Z+3	; 0x03
+ 478:	80 e1       	ldi	r24, 0x10	; 16
+ 47a:	0e 94 cd 00 	call	0x19a	; 0x19a <UART_TxNumber>
+ 47e:	2c c0       	rjmp	.+88     	; 0x4d8 <UART_Printf+0x228>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 480:	82 36       	cpi	r24, 0x62	; 98
+ 482:	09 f0       	breq	.+2      	; 0x486 <UART_Printf+0x1d6>
+ 484:	45 c0       	rjmp	.+138    	; 0x510 <UART_Printf+0x260>
+				   ch = *ptr;
+				}
+			}
+			else
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+ 486:	2f ef       	ldi	r18, 0xFF	; 255
+				UART_TxNumber(C_HEX_U8,v_num_u32,v_numOfDigitsToTransmit_u8);				
+				break;
+
+			
+			case 'b':  /* Argument type is of binary,Read int and convert to binary */
+				v_num_u16 = va_arg(argp, uint16_t);		
+ 488:	68 01       	movw	r12, r16
+ 48a:	f2 e0       	ldi	r31, 0x02	; 2
+ 48c:	cf 0e       	add	r12, r31
+ 48e:	d1 1c       	adc	r13, r1
+ 490:	f8 01       	movw	r30, r16
+ 492:	60 81       	ld	r22, Z
+ 494:	71 81       	ldd	r23, Z+1	; 0x01
+				
+				if(v_numOfDigitsToTransmit_u8 == C_MaxDigitsToTransmitUsingPrintf_U8)
+ 496:	2f 3f       	cpi	r18, 0xFF	; 255
+ 498:	09 f4       	brne	.+2      	; 0x49c <UART_Printf+0x1ec>
+				   v_numOfDigitsToTransmit_u8 = 16;
+ 49a:	20 e1       	ldi	r18, 0x10	; 16
+               
+				UART_TxNumber(C_BINARY_U8,v_num_u16,v_numOfDigitsToTransmit_u8);			
+ 49c:	80 e0       	ldi	r24, 0x00	; 0
+ 49e:	90 e0       	ldi	r25, 0x00	; 0
+ 4a0:	0c c0       	rjmp	.+24     	; 0x4ba <UART_Printf+0x20a>
+				break;
+
+			case 'B':  /* Argument type is of binary,Read int and convert to binary */
+				v_num_u32 = va_arg(argp, uint32_t);			
+ 4a2:	68 01       	movw	r12, r16
+ 4a4:	f4 e0       	ldi	r31, 0x04	; 4
+ 4a6:	cf 0e       	add	r12, r31
+ 4a8:	d1 1c       	adc	r13, r1
+ 4aa:	f8 01       	movw	r30, r16
+ 4ac:	60 81       	ld	r22, Z
+ 4ae:	71 81       	ldd	r23, Z+1	; 0x01
+ 4b0:	82 81       	ldd	r24, Z+2	; 0x02
+ 4b2:	93 81       	ldd	r25, Z+3	; 0x03
+                
+				if(v_numOfDigitsToTransmit_u8 == C_MaxDigitsToTransmitUsingPrintf_U8)
+ 4b4:	2f 3f       	cpi	r18, 0xFF	; 255
+ 4b6:	09 f4       	brne	.+2      	; 0x4ba <UART_Printf+0x20a>
+				   v_numOfDigitsToTransmit_u8 = 32;		
+ 4b8:	20 e2       	ldi	r18, 0x20	; 32
+ 4ba:	42 2f       	mov	r20, r18
+ 4bc:	0e 94 84 00 	call	0x108	; 0x108 <UART_TxNumber.part.0>
+ 4c0:	0b c0       	rjmp	.+22     	; 0x4d8 <UART_Printf+0x228>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 4c2:	83 37       	cpi	r24, 0x73	; 115
+ 4c4:	a1 f4       	brne	.+40     	; 0x4ee <UART_Printf+0x23e>
+				break;                
+
+
+			case 'S':
+			case 's': /* Argument type is of string, hence get the pointer to sting passed */
+				str = va_arg(argp, char *);
+ 4c6:	68 01       	movw	r12, r16
+ 4c8:	f2 e0       	ldi	r31, 0x02	; 2
+ 4ca:	cf 0e       	add	r12, r31
+ 4cc:	d1 1c       	adc	r13, r1
+				UART_TxString(str);			
+ 4ce:	f8 01       	movw	r30, r16
+ 4d0:	80 81       	ld	r24, Z
+ 4d2:	91 81       	ldd	r25, Z+1	; 0x01
+ 4d4:	0e 94 c1 00 	call	0x182	; 0x182 <UART_TxString>
+				break;                
+
+
+			case 'S':
+			case 's': /* Argument type is of string, hence get the pointer to sting passed */
+				str = va_arg(argp, char *);
+ 4d8:	86 01       	movw	r16, r12
+				UART_TxString(str);			
+				break;
+ 4da:	09 c0       	rjmp	.+18     	; 0x4ee <UART_Printf+0x23e>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 4dc:	85 32       	cpi	r24, 0x25	; 37
+ 4de:	61 f4       	brne	.+24     	; 0x4f8 <UART_Printf+0x248>
+				str = va_arg(argp, char *);
+				UART_TxString(str);			
+				break;
+
+			case '%':
+				UART_TxChar('%');
+ 4e0:	85 e2       	ldi	r24, 0x25	; 37
+ 4e2:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+				break;
+ 4e6:	03 c0       	rjmp	.+6      	; 0x4ee <UART_Printf+0x23e>
+			}
+		}
+		else
+		{
+			/* As '%' is not detected transmit the char passed */
+			UART_TxChar(ch);
+ 4e8:	0e 94 80 00 	call	0x100	; 0x100 <UART_TxChar>
+ 4ec:	76 01       	movw	r14, r12
+
+
+	va_start(argp, argList);
+
+	/* Loop through the list to extract all the input arguments */
+	for(ptr = argList; *ptr != '\0'; ptr++)
+ 4ee:	67 01       	movw	r12, r14
+ 4f0:	ff ef       	ldi	r31, 0xFF	; 255
+ 4f2:	cf 1a       	sub	r12, r31
+ 4f4:	df 0a       	sbc	r13, r31
+ 4f6:	ee ce       	rjmp	.-548    	; 0x2d4 <UART_Printf+0x24>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 4f8:	82 34       	cpi	r24, 0x42	; 66
+ 4fa:	c9 f7       	brne	.-14     	; 0x4ee <UART_Printf+0x23e>
+               
+				UART_TxNumber(C_BINARY_U8,v_num_u16,v_numOfDigitsToTransmit_u8);			
+				break;
+
+			case 'B':  /* Argument type is of binary,Read int and convert to binary */
+				v_num_u32 = va_arg(argp, uint32_t);			
+ 4fc:	68 01       	movw	r12, r16
+ 4fe:	f4 e0       	ldi	r31, 0x04	; 4
+ 500:	cf 0e       	add	r12, r31
+ 502:	d1 1c       	adc	r13, r1
+ 504:	f8 01       	movw	r30, r16
+ 506:	60 81       	ld	r22, Z
+ 508:	71 81       	ldd	r23, Z+1	; 0x01
+ 50a:	82 81       	ldd	r24, Z+2	; 0x02
+ 50c:	93 81       	ldd	r25, Z+3	; 0x03
+ 50e:	d4 cf       	rjmp	.-88     	; 0x4b8 <UART_Printf+0x208>
+			{
+			  v_numOfDigitsToTransmit_u8 = C_MaxDigitsToTransmitUsingPrintf_U8;
+			}				
+
+
+			switch(ch)       /* Decode the type of the argument */
+ 510:	83 36       	cpi	r24, 0x63	; 99
+ 512:	09 f4       	brne	.+2      	; 0x516 <UART_Printf+0x266>
+ 514:	2d cf       	rjmp	.-422    	; 0x370 <UART_Printf+0xc0>
+ 516:	eb cf       	rjmp	.-42     	; 0x4ee <UART_Printf+0x23e>
+			UART_TxChar(ch);
+		}
+	}
+
+	va_end(argp);
+}
+ 518:	0f 90       	pop	r0
+ 51a:	0f 90       	pop	r0
+ 51c:	0f 90       	pop	r0
+ 51e:	0f 90       	pop	r0
+ 520:	0f 90       	pop	r0
+ 522:	df 91       	pop	r29
+ 524:	cf 91       	pop	r28
+ 526:	1f 91       	pop	r17
+ 528:	0f 91       	pop	r16
+ 52a:	ff 90       	pop	r15
+ 52c:	ef 90       	pop	r14
+ 52e:	df 90       	pop	r13
+ 530:	cf 90       	pop	r12
+ 532:	08 95       	ret
+
+00000534 <main>:
+#include "delay.h"
+
+int main() 
+{
+    int count = 0;
+    UART_Init(9600);
+ 534:	60 e8       	ldi	r22, 0x80	; 128
+ 536:	75 e2       	ldi	r23, 0x25	; 37
+ 538:	80 e0       	ldi	r24, 0x00	; 0
+ 53a:	90 e0       	ldi	r25, 0x00	; 0
+ 53c:	0e 94 79 00 	call	0xf2	; 0xf2 <UART_Init>
+#include "uart.h"
+#include "delay.h"
+
+int main() 
+{
+    int count = 0;
+ 540:	c0 e0       	ldi	r28, 0x00	; 0
+ 542:	d0 e0       	ldi	r29, 0x00	; 0
+    UART_Init(9600);
+    
+    while(1)
+    {
+        UART_Printf("hex:0x%2x   bin:%8b   dec:%3d\n\r",count,count,count);
+ 544:	00 e6       	ldi	r16, 0x60	; 96
+ 546:	10 e0       	ldi	r17, 0x00	; 0
+ 548:	df 93       	push	r29
+ 54a:	cf 93       	push	r28
+ 54c:	df 93       	push	r29
+ 54e:	cf 93       	push	r28
+ 550:	df 93       	push	r29
+ 552:	cf 93       	push	r28
+ 554:	1f 93       	push	r17
+ 556:	0f 93       	push	r16
+ 558:	0e 94 58 01 	call	0x2b0	; 0x2b0 <UART_Printf>
+        DELAY_ms(100);
+ 55c:	84 e6       	ldi	r24, 0x64	; 100
+ 55e:	90 e0       	ldi	r25, 0x00	; 0
+ 560:	0e 94 41 00 	call	0x82	; 0x82 <DELAY_ms>
+        count++;
+ 564:	21 96       	adiw	r28, 0x01	; 1
+        if(count > 255)
+ 566:	8d b7       	in	r24, 0x3d	; 61
+ 568:	9e b7       	in	r25, 0x3e	; 62
+ 56a:	08 96       	adiw	r24, 0x08	; 8
+ 56c:	0f b6       	in	r0, 0x3f	; 63
+ 56e:	f8 94       	cli
+ 570:	9e bf       	out	0x3e, r25	; 62
+ 572:	0f be       	out	0x3f, r0	; 63
+ 574:	8d bf       	out	0x3d, r24	; 61
+ 576:	cf 3f       	cpi	r28, 0xFF	; 255
+ 578:	d1 05       	cpc	r29, r1
+ 57a:	31 f3       	breq	.-52     	; 0x548 <main+0x14>
+ 57c:	2c f3       	brlt	.-54     	; 0x548 <main+0x14>
+        {
+            count = 0;
+ 57e:	c0 e0       	ldi	r28, 0x00	; 0
+ 580:	d0 e0       	ldi	r29, 0x00	; 0
+ 582:	e2 cf       	rjmp	.-60     	; 0x548 <main+0x14>
+
+00000584 <__udivmodsi4>:
+ 584:	a1 e2       	ldi	r26, 0x21	; 33
+ 586:	1a 2e       	mov	r1, r26
+ 588:	aa 1b       	sub	r26, r26
+ 58a:	bb 1b       	sub	r27, r27
+ 58c:	fd 01       	movw	r30, r26
+ 58e:	0d c0       	rjmp	.+26     	; 0x5aa <__udivmodsi4_ep>
+
+00000590 <__udivmodsi4_loop>:
+ 590:	aa 1f       	adc	r26, r26
+ 592:	bb 1f       	adc	r27, r27
+ 594:	ee 1f       	adc	r30, r30
+ 596:	ff 1f       	adc	r31, r31
+ 598:	a2 17       	cp	r26, r18
+ 59a:	b3 07       	cpc	r27, r19
+ 59c:	e4 07       	cpc	r30, r20
+ 59e:	f5 07       	cpc	r31, r21
+ 5a0:	20 f0       	brcs	.+8      	; 0x5aa <__udivmodsi4_ep>
+ 5a2:	a2 1b       	sub	r26, r18
+ 5a4:	b3 0b       	sbc	r27, r19
+ 5a6:	e4 0b       	sbc	r30, r20
+ 5a8:	f5 0b       	sbc	r31, r21
+
+000005aa <__udivmodsi4_ep>:
+ 5aa:	66 1f       	adc	r22, r22
+ 5ac:	77 1f       	adc	r23, r23
+ 5ae:	88 1f       	adc	r24, r24
+ 5b0:	99 1f       	adc	r25, r25
+ 5b2:	1a 94       	dec	r1
+ 5b4:	69 f7       	brne	.-38     	; 0x590 <__udivmodsi4_loop>
+ 5b6:	60 95       	com	r22
+ 5b8:	70 95       	com	r23
+ 5ba:	80 95       	com	r24
+ 5bc:	90 95       	com	r25
+ 5be:	9b 01       	movw	r18, r22
+ 5c0:	ac 01       	movw	r20, r24
+ 5c2:	bd 01       	movw	r22, r26
+ 5c4:	cf 01       	movw	r24, r30
+ 5c6:	08 95       	ret
+
+000005c8 <__mulshisi3>:
+ 5c8:	b7 ff       	sbrs	r27, 7
+ 5ca:	0c 94 ec 02 	jmp	0x5d8	; 0x5d8 <__muluhisi3>
+
+000005ce <__mulohisi3>:
+ 5ce:	0e 94 ec 02 	call	0x5d8	; 0x5d8 <__muluhisi3>
+ 5d2:	82 1b       	sub	r24, r18
+ 5d4:	93 0b       	sbc	r25, r19
+ 5d6:	08 95       	ret
+
+000005d8 <__muluhisi3>:
+ 5d8:	0e 94 f7 02 	call	0x5ee	; 0x5ee <__umulhisi3>
+ 5dc:	a5 9f       	mul	r26, r21
+ 5de:	90 0d       	add	r25, r0
+ 5e0:	b4 9f       	mul	r27, r20
+ 5e2:	90 0d       	add	r25, r0
+ 5e4:	a4 9f       	mul	r26, r20
+ 5e6:	80 0d       	add	r24, r0
+ 5e8:	91 1d       	adc	r25, r1
+ 5ea:	11 24       	eor	r1, r1
+ 5ec:	08 95       	ret
+
+000005ee <__umulhisi3>:
+ 5ee:	a2 9f       	mul	r26, r18
+ 5f0:	b0 01       	movw	r22, r0
+ 5f2:	b3 9f       	mul	r27, r19
+ 5f4:	c0 01       	movw	r24, r0
+ 5f6:	a3 9f       	mul	r26, r19
+ 5f8:	70 0d       	add	r23, r0
+ 5fa:	81 1d       	adc	r24, r1
+ 5fc:	11 24       	eor	r1, r1
+ 5fe:	91 1d       	adc	r25, r1
+ 600:	b2 9f       	mul	r27, r18
+ 602:	70 0d       	add	r23, r0
+ 604:	81 1d       	adc	r24, r1
+ 606:	11 24       	eor	r1, r1
+ 608:	91 1d       	adc	r25, r1
+ 60a:	08 95       	ret
+
+0000060c <_exit>:
+ 60c:	f8 94       	cli
+
+0000060e <__stop_program>:
+ 60e:	ff cf       	rjmp	.-2      	; 0x60e <__stop_program>
