@@ -1,0 +1,158 @@
+
+11c-Timer_Interrupt.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000ca  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  0000013e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800060  00800060  0000013e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000013e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000170  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000028  00000000  00000000  000001ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000000ba  00000000  00000000  000001d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000081  00000000  00000000  0000028e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000000bc  00000000  00000000  0000030f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000044  00000000  00000000  000003cc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000142  00000000  00000000  00000410  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000003c  00000000  00000000  00000552  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000018  00000000  00000000  0000058e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__vector_9>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a1 36       	cpi	r26, 0x61	; 97
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 53 00 	call	0xa6	; 0xa6 <main>
+  74:	0c 94 63 00 	jmp	0xc6	; 0xc6 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <__vector_9>:
+
+#define led PORTC
+volatile char cnt=0x00;
+
+ISR (TIMER1_OVF_vect)    // Timer1 ISR
+{
+  7c:	1f 92       	push	r1
+  7e:	0f 92       	push	r0
+  80:	0f b6       	in	r0, 0x3f	; 63
+  82:	0f 92       	push	r0
+  84:	11 24       	eor	r1, r1
+  86:	8f 93       	push	r24
+	
+	cnt++;          // Increment the cnt value each time the isr is executed
+  88:	80 91 60 00 	lds	r24, 0x0060
+  8c:	8f 5f       	subi	r24, 0xFF	; 255
+  8e:	80 93 60 00 	sts	0x0060, r24
+	
+	TCNT1H=0xE3;    // Reload the 16-bit count value
+  92:	83 ee       	ldi	r24, 0xE3	; 227
+  94:	8d bd       	out	0x2d, r24	; 45
+	TCNT1L=0xE0;    // in timer1 count registers
+  96:	80 ee       	ldi	r24, 0xE0	; 224
+  98:	8c bd       	out	0x2c, r24	; 44
+}
+  9a:	8f 91       	pop	r24
+  9c:	0f 90       	pop	r0
+  9e:	0f be       	out	0x3f, r0	; 63
+  a0:	0f 90       	pop	r0
+  a2:	1f 90       	pop	r1
+  a4:	18 95       	reti
+
+000000a6 <main>:
+
+int main()
+{
+	DDRC=0xff;     //Configure the PORTC as output
+  a6:	8f ef       	ldi	r24, 0xFF	; 255
+  a8:	84 bb       	out	0x14, r24	; 20
+	
+	TCNT1H=0xE3;   // Load the 16-bit count value
+  aa:	83 ee       	ldi	r24, 0xE3	; 227
+  ac:	8d bd       	out	0x2d, r24	; 45
+	TCNT1L=0xE0;   // for 1 sec at 7.3728MHz
+  ae:	80 ee       	ldi	r24, 0xE0	; 224
+  b0:	8c bd       	out	0x2c, r24	; 44
+
+	TCCR1A=0x00;
+  b2:	1f bc       	out	0x2f, r1	; 47
+	TCCR1B=0x05;  // Timer mode with 1024 prescler
+  b4:	85 e0       	ldi	r24, 0x05	; 5
+  b6:	8e bd       	out	0x2e, r24	; 46
+	TIMSK=0x04;   // Enable timer1 overflow interrupt(TOIE1)
+  b8:	84 e0       	ldi	r24, 0x04	; 4
+  ba:	89 bf       	out	0x39, r24	; 57
+	sei();        // Enable global interrupts by setting global interrupt enable bit in SREG
+  bc:	78 94       	sei
+	
+	while(1)
+	{
+		
+		PORTC=cnt; // Send the cnt value to PORTC which will be incremented in timer ISR
+  be:	80 91 60 00 	lds	r24, 0x0060
+  c2:	85 bb       	out	0x15, r24	; 21
+		
+	}
+  c4:	fc cf       	rjmp	.-8      	; 0xbe <main+0x18>
+
+000000c6 <_exit>:
+  c6:	f8 94       	cli
+
+000000c8 <__stop_program>:
+  c8:	ff cf       	rjmp	.-2      	; 0xc8 <__stop_program>

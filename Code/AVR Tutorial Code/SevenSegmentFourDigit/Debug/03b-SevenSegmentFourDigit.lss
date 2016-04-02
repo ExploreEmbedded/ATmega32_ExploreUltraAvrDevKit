@@ -1,0 +1,409 @@
+
+03b-SevenSegmentFourDigit.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001d6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000010  00800060  000001d6  0000024a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000025a  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000028c  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  000002c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000021c  00000000  00000000  000002e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000112  00000000  00000000  00000504  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000018b  00000000  00000000  00000616  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000034  00000000  00000000  000007a4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000019a  00000000  00000000  000007d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000191  00000000  00000000  00000972  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  00000b03  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 ed       	ldi	r30, 0xD6	; 214
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 37       	cpi	r26, 0x70	; 112
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 41 00 	call	0x82	; 0x82 <main>
+  7a:	0c 94 e9 00 	jmp	0x1d2	; 0x1d2 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <main>:
+#define SegThree 0x04
+#define SegFour  0x08	
+
+
+
+int main() {
+  82:	cf 93       	push	r28
+  84:	df 93       	push	r29
+  86:	cd b7       	in	r28, 0x3d	; 61
+  88:	de b7       	in	r29, 0x3e	; 62
+  8a:	60 97       	sbiw	r28, 0x10	; 16
+  8c:	0f b6       	in	r0, 0x3f	; 63
+  8e:	f8 94       	cli
+  90:	de bf       	out	0x3e, r29	; 62
+  92:	0f be       	out	0x3f, r0	; 63
+  94:	cd bf       	out	0x3d, r28	; 61
+    char seg_code[]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,0x88,0x83,0xc6,0xa1,0x86,0x8e};
+  96:	80 e1       	ldi	r24, 0x10	; 16
+  98:	e0 e6       	ldi	r30, 0x60	; 96
+  9a:	f0 e0       	ldi	r31, 0x00	; 0
+  9c:	de 01       	movw	r26, r28
+  9e:	11 96       	adiw	r26, 0x01	; 1
+  a0:	01 90       	ld	r0, Z+
+  a2:	0d 92       	st	X+, r0
+  a4:	8a 95       	dec	r24
+  a6:	e1 f7       	brne	.-8      	; 0xa0 <main+0x1e>
+    int cnt, num, temp,i;
+
+    /* Configure the ports as output */
+    DDRB = 0xff; // Data lines
+  a8:	8f ef       	ldi	r24, 0xFF	; 255
+  aa:	87 bb       	out	0x17, r24	; 23
+    DDRD = 0xff; // Control signal PORTD0-PORTD3
+  ac:	81 bb       	out	0x11, r24	; 17
+        for (cnt = 0x00; cnt <= 9999; cnt++) // loop to display 0-9999
+        {
+            for (i = 0; i < 100; i++)
+            {
+                num = cnt;
+                temp = num / 1000;
+  ae:	88 ee       	ldi	r24, 0xE8	; 232
+  b0:	a8 2e       	mov	r10, r24
+  b2:	83 e0       	ldi	r24, 0x03	; 3
+  b4:	b8 2e       	mov	r11, r24
+                num = num % 1000;
+                PORTD = SegOne; 
+                PORTB = seg_code[temp];               
+                _delay_ms(1);
+
+                temp = num / 100;
+  b6:	94 e6       	ldi	r25, 0x64	; 100
+  b8:	c9 2e       	mov	r12, r25
+  ba:	d1 2c       	mov	r13, r1
+                num = num % 100;
+                PORTD = SegTwo; 
+                PORTB = seg_code[temp];
+                _delay_ms(1);
+
+                temp = num / 10;
+  bc:	2a e0       	ldi	r18, 0x0A	; 10
+  be:	e2 2e       	mov	r14, r18
+  c0:	f1 2c       	mov	r15, r1
+            for (i = 0; i < 100; i++)
+            {
+                num = cnt;
+                temp = num / 1000;
+                num = num % 1000;
+                PORTD = SegOne; 
+  c2:	66 24       	eor	r6, r6
+  c4:	63 94       	inc	r6
+                PORTB = seg_code[temp];               
+                _delay_ms(1);
+
+                temp = num / 100;
+                num = num % 100;
+                PORTD = SegTwo; 
+  c6:	32 e0       	ldi	r19, 0x02	; 2
+  c8:	73 2e       	mov	r7, r19
+                PORTB = seg_code[temp];
+                _delay_ms(1);
+
+                temp = num / 10;
+                PORTD = SegThree;
+  ca:	44 e0       	ldi	r20, 0x04	; 4
+  cc:	84 2e       	mov	r8, r20
+                PORTB = seg_code[temp];
+                _delay_ms(1);
+
+                temp = num % 10;
+                PORTD = SegFour;
+  ce:	58 e0       	ldi	r21, 0x08	; 8
+  d0:	95 2e       	mov	r9, r21
+    DDRB = 0xff; // Data lines
+    DDRD = 0xff; // Control signal PORTD0-PORTD3
+
+    while (1) 
+    {
+        for (cnt = 0x00; cnt <= 9999; cnt++) // loop to display 0-9999
+  d2:	20 e0       	ldi	r18, 0x00	; 0
+  d4:	30 e0       	ldi	r19, 0x00	; 0
+        {
+            for (i = 0; i < 100; i++)
+            {
+                num = cnt;
+                temp = num / 1000;
+  d6:	c9 01       	movw	r24, r18
+  d8:	b5 01       	movw	r22, r10
+  da:	0e 94 c1 00 	call	0x182	; 0x182 <__divmodhi4>
+  de:	8b 01       	movw	r16, r22
+                num = num % 1000;
+                PORTD = SegOne; 
+                PORTB = seg_code[temp];               
+                _delay_ms(1);
+
+                temp = num / 100;
+  e0:	b6 01       	movw	r22, r12
+  e2:	0e 94 c1 00 	call	0x182	; 0x182 <__divmodhi4>
+  e6:	fb 01       	movw	r30, r22
+                num = num % 100;
+                PORTD = SegTwo; 
+                PORTB = seg_code[temp];
+                _delay_ms(1);
+
+                temp = num / 10;
+  e8:	b7 01       	movw	r22, r14
+  ea:	0e 94 c1 00 	call	0x182	; 0x182 <__divmodhi4>
+                PORTD = SegThree;
+                PORTB = seg_code[temp];
+                _delay_ms(1);
+
+                temp = num % 10;
+  ee:	44 e6       	ldi	r20, 0x64	; 100
+  f0:	50 e0       	ldi	r21, 0x00	; 0
+            {
+                num = cnt;
+                temp = num / 1000;
+                num = num % 1000;
+                PORTD = SegOne; 
+                PORTB = seg_code[temp];               
+  f2:	a1 e0       	ldi	r26, 0x01	; 1
+  f4:	b0 e0       	ldi	r27, 0x00	; 0
+  f6:	ac 0f       	add	r26, r28
+  f8:	bd 1f       	adc	r27, r29
+  fa:	a0 0f       	add	r26, r16
+  fc:	b1 1f       	adc	r27, r17
+                _delay_ms(1);
+
+                temp = num / 100;
+                num = num % 100;
+                PORTD = SegTwo; 
+                PORTB = seg_code[temp];
+  fe:	44 24       	eor	r4, r4
+ 100:	43 94       	inc	r4
+ 102:	51 2c       	mov	r5, r1
+ 104:	4c 0e       	add	r4, r28
+ 106:	5d 1e       	adc	r5, r29
+ 108:	4e 0e       	add	r4, r30
+ 10a:	5f 1e       	adc	r5, r31
+                _delay_ms(1);
+
+                temp = num / 10;
+                PORTD = SegThree;
+                PORTB = seg_code[temp];
+ 10c:	e1 e0       	ldi	r30, 0x01	; 1
+ 10e:	f0 e0       	ldi	r31, 0x00	; 0
+ 110:	ec 0f       	add	r30, r28
+ 112:	fd 1f       	adc	r31, r29
+ 114:	6e 0f       	add	r22, r30
+ 116:	7f 1f       	adc	r23, r31
+                _delay_ms(1);
+
+                temp = num % 10;
+                PORTD = SegFour;
+                PORTB = seg_code[temp];
+ 118:	1f 01       	movw	r2, r30
+ 11a:	28 0e       	add	r2, r24
+ 11c:	39 1e       	adc	r3, r25
+            for (i = 0; i < 100; i++)
+            {
+                num = cnt;
+                temp = num / 1000;
+                num = num % 1000;
+                PORTD = SegOne; 
+ 11e:	62 ba       	out	0x12, r6	; 18
+                PORTB = seg_code[temp];               
+ 120:	1c 91       	ld	r17, X
+ 122:	18 bb       	out	0x18, r17	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 124:	8f e9       	ldi	r24, 0x9F	; 159
+ 126:	9f e0       	ldi	r25, 0x0F	; 15
+ 128:	01 97       	sbiw	r24, 0x01	; 1
+ 12a:	f1 f7       	brne	.-4      	; 0x128 <main+0xa6>
+ 12c:	00 c0       	rjmp	.+0      	; 0x12e <main+0xac>
+ 12e:	00 00       	nop
+                _delay_ms(1);
+
+                temp = num / 100;
+                num = num % 100;
+                PORTD = SegTwo; 
+ 130:	72 ba       	out	0x12, r7	; 18
+                PORTB = seg_code[temp];
+ 132:	f2 01       	movw	r30, r4
+ 134:	10 81       	ld	r17, Z
+ 136:	18 bb       	out	0x18, r17	; 24
+ 138:	8f e9       	ldi	r24, 0x9F	; 159
+ 13a:	9f e0       	ldi	r25, 0x0F	; 15
+ 13c:	01 97       	sbiw	r24, 0x01	; 1
+ 13e:	f1 f7       	brne	.-4      	; 0x13c <main+0xba>
+ 140:	00 c0       	rjmp	.+0      	; 0x142 <main+0xc0>
+ 142:	00 00       	nop
+                _delay_ms(1);
+
+                temp = num / 10;
+                PORTD = SegThree;
+ 144:	82 ba       	out	0x12, r8	; 18
+                PORTB = seg_code[temp];
+ 146:	fb 01       	movw	r30, r22
+ 148:	10 81       	ld	r17, Z
+ 14a:	18 bb       	out	0x18, r17	; 24
+ 14c:	8f e9       	ldi	r24, 0x9F	; 159
+ 14e:	9f e0       	ldi	r25, 0x0F	; 15
+ 150:	01 97       	sbiw	r24, 0x01	; 1
+ 152:	f1 f7       	brne	.-4      	; 0x150 <main+0xce>
+ 154:	00 c0       	rjmp	.+0      	; 0x156 <main+0xd4>
+ 156:	00 00       	nop
+                _delay_ms(1);
+
+                temp = num % 10;
+                PORTD = SegFour;
+ 158:	92 ba       	out	0x12, r9	; 18
+                PORTB = seg_code[temp];
+ 15a:	f1 01       	movw	r30, r2
+ 15c:	10 81       	ld	r17, Z
+ 15e:	18 bb       	out	0x18, r17	; 24
+ 160:	8f e9       	ldi	r24, 0x9F	; 159
+ 162:	9f e0       	ldi	r25, 0x0F	; 15
+ 164:	01 97       	sbiw	r24, 0x01	; 1
+ 166:	f1 f7       	brne	.-4      	; 0x164 <main+0xe2>
+ 168:	00 c0       	rjmp	.+0      	; 0x16a <main+0xe8>
+ 16a:	00 00       	nop
+ 16c:	41 50       	subi	r20, 0x01	; 1
+ 16e:	51 09       	sbc	r21, r1
+
+    while (1) 
+    {
+        for (cnt = 0x00; cnt <= 9999; cnt++) // loop to display 0-9999
+        {
+            for (i = 0; i < 100; i++)
+ 170:	b1 f6       	brne	.-84     	; 0x11e <main+0x9c>
+    DDRB = 0xff; // Data lines
+    DDRD = 0xff; // Control signal PORTD0-PORTD3
+
+    while (1) 
+    {
+        for (cnt = 0x00; cnt <= 9999; cnt++) // loop to display 0-9999
+ 172:	2f 5f       	subi	r18, 0xFF	; 255
+ 174:	3f 4f       	sbci	r19, 0xFF	; 255
+ 176:	20 31       	cpi	r18, 0x10	; 16
+ 178:	97 e2       	ldi	r25, 0x27	; 39
+ 17a:	39 07       	cpc	r19, r25
+ 17c:	09 f0       	breq	.+2      	; 0x180 <main+0xfe>
+ 17e:	ab cf       	rjmp	.-170    	; 0xd6 <main+0x54>
+ 180:	a8 cf       	rjmp	.-176    	; 0xd2 <main+0x50>
+
+00000182 <__divmodhi4>:
+ 182:	97 fb       	bst	r25, 7
+ 184:	07 2e       	mov	r0, r23
+ 186:	16 f4       	brtc	.+4      	; 0x18c <__divmodhi4+0xa>
+ 188:	00 94       	com	r0
+ 18a:	07 d0       	rcall	.+14     	; 0x19a <__divmodhi4_neg1>
+ 18c:	77 fd       	sbrc	r23, 7
+ 18e:	09 d0       	rcall	.+18     	; 0x1a2 <__divmodhi4_neg2>
+ 190:	0e 94 d5 00 	call	0x1aa	; 0x1aa <__udivmodhi4>
+ 194:	07 fc       	sbrc	r0, 7
+ 196:	05 d0       	rcall	.+10     	; 0x1a2 <__divmodhi4_neg2>
+ 198:	3e f4       	brtc	.+14     	; 0x1a8 <__divmodhi4_exit>
+
+0000019a <__divmodhi4_neg1>:
+ 19a:	90 95       	com	r25
+ 19c:	81 95       	neg	r24
+ 19e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1a0:	08 95       	ret
+
+000001a2 <__divmodhi4_neg2>:
+ 1a2:	70 95       	com	r23
+ 1a4:	61 95       	neg	r22
+ 1a6:	7f 4f       	sbci	r23, 0xFF	; 255
+
+000001a8 <__divmodhi4_exit>:
+ 1a8:	08 95       	ret
+
+000001aa <__udivmodhi4>:
+ 1aa:	aa 1b       	sub	r26, r26
+ 1ac:	bb 1b       	sub	r27, r27
+ 1ae:	51 e1       	ldi	r21, 0x11	; 17
+ 1b0:	07 c0       	rjmp	.+14     	; 0x1c0 <__udivmodhi4_ep>
+
+000001b2 <__udivmodhi4_loop>:
+ 1b2:	aa 1f       	adc	r26, r26
+ 1b4:	bb 1f       	adc	r27, r27
+ 1b6:	a6 17       	cp	r26, r22
+ 1b8:	b7 07       	cpc	r27, r23
+ 1ba:	10 f0       	brcs	.+4      	; 0x1c0 <__udivmodhi4_ep>
+ 1bc:	a6 1b       	sub	r26, r22
+ 1be:	b7 0b       	sbc	r27, r23
+
+000001c0 <__udivmodhi4_ep>:
+ 1c0:	88 1f       	adc	r24, r24
+ 1c2:	99 1f       	adc	r25, r25
+ 1c4:	5a 95       	dec	r21
+ 1c6:	a9 f7       	brne	.-22     	; 0x1b2 <__udivmodhi4_loop>
+ 1c8:	80 95       	com	r24
+ 1ca:	90 95       	com	r25
+ 1cc:	bc 01       	movw	r22, r24
+ 1ce:	cd 01       	movw	r24, r26
+ 1d0:	08 95       	ret
+
+000001d2 <_exit>:
+ 1d2:	f8 94       	cli
+
+000001d4 <__stop_program>:
+ 1d4:	ff cf       	rjmp	.-2      	; 0x1d4 <__stop_program>
