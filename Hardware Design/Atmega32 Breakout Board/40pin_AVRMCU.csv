@@ -1,0 +1,13 @@
+"Id";"Designator";"Package";"Quantity";"Designation";"Supplier and ref";
+1;"P1";"VASCH5x2";1;"CONN_5X2";;;
+2;"P5,P3,P2,P4";"SIL-10";4;"CONN_10";;;
+3;"X1";"HC-49V";1;"16Mhz";;;
+4;"IC1";"DIP-40__600_ELL";1;"ATMEGA32-P";;;
+5;"R1";"SM1206";1;"10K";;;
+6;"C3,C2";"SM1206";2;"22pF";;;
+7;"C4,C6,C5";"SM1206";3;"0.1uF";;;
+8;"R2,R3";"SM1206";2;"R";;;
+9;"D1,D2,D3";"SM1206";3;"LED";;;
+10;"P6";"SIL-7";1;"CONN_7";;;
+11;"JP1";"SIL-2";1;"JUMPER";;;
+12;"SW1";"SW_PUSH_SMALL_2pin_xl";1;"rst";;;

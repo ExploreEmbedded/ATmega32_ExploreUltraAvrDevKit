@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name sw)(type KiCad)(uri "H:\\PCB_Designes\\LPC1768 Stick1\\lib_new\\Housings_QFP.pretty-master")(options "")(descr ""))
+  (lib (name EE)(type KiCad)(uri "H:\\PCB_Designes\\LPC1768 Stick1\\lib_new\\logo.pretty")(options "")(descr ""))
+)
