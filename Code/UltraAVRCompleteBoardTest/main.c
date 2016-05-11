@@ -66,10 +66,11 @@ void eeprom_test(void);
 
 
 
-#define SegmentValue PORTC //PORT2.0 is connected to segment 'a'
-#define SegmentSlection PORTA //PORT0.0 is selection line 'S1'
-#define SegValueDirnReg DDRC
-#define SegSelectDirnReg DDRA
+#define SegmentValue     PORTC
+#define SegValueDirnReg  DDRC
+
+#define SegmentSlection  PORTB 
+#define SegSelectDirnReg DDRB
 
 
 
@@ -80,7 +81,7 @@ char mm_option;
 int main()
 {
     UART_Init(9600);
-    UART_TxString("\n\rTest menu Utra x51 v1.1\r\n 1:GPIO Blink\r\n 2:LCD 8-bit \n\r 3:LCD 4-bit\n\r 4:7-Segment\n\r 5:RTC\n\r 6:EEPROM\n\r 7:ADC\n\r 8:Keypad \n\r Enter option:");
+    UART_TxString("\n\rTest menu Utra AVR v1.1\r\n 1:GPIO Blink\r\n 2:LCD 8-bit \n\r 3:LCD 4-bit\n\r 4:7-Segment\n\r 5:RTC\n\r 6:EEPROM\n\r 7:ADC\n\r 8:Keypad \n\r Enter option:");
     UART_TxString("\n\rReset the board after test is done");
     mm_option = UART_RxChar();
     while(1)
@@ -162,7 +163,7 @@ void gpio_test()
 
 void LCD_8bit_test()
 {     
-    UART_TxString("\n\r LCD DataBus: PC Control: RS-PB.0 RW-PB.1 EN-PB.2 ");
+    UART_TxString("\n\r LCD DataBus:PC    RS-PB.0  RW-PB.1  EN-PB.2 ");
     UART_Printf("\n\r Make connections and hit 'k' to test ");
     while(UART_RxChar()!='k');
     LCD_SetUp(PB_0,PB_1,PB_2,PC_0,PC_1,PC_2,PC_3,PC_4,PC_5,PC_6,PC_7);
@@ -177,7 +178,7 @@ void LCD_8bit_test()
 
 void LCD_4bit_test()
 {
-    UART_TxString("\n\r LCD DataBus: PC Msb bits(PC4-PC7) Control: RS-PB.0 RW-PB.1 EN-PB.2 ");
+    UART_TxString("\n\r LCD DataBus:PC4-PC7    RS-PB.0  RW-PB.1  EN-PB.2 ");
     UART_Printf("\n\r Make connections and hit 'k' to test ");
     while(UART_RxChar()!='k');
     LCD_SetUp(PB_0,PB_1,PB_2,P_NC,P_NC,P_NC,P_NC,PC_4,PC_5,PC_6,PC_7);
@@ -196,7 +197,7 @@ void LCD_4bit_test()
 void seg_test()
 {  
     unsigned char seg_code[]={0xf9,0xa4,0xb0,0x99};
-    UART_TxString("\n\r Segment DataBus: P2 Seg select: S1->P0.0 S2->P0.1 S3->P0.2 S4->P0.4  ");
+    UART_TxString("\n\r Segment DataBus: PC Seg select: S1->PB.0 S2->PB.1 S3->PB.2 S4->PB.3  ");
     UART_Printf("\n\rMake connections and hit 'k' to test! ");
     while(UART_RxChar()!='k');
     SegValueDirnReg = C_PortOutput_U8;
@@ -259,18 +260,24 @@ void rtc_test()
 /***************************************************EEPROM*****************************************
  				Writes and Reads a character to and from EEPROM
  *****************************************************TEST*****************************************/
-void eeprom_test()
+void eeprom_test(void)
 {
-    unsigned char eeprom_address=0x00, write_char = 'X', read_char;
+    unsigned char eeprom_address = 0x00, write_char, read_char;
+
+     UART_Printf("\n\r\n\rInbuilt Eeprom Test. Writing and reading A-Z to and from Eeprom.");
+
+    for(write_char='A';write_char<='Z';write_char++)
+    {
+        UART_Printf("\n\rEeprom Write: %c    ",write_char); //Print the message on UART
+        EEPROM_WriteByte(eeprom_address, write_char); // Write the data at memoryLocation    0x00
 
 
-    UART_TxString("\n\rEeprom Write: \n");      //Print the message on UART
-    UART_TxChar(write_char);			         //Print the char to be written
-    EEPROM_WriteByte(eeprom_address,write_char);	// Write the data at memoryLocation	0x00
-
-    UART_TxString("  Eeprom Read: ");            //Print the message on UART
-    read_char = EEPROM_ReadByte(eeprom_address);	// Read the data from memoryLocation 0x00
-    UART_TxChar(read_char);
+        read_char = EEPROM_ReadByte(eeprom_address);  // Read the data from memoryLocation 0x00
+        UART_Printf("Eeprom Read: %c",read_char); //Print the message on UART
+    }
+    
+    while (1);    
+    
 }
 
 /***************************************************ADC *****************************************
@@ -280,7 +287,6 @@ void adc_test()
 { 
     uint16_t temp,light,pot;
 
-    while(UART_RxChar()!='k');
     ADC_Init();
 
     while(1)
@@ -288,7 +294,7 @@ void adc_test()
         temp = ADC_GetAdcValue(0);
         pot = ADC_GetAdcValue(1);
         light = ADC_GetAdcValue(2);
-        UART_Printf("\n\rtemp:%3d pot:%3d light:%3d", temp,pot,light);
+        UART_Printf("\n\rtemp:%4d pot:%4d light:%4d", temp,pot,light);
 
     }
 }

@@ -1,11 +1,13 @@
-keypad.d keypad.o: ../../00-libfiles/keypad.c ../../00-libfiles/keypad.h \
- ../../00-libfiles/gpio.h ../../00-libfiles/stdutils.h \
- ../../00-libfiles/delay.h
+keypad.d keypad.o: ../../AVR\ Example\ Code/00-libfiles/keypad.c \
+ ../../AVR\ Example\ Code/00-libfiles/keypad.h \
+ ../../AVR\ Example\ Code/00-libfiles/gpio.h \
+ ../../AVR\ Example\ Code/00-libfiles/stdutils.h \
+ ../../AVR\ Example\ Code/00-libfiles/delay.h
 
-../../00-libfiles/keypad.h:
+../../AVR\ Example\ Code/00-libfiles/keypad.h:
 
-../../00-libfiles/gpio.h:
+../../AVR\ Example\ Code/00-libfiles/gpio.h:
 
-../../00-libfiles/stdutils.h:
+../../AVR\ Example\ Code/00-libfiles/stdutils.h:
 
-../../00-libfiles/delay.h:
+../../AVR\ Example\ Code/00-libfiles/delay.h:

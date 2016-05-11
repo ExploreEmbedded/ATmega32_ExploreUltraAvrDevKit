@@ -1,4 +1,4 @@
-main.d main.o: .././main.c ../../00-libfiles/uart.h \
+main.d main.o: .././main.c ../../AVR\ Example\ Code/00-libfiles/uart.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -10,14 +10,19 @@ main.d main.o: .././main.c ../../00-libfiles/uart.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../../00-libfiles/stdutils.h ../../00-libfiles/rtc.h \
- ../../00-libfiles/i2c.h ../../00-libfiles/lcd.h ../../00-libfiles/gpio.h \
- ../../00-libfiles/delay.h ../../00-libfiles/keypad.h \
- ../../00-libfiles/eeprom.h ../../00-libfiles/gpio.h \
- ../../00-libfiles/adc.h \
+ ../../AVR\ Example\ Code/00-libfiles/stdutils.h \
+ ../../AVR\ Example\ Code/00-libfiles/rtc.h \
+ ../../AVR\ Example\ Code/00-libfiles/i2c.h \
+ ../../AVR\ Example\ Code/00-libfiles/lcd.h \
+ ../../AVR\ Example\ Code/00-libfiles/gpio.h \
+ ../../AVR\ Example\ Code/00-libfiles/delay.h \
+ ../../AVR\ Example\ Code/00-libfiles/keypad.h \
+ ../../AVR\ Example\ Code/00-libfiles/eeprom.h \
+ ../../AVR\ Example\ Code/00-libfiles/gpio.h \
+ ../../AVR\ Example\ Code/00-libfiles/adc.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h
 
-../../00-libfiles/uart.h:
+../../AVR\ Example\ Code/00-libfiles/uart.h:
 
 c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -41,24 +46,24 @@ c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
 
 c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-../../00-libfiles/stdutils.h:
+../../AVR\ Example\ Code/00-libfiles/stdutils.h:
 
-../../00-libfiles/rtc.h:
+../../AVR\ Example\ Code/00-libfiles/rtc.h:
 
-../../00-libfiles/i2c.h:
+../../AVR\ Example\ Code/00-libfiles/i2c.h:
 
-../../00-libfiles/lcd.h:
+../../AVR\ Example\ Code/00-libfiles/lcd.h:
 
-../../00-libfiles/gpio.h:
+../../AVR\ Example\ Code/00-libfiles/gpio.h:
 
-../../00-libfiles/delay.h:
+../../AVR\ Example\ Code/00-libfiles/delay.h:
 
-../../00-libfiles/keypad.h:
+../../AVR\ Example\ Code/00-libfiles/keypad.h:
 
-../../00-libfiles/eeprom.h:
+../../AVR\ Example\ Code/00-libfiles/eeprom.h:
 
-../../00-libfiles/gpio.h:
+../../AVR\ Example\ Code/00-libfiles/gpio.h:
 
-../../00-libfiles/adc.h:
+../../AVR\ Example\ Code/00-libfiles/adc.h:
 
 c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:

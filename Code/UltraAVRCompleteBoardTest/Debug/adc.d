@@ -1,4 +1,5 @@
-adc.d adc.o: ../../00-libfiles/adc.c ../../00-libfiles/adc.h \
+adc.d adc.o: ../../AVR\ Example\ Code/00-libfiles/adc.c \
+ ../../AVR\ Example\ Code/00-libfiles/adc.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -10,9 +11,10 @@ adc.d adc.o: ../../00-libfiles/adc.c ../../00-libfiles/adc.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../../00-libfiles/stdutils.h ../../00-libfiles/delay.h
+ ../../AVR\ Example\ Code/00-libfiles/stdutils.h \
+ ../../AVR\ Example\ Code/00-libfiles/delay.h
 
-../../00-libfiles/adc.h:
+../../AVR\ Example\ Code/00-libfiles/adc.h:
 
 c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -36,6 +38,6 @@ c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
 
 c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-../../00-libfiles/stdutils.h:
+../../AVR\ Example\ Code/00-libfiles/stdutils.h:
 
-../../00-libfiles/delay.h:
+../../AVR\ Example\ Code/00-libfiles/delay.h:

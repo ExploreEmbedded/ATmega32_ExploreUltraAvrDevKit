@@ -1,4 +1,4 @@
-gpio.d gpio.o: ../../00-libfiles/gpio.c \
+gpio.d gpio.o: ../../AVR\ Example\ Code/00-libfiles/gpio.c \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -10,7 +10,8 @@ gpio.d gpio.o: ../../00-libfiles/gpio.c \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../../00-libfiles/stdutils.h ../../00-libfiles/gpio.h
+ ../../AVR\ Example\ Code/00-libfiles/stdutils.h \
+ ../../AVR\ Example\ Code/00-libfiles/gpio.h
 
 c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -34,6 +35,6 @@ c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
 
 c:\program\ files\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-../../00-libfiles/stdutils.h:
+../../AVR\ Example\ Code/00-libfiles/stdutils.h:
 
-../../00-libfiles/gpio.h:
+../../AVR\ Example\ Code/00-libfiles/gpio.h:
