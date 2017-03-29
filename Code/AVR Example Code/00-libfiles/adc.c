@@ -53,7 +53,7 @@ Errors and omissions should be reported to codelibraries@exploreembedded.com
 ***************************************************************************************************/
 void ADC_Init()
  {
-   ADCSRA=(1<<ADEN) | (1<<ADPS0); /* Enable ADC , sampling freq=osc_freq/2 */
+   ADCSRA=(1<<ADEN) | (1<<ADPS2) | (1<<ADPS1); /* Enable ADC , sampling freq=osc_freq/64 */
    ADMUX=0x00;                    /* Result right justified, select channel zero */
  }
 

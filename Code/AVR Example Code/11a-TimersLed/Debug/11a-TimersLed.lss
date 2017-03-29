@@ -1,0 +1,843 @@
+
+11a-TimersLed.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000556  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000001e  00800060  00000556  000005ea  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000014  0080007e  0080007e  00000608  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000608  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000638  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000a0  00000000  00000000  00000674  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000006ff  00000000  00000000  00000714  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000267  00000000  00000000  00000e13  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000001e3  00000000  00000000  0000107a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000298  00000000  00000000  00001260  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003d9  00000000  00000000  000014f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000898  00000000  00000000  000018d1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000080  00000000  00000000  00002169  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 ff 00 	jmp	0x1fe	; 0x1fe <__vector_5>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 c7 00 	jmp	0x18e	; 0x18e <__vector_9>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 92 00 	jmp	0x124	; 0x124 <__vector_11>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 e5       	ldi	r30, 0x56	; 86
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ae 37       	cpi	r26, 0x7E	; 126
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	ae e7       	ldi	r26, 0x7E	; 126
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a2 39       	cpi	r26, 0x92	; 146
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 38 02 	call	0x470	; 0x470 <main>
+  8a:	0c 94 a9 02 	jmp	0x552	; 0x552 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <TIMER_Start>:
+        break;
+
+
+    case TIMER_1 : 
+        prescaler = A_PrescalerTableZeroOne_U8[v_Timer1_Prescaler_U8];
+        timerDelay = ((prescaler * (65536-v_Timer1_ReloadValue_U16))/F_OSC)* v_Timer1_OvfCount_U16;
+  92:	81 30       	cpi	r24, 0x01	; 1
+  94:	91 f0       	breq	.+36     	; 0xba <TIMER_Start+0x28>
+  96:	18 f0       	brcs	.+6      	; 0x9e <TIMER_Start+0xc>
+  98:	82 30       	cpi	r24, 0x02	; 2
+  9a:	09 f1       	breq	.+66     	; 0xde <TIMER_Start+0x4c>
+  9c:	08 95       	ret
+  9e:	10 92 8e 00 	sts	0x008E, r1
+  a2:	10 92 8d 00 	sts	0x008D, r1
+  a6:	80 91 8f 00 	lds	r24, 0x008F
+  aa:	82 bf       	out	0x32, r24	; 50
+  ac:	89 b7       	in	r24, 0x39	; 57
+  ae:	81 60       	ori	r24, 0x01	; 1
+  b0:	89 bf       	out	0x39, r24	; 57
+  b2:	80 91 90 00 	lds	r24, 0x0090
+  b6:	83 bf       	out	0x33, r24	; 51
+  b8:	08 95       	ret
+  ba:	10 92 87 00 	sts	0x0087, r1
+  be:	10 92 86 00 	sts	0x0086, r1
+  c2:	80 91 88 00 	lds	r24, 0x0088
+  c6:	90 91 89 00 	lds	r25, 0x0089
+  ca:	9d bd       	out	0x2d, r25	; 45
+  cc:	8c bd       	out	0x2c, r24	; 44
+  ce:	89 b7       	in	r24, 0x39	; 57
+  d0:	84 60       	ori	r24, 0x04	; 4
+        if(TCNT1 > v_Timer1_ReloadValue_U16)
+  d2:	89 bf       	out	0x39, r24	; 57
+  d4:	1f bc       	out	0x2f, r1	; 47
+  d6:	80 91 8a 00 	lds	r24, 0x008A
+  da:	8e bd       	out	0x2e, r24	; 46
+  dc:	08 95       	ret
+        {
+            timerDelay = timerDelay + ((prescaler * (TCNT1-v_Timer1_ReloadValue_U16))/F_OSC);  
+  de:	10 92 81 00 	sts	0x0081, r1
+  e2:	10 92 80 00 	sts	0x0080, r1
+  e6:	80 91 82 00 	lds	r24, 0x0082
+  ea:	84 bd       	out	0x24, r24	; 36
+  ec:	89 b7       	in	r24, 0x39	; 57
+  ee:	80 64       	ori	r24, 0x40	; 64
+  f0:	89 bf       	out	0x39, r24	; 57
+  f2:	80 91 83 00 	lds	r24, 0x0083
+  f6:	85 bd       	out	0x25, r24	; 37
+  f8:	08 95       	ret
+
+000000fa <TIMER_AttachInterrupt>:
+  fa:	81 30       	cpi	r24, 0x01	; 1
+  fc:	49 f0       	breq	.+18     	; 0x110 <TIMER_AttachInterrupt+0x16>
+  fe:	18 f0       	brcs	.+6      	; 0x106 <TIMER_AttachInterrupt+0xc>
+ 100:	82 30       	cpi	r24, 0x02	; 2
+ 102:	59 f0       	breq	.+22     	; 0x11a <TIMER_AttachInterrupt+0x20>
+ 104:	08 95       	ret
+        }
+        break;
+
+
+    case TIMER_2 : 
+        prescaler = A_PrescalerTableTwo_U8[v_Timer2_Prescaler_U8];
+ 106:	70 93 8c 00 	sts	0x008C, r23
+ 10a:	60 93 8b 00 	sts	0x008B, r22
+ 10e:	08 95       	ret
+ 110:	70 93 85 00 	sts	0x0085, r23
+ 114:	60 93 84 00 	sts	0x0084, r22
+        timerDelay = (((uint32_t)prescaler * (uint32_t)(256-v_Timer2_ReloadValue_U8))/F_OSC) * v_Timer2_OvfCount_U16;
+ 118:	08 95       	ret
+ 11a:	70 93 7f 00 	sts	0x007F, r23
+ 11e:	60 93 7e 00 	sts	0x007E, r22
+ 122:	08 95       	ret
+
+00000124 <__vector_11>:
+ 124:	1f 92       	push	r1
+ 126:	0f 92       	push	r0
+ 128:	0f b6       	in	r0, 0x3f	; 63
+ 12a:	0f 92       	push	r0
+ 12c:	11 24       	eor	r1, r1
+ 12e:	2f 93       	push	r18
+ 130:	3f 93       	push	r19
+ 132:	4f 93       	push	r20
+ 134:	5f 93       	push	r21
+ 136:	6f 93       	push	r22
+ 138:	7f 93       	push	r23
+ 13a:	8f 93       	push	r24
+ 13c:	9f 93       	push	r25
+ 13e:	af 93       	push	r26
+ 140:	bf 93       	push	r27
+ 142:	ef 93       	push	r30
+ 144:	ff 93       	push	r31
+ 146:	80 91 8f 00 	lds	r24, 0x008F
+ 14a:	82 bf       	out	0x32, r24	; 50
+ 14c:	80 91 8d 00 	lds	r24, 0x008D
+        if(TCNT2 > v_Timer2_ReloadValue_U8)
+ 150:	90 91 8e 00 	lds	r25, 0x008E
+ 154:	01 96       	adiw	r24, 0x01	; 1
+        {
+            timerDelay = timerDelay  + (((uint32_t)prescaler * (uint32_t)(TCNT2-v_Timer2_ReloadValue_U8))/F_OSC);
+ 156:	90 93 8e 00 	sts	0x008E, r25
+ 15a:	80 93 8d 00 	sts	0x008D, r24
+ 15e:	e0 91 8b 00 	lds	r30, 0x008B
+ 162:	f0 91 8c 00 	lds	r31, 0x008C
+ 166:	30 97       	sbiw	r30, 0x00	; 0
+ 168:	09 f0       	breq	.+2      	; 0x16c <__vector_11+0x48>
+ 16a:	09 95       	icall
+ 16c:	ff 91       	pop	r31
+ 16e:	ef 91       	pop	r30
+ 170:	bf 91       	pop	r27
+ 172:	af 91       	pop	r26
+ 174:	9f 91       	pop	r25
+
+ * description :This functions returns the current timer value(TC) of the requested timer.                
+ ****************************************************************************************************/
+uint32_t TIMER_GetTime(uint8_t timerNumber_u8)
+{
+    uint32_t timerDelay = 0;
+ 176:	8f 91       	pop	r24
+ 178:	7f 91       	pop	r23
+ 17a:	6f 91       	pop	r22
+        }
+        break;
+    }       
+
+    return timerDelay;
+}
+ 17c:	5f 91       	pop	r21
+ 17e:	4f 91       	pop	r20
+ 180:	3f 91       	pop	r19
+ 182:	2f 91       	pop	r18
+ 184:	0f 90       	pop	r0
+ 186:	0f be       	out	0x3f, r0	; 63
+ 188:	0f 90       	pop	r0
+ 18a:	1f 90       	pop	r1
+ 18c:	18 95       	reti
+
+0000018e <__vector_9>:
+ 18e:	1f 92       	push	r1
+ 190:	0f 92       	push	r0
+ 192:	0f b6       	in	r0, 0x3f	; 63
+ 194:	0f 92       	push	r0
+ 196:	11 24       	eor	r1, r1
+ 198:	2f 93       	push	r18
+ 19a:	3f 93       	push	r19
+    }
+}
+
+
+ISR (TIMER1_OVF_vect)    // Timer0 ISR
+{
+ 19c:	4f 93       	push	r20
+ 19e:	5f 93       	push	r21
+ 1a0:	6f 93       	push	r22
+ 1a2:	7f 93       	push	r23
+ 1a4:	8f 93       	push	r24
+ 1a6:	9f 93       	push	r25
+ 1a8:	af 93       	push	r26
+ 1aa:	bf 93       	push	r27
+ 1ac:	ef 93       	push	r30
+ 1ae:	ff 93       	push	r31
+    TCNT1 = v_Timer1_ReloadValue_U16;
+ 1b0:	80 91 88 00 	lds	r24, 0x0088
+ 1b4:	90 91 89 00 	lds	r25, 0x0089
+ 1b8:	9d bd       	out	0x2d, r25	; 45
+ 1ba:	8c bd       	out	0x2c, r24	; 44
+    v_Timer1_OvfCount_U16++;
+ 1bc:	80 91 86 00 	lds	r24, 0x0086
+ 1c0:	90 91 87 00 	lds	r25, 0x0087
+ 1c4:	01 96       	adiw	r24, 0x01	; 1
+ 1c6:	90 93 87 00 	sts	0x0087, r25
+ 1ca:	80 93 86 00 	sts	0x0086, r24
+
+    if(Timer1_User_ISR != NULL)
+ 1ce:	e0 91 84 00 	lds	r30, 0x0084
+ 1d2:	f0 91 85 00 	lds	r31, 0x0085
+ 1d6:	30 97       	sbiw	r30, 0x00	; 0
+ 1d8:	09 f0       	breq	.+2      	; 0x1dc <__vector_9+0x4e>
+    {
+        Timer1_User_ISR();
+ 1da:	09 95       	icall
+    }
+}
+ 1dc:	ff 91       	pop	r31
+ 1de:	ef 91       	pop	r30
+ 1e0:	bf 91       	pop	r27
+ 1e2:	af 91       	pop	r26
+ 1e4:	9f 91       	pop	r25
+ 1e6:	8f 91       	pop	r24
+ 1e8:	7f 91       	pop	r23
+ 1ea:	6f 91       	pop	r22
+ 1ec:	5f 91       	pop	r21
+ 1ee:	4f 91       	pop	r20
+ 1f0:	3f 91       	pop	r19
+ 1f2:	2f 91       	pop	r18
+ 1f4:	0f 90       	pop	r0
+ 1f6:	0f be       	out	0x3f, r0	; 63
+ 1f8:	0f 90       	pop	r0
+ 1fa:	1f 90       	pop	r1
+ 1fc:	18 95       	reti
+
+000001fe <__vector_5>:
+
+
+ISR (TIMER2_OVF_vect)    // Timer0 ISR
+{
+ 1fe:	1f 92       	push	r1
+ 200:	0f 92       	push	r0
+ 202:	0f b6       	in	r0, 0x3f	; 63
+ 204:	0f 92       	push	r0
+ 206:	11 24       	eor	r1, r1
+ 208:	2f 93       	push	r18
+ 20a:	3f 93       	push	r19
+ 20c:	4f 93       	push	r20
+ 20e:	5f 93       	push	r21
+ 210:	6f 93       	push	r22
+ 212:	7f 93       	push	r23
+ 214:	8f 93       	push	r24
+ 216:	9f 93       	push	r25
+ 218:	af 93       	push	r26
+ 21a:	bf 93       	push	r27
+ 21c:	ef 93       	push	r30
+ 21e:	ff 93       	push	r31
+    TCNT2 = v_Timer2_ReloadValue_U8;
+ 220:	80 91 82 00 	lds	r24, 0x0082
+ 224:	84 bd       	out	0x24, r24	; 36
+    v_Timer2_OvfCount_U16++;
+ 226:	80 91 80 00 	lds	r24, 0x0080
+ 22a:	90 91 81 00 	lds	r25, 0x0081
+ 22e:	01 96       	adiw	r24, 0x01	; 1
+ 230:	90 93 81 00 	sts	0x0081, r25
+ 234:	80 93 80 00 	sts	0x0080, r24
+    if(Timer2_User_ISR != NULL)
+ 238:	e0 91 7e 00 	lds	r30, 0x007E
+ 23c:	f0 91 7f 00 	lds	r31, 0x007F
+ 240:	30 97       	sbiw	r30, 0x00	; 0
+ 242:	09 f0       	breq	.+2      	; 0x246 <__vector_5+0x48>
+    {
+        Timer2_User_ISR();
+ 244:	09 95       	icall
+    }
+}
+ 246:	ff 91       	pop	r31
+ 248:	ef 91       	pop	r30
+ 24a:	bf 91       	pop	r27
+ 24c:	af 91       	pop	r26
+ 24e:	9f 91       	pop	r25
+ 250:	8f 91       	pop	r24
+ 252:	7f 91       	pop	r23
+ 254:	6f 91       	pop	r22
+ 256:	5f 91       	pop	r21
+ 258:	4f 91       	pop	r20
+ 25a:	3f 91       	pop	r19
+ 25c:	2f 91       	pop	r18
+ 25e:	0f 90       	pop	r0
+ 260:	0f be       	out	0x3f, r0	; 63
+ 262:	0f 90       	pop	r0
+ 264:	1f 90       	pop	r1
+ 266:	18 95       	reti
+
+00000268 <getPrescalarValue>:
+
+
+
+
+uint8_t getPrescalarValue(uint32_t reqDelay,uint32_t regValue, const uint16_t *ptrPrescalar, uint8_t maxArrayEntries)
+{
+ 268:	4f 92       	push	r4
+ 26a:	5f 92       	push	r5
+ 26c:	6f 92       	push	r6
+ 26e:	7f 92       	push	r7
+ 270:	8f 92       	push	r8
+ 272:	9f 92       	push	r9
+ 274:	af 92       	push	r10
+ 276:	bf 92       	push	r11
+ 278:	cf 92       	push	r12
+ 27a:	df 92       	push	r13
+ 27c:	ef 92       	push	r14
+ 27e:	ff 92       	push	r15
+ 280:	0f 93       	push	r16
+ 282:	1f 93       	push	r17
+ 284:	cf 93       	push	r28
+ 286:	df 93       	push	r29
+ 288:	4b 01       	movw	r8, r22
+ 28a:	5c 01       	movw	r10, r24
+ 28c:	29 01       	movw	r4, r18
+ 28e:	3a 01       	movw	r6, r20
+ 290:	de 2d       	mov	r29, r14
+    uint32_t delay=0;
+    uint8_t i;
+
+    for(i=1;i<maxArrayEntries;i++)
+    {
+        delay = (regValue*ptrPrescalar[i])/F_OSC;
+ 292:	c0 90 60 00 	lds	r12, 0x0060
+ 296:	d1 2c       	mov	r13, r1
+ 298:	e1 2c       	mov	r14, r1
+ 29a:	f1 2c       	mov	r15, r1
+ 29c:	0e 5f       	subi	r16, 0xFE	; 254
+ 29e:	1f 4f       	sbci	r17, 0xFF	; 255
+uint8_t getPrescalarValue(uint32_t reqDelay,uint32_t regValue, const uint16_t *ptrPrescalar, uint8_t maxArrayEntries)
+{
+    uint32_t delay=0;
+    uint8_t i;
+
+    for(i=1;i<maxArrayEntries;i++)
+ 2a0:	c1 e0       	ldi	r28, 0x01	; 1
+ 2a2:	cd 17       	cp	r28, r29
+ 2a4:	98 f4       	brcc	.+38     	; 0x2cc <getPrescalarValue+0x64>
+    {
+        delay = (regValue*ptrPrescalar[i])/F_OSC;
+ 2a6:	f8 01       	movw	r30, r16
+ 2a8:	a1 91       	ld	r26, Z+
+ 2aa:	b1 91       	ld	r27, Z+
+ 2ac:	8f 01       	movw	r16, r30
+ 2ae:	a3 01       	movw	r20, r6
+ 2b0:	92 01       	movw	r18, r4
+ 2b2:	0e 94 8f 02 	call	0x51e	; 0x51e <__muluhisi3>
+ 2b6:	a7 01       	movw	r20, r14
+ 2b8:	96 01       	movw	r18, r12
+ 2ba:	0e 94 6d 02 	call	0x4da	; 0x4da <__udivmodsi4>
+        if(delay >= reqDelay)
+ 2be:	28 15       	cp	r18, r8
+ 2c0:	39 05       	cpc	r19, r9
+ 2c2:	4a 05       	cpc	r20, r10
+ 2c4:	5b 05       	cpc	r21, r11
+ 2c6:	10 f4       	brcc	.+4      	; 0x2cc <getPrescalarValue+0x64>
+uint8_t getPrescalarValue(uint32_t reqDelay,uint32_t regValue, const uint16_t *ptrPrescalar, uint8_t maxArrayEntries)
+{
+    uint32_t delay=0;
+    uint8_t i;
+
+    for(i=1;i<maxArrayEntries;i++)
+ 2c8:	cf 5f       	subi	r28, 0xFF	; 255
+ 2ca:	eb cf       	rjmp	.-42     	; 0x2a2 <getPrescalarValue+0x3a>
+        delay = (regValue*ptrPrescalar[i])/F_OSC;
+        if(delay >= reqDelay)
+            break;
+    }
+    return i;
+}
+ 2cc:	8c 2f       	mov	r24, r28
+ 2ce:	df 91       	pop	r29
+ 2d0:	cf 91       	pop	r28
+ 2d2:	1f 91       	pop	r17
+ 2d4:	0f 91       	pop	r16
+ 2d6:	ff 90       	pop	r15
+ 2d8:	ef 90       	pop	r14
+ 2da:	df 90       	pop	r13
+ 2dc:	cf 90       	pop	r12
+ 2de:	bf 90       	pop	r11
+ 2e0:	af 90       	pop	r10
+ 2e2:	9f 90       	pop	r9
+ 2e4:	8f 90       	pop	r8
+ 2e6:	7f 90       	pop	r7
+ 2e8:	6f 90       	pop	r6
+ 2ea:	5f 90       	pop	r5
+ 2ec:	4f 90       	pop	r4
+ 2ee:	08 95       	ret
+
+000002f0 <TIMER_SetTime>:
+ * Return value: None 
+
+ * description :This functions sets the required/delay  timer value for the requested timer.                
+ ****************************************************************************************************/
+void TIMER_SetTime(uint8_t timerNumber_u8, uint32_t timerIntervalInUs_u32)
+{
+ 2f0:	8f 92       	push	r8
+ 2f2:	9f 92       	push	r9
+ 2f4:	af 92       	push	r10
+ 2f6:	bf 92       	push	r11
+ 2f8:	ef 92       	push	r14
+ 2fa:	0f 93       	push	r16
+ 2fc:	1f 93       	push	r17
+ 2fe:	4a 01       	movw	r8, r20
+ 300:	5b 01       	movw	r10, r22
+    switch (timerNumber_u8)
+ 302:	81 30       	cpi	r24, 0x01	; 1
+ 304:	a9 f1       	breq	.+106    	; 0x370 <TIMER_SetTime+0x80>
+ 306:	20 f0       	brcs	.+8      	; 0x310 <TIMER_SetTime+0x20>
+ 308:	82 30       	cpi	r24, 0x02	; 2
+ 30a:	09 f4       	brne	.+2      	; 0x30e <TIMER_SetTime+0x1e>
+ 30c:	64 c0       	rjmp	.+200    	; 0x3d6 <TIMER_SetTime+0xe6>
+ 30e:	91 c0       	rjmp	.+290    	; 0x432 <TIMER_SetTime+0x142>
+    {
+    case TIMER_0 : 
+        if((timerIntervalInUs_u32 >= TIMER0_MIN_DELAY) && (timerIntervalInUs_u32 <= TIMER0_MAX_DELAY))
+ 310:	db 01       	movw	r26, r22
+ 312:	ca 01       	movw	r24, r20
+ 314:	01 97       	sbiw	r24, 0x01	; 1
+ 316:	a1 09       	sbc	r26, r1
+ 318:	b1 09       	sbc	r27, r1
+ 31a:	81 15       	cp	r24, r1
+ 31c:	90 44       	sbci	r25, 0x40	; 64
+ 31e:	a1 05       	cpc	r26, r1
+ 320:	b1 05       	cpc	r27, r1
+ 322:	08 f0       	brcs	.+2      	; 0x326 <TIMER_SetTime+0x36>
+ 324:	86 c0       	rjmp	.+268    	; 0x432 <TIMER_SetTime+0x142>
+        {
+            v_Timer0_Prescaler_U8 = getPrescalarValue(timerIntervalInUs_u32,256,A_PrescalerTableZeroOne_U8,6);
+ 326:	56 e0       	ldi	r21, 0x06	; 6
+ 328:	e5 2e       	mov	r14, r21
+ 32a:	01 e7       	ldi	r16, 0x71	; 113
+ 32c:	10 e0       	ldi	r17, 0x00	; 0
+ 32e:	20 e0       	ldi	r18, 0x00	; 0
+ 330:	31 e0       	ldi	r19, 0x01	; 1
+ 332:	40 e0       	ldi	r20, 0x00	; 0
+ 334:	50 e0       	ldi	r21, 0x00	; 0
+ 336:	c5 01       	movw	r24, r10
+ 338:	b4 01       	movw	r22, r8
+ 33a:	0e 94 34 01 	call	0x268	; 0x268 <getPrescalarValue>
+ 33e:	e8 2f       	mov	r30, r24
+ 340:	80 93 90 00 	sts	0x0090, r24
+            v_Timer0_ReloadValue_U8 =  (uint8_t)256-(uint8_t)((timerIntervalInUs_u32*F_OSC)/(A_PrescalerTableZeroOne_U8[v_Timer0_Prescaler_U8]));
+ 344:	a0 91 60 00 	lds	r26, 0x0060
+ 348:	b0 e0       	ldi	r27, 0x00	; 0
+ 34a:	a5 01       	movw	r20, r10
+ 34c:	94 01       	movw	r18, r8
+ 34e:	0e 94 8f 02 	call	0x51e	; 0x51e <__muluhisi3>
+ 352:	f0 e0       	ldi	r31, 0x00	; 0
+ 354:	ee 0f       	add	r30, r30
+ 356:	ff 1f       	adc	r31, r31
+ 358:	ef 58       	subi	r30, 0x8F	; 143
+ 35a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 35c:	20 81       	ld	r18, Z
+ 35e:	31 81       	ldd	r19, Z+1	; 0x01
+ 360:	40 e0       	ldi	r20, 0x00	; 0
+ 362:	50 e0       	ldi	r21, 0x00	; 0
+ 364:	0e 94 6d 02 	call	0x4da	; 0x4da <__udivmodsi4>
+ 368:	21 95       	neg	r18
+ 36a:	20 93 8f 00 	sts	0x008F, r18
+ 36e:	61 c0       	rjmp	.+194    	; 0x432 <TIMER_SetTime+0x142>
+        }
+        break;
+
+
+    case TIMER_1 : 
+        if((timerIntervalInUs_u32 >= TIMER1_MIN_DELAY) && (timerIntervalInUs_u32 <= TIMER1_MAX_DELAY))
+ 370:	db 01       	movw	r26, r22
+ 372:	ca 01       	movw	r24, r20
+ 374:	01 97       	sbiw	r24, 0x01	; 1
+ 376:	a1 09       	sbc	r26, r1
+ 378:	b1 09       	sbc	r27, r1
+ 37a:	00 97       	sbiw	r24, 0x00	; 0
+ 37c:	a0 44       	sbci	r26, 0x40	; 64
+ 37e:	b1 05       	cpc	r27, r1
+ 380:	08 f0       	brcs	.+2      	; 0x384 <TIMER_SetTime+0x94>
+ 382:	57 c0       	rjmp	.+174    	; 0x432 <TIMER_SetTime+0x142>
+        {
+            v_Timer1_Prescaler_U8 = getPrescalarValue(timerIntervalInUs_u32,65536,A_PrescalerTableZeroOne_U8,6);
+ 384:	36 e0       	ldi	r19, 0x06	; 6
+ 386:	e3 2e       	mov	r14, r19
+ 388:	01 e7       	ldi	r16, 0x71	; 113
+ 38a:	10 e0       	ldi	r17, 0x00	; 0
+ 38c:	20 e0       	ldi	r18, 0x00	; 0
+ 38e:	30 e0       	ldi	r19, 0x00	; 0
+ 390:	41 e0       	ldi	r20, 0x01	; 1
+ 392:	50 e0       	ldi	r21, 0x00	; 0
+ 394:	c5 01       	movw	r24, r10
+ 396:	b4 01       	movw	r22, r8
+ 398:	0e 94 34 01 	call	0x268	; 0x268 <getPrescalarValue>
+ 39c:	e8 2f       	mov	r30, r24
+ 39e:	80 93 8a 00 	sts	0x008A, r24
+            v_Timer1_ReloadValue_U16 =  (uint32_t)65536-((timerIntervalInUs_u32*F_OSC)/(A_PrescalerTableZeroOne_U8[v_Timer1_Prescaler_U8]));
+ 3a2:	a0 91 60 00 	lds	r26, 0x0060
+ 3a6:	b0 e0       	ldi	r27, 0x00	; 0
+ 3a8:	a5 01       	movw	r20, r10
+ 3aa:	94 01       	movw	r18, r8
+ 3ac:	0e 94 8f 02 	call	0x51e	; 0x51e <__muluhisi3>
+ 3b0:	f0 e0       	ldi	r31, 0x00	; 0
+ 3b2:	ee 0f       	add	r30, r30
+ 3b4:	ff 1f       	adc	r31, r31
+ 3b6:	ef 58       	subi	r30, 0x8F	; 143
+ 3b8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3ba:	20 81       	ld	r18, Z
+ 3bc:	31 81       	ldd	r19, Z+1	; 0x01
+ 3be:	40 e0       	ldi	r20, 0x00	; 0
+ 3c0:	50 e0       	ldi	r21, 0x00	; 0
+ 3c2:	0e 94 6d 02 	call	0x4da	; 0x4da <__udivmodsi4>
+ 3c6:	31 95       	neg	r19
+ 3c8:	21 95       	neg	r18
+ 3ca:	31 09       	sbc	r19, r1
+ 3cc:	30 93 89 00 	sts	0x0089, r19
+ 3d0:	20 93 88 00 	sts	0x0088, r18
+ 3d4:	2e c0       	rjmp	.+92     	; 0x432 <TIMER_SetTime+0x142>
+        }
+        break;
+
+
+    case TIMER_2 : 
+        if((timerIntervalInUs_u32 >= TIMER2_MIN_DELAY) && (timerIntervalInUs_u32 <= TIMER2_MAX_DELAY))
+ 3d6:	db 01       	movw	r26, r22
+ 3d8:	ca 01       	movw	r24, r20
+ 3da:	01 97       	sbiw	r24, 0x01	; 1
+ 3dc:	a1 09       	sbc	r26, r1
+ 3de:	b1 09       	sbc	r27, r1
+ 3e0:	81 15       	cp	r24, r1
+ 3e2:	90 44       	sbci	r25, 0x40	; 64
+ 3e4:	a1 05       	cpc	r26, r1
+ 3e6:	b1 05       	cpc	r27, r1
+ 3e8:	20 f5       	brcc	.+72     	; 0x432 <TIMER_SetTime+0x142>
+        {
+            v_Timer2_Prescaler_U8 = getPrescalarValue(timerIntervalInUs_u32,256,A_PrescalerTableTwo_U8,8);
+ 3ea:	88 e0       	ldi	r24, 0x08	; 8
+ 3ec:	e8 2e       	mov	r14, r24
+ 3ee:	01 e6       	ldi	r16, 0x61	; 97
+ 3f0:	10 e0       	ldi	r17, 0x00	; 0
+ 3f2:	20 e0       	ldi	r18, 0x00	; 0
+ 3f4:	31 e0       	ldi	r19, 0x01	; 1
+ 3f6:	40 e0       	ldi	r20, 0x00	; 0
+ 3f8:	50 e0       	ldi	r21, 0x00	; 0
+ 3fa:	c5 01       	movw	r24, r10
+ 3fc:	b4 01       	movw	r22, r8
+ 3fe:	0e 94 34 01 	call	0x268	; 0x268 <getPrescalarValue>
+ 402:	e8 2f       	mov	r30, r24
+ 404:	80 93 83 00 	sts	0x0083, r24
+            v_Timer2_ReloadValue_U8 =  256-((timerIntervalInUs_u32*F_OSC)/(A_PrescalerTableTwo_U8[v_Timer2_Prescaler_U8]));
+ 408:	a0 91 60 00 	lds	r26, 0x0060
+ 40c:	b0 e0       	ldi	r27, 0x00	; 0
+ 40e:	a5 01       	movw	r20, r10
+ 410:	94 01       	movw	r18, r8
+ 412:	0e 94 8f 02 	call	0x51e	; 0x51e <__muluhisi3>
+ 416:	f0 e0       	ldi	r31, 0x00	; 0
+ 418:	ee 0f       	add	r30, r30
+ 41a:	ff 1f       	adc	r31, r31
+ 41c:	ef 59       	subi	r30, 0x9F	; 159
+ 41e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 420:	20 81       	ld	r18, Z
+ 422:	31 81       	ldd	r19, Z+1	; 0x01
+ 424:	40 e0       	ldi	r20, 0x00	; 0
+ 426:	50 e0       	ldi	r21, 0x00	; 0
+ 428:	0e 94 6d 02 	call	0x4da	; 0x4da <__udivmodsi4>
+ 42c:	21 95       	neg	r18
+ 42e:	20 93 82 00 	sts	0x0082, r18
+        }
+        break;
+    }
+}
+ 432:	1f 91       	pop	r17
+ 434:	0f 91       	pop	r16
+ 436:	ef 90       	pop	r14
+ 438:	bf 90       	pop	r11
+ 43a:	af 90       	pop	r10
+ 43c:	9f 90       	pop	r9
+ 43e:	8f 90       	pop	r8
+ 440:	08 95       	ret
+
+00000442 <TIMER_Init>:
+         TIMER_Start() fuctions needs to be called to start the timer.                                  
+ ****************************************************************************************************/
+
+void TIMER_Init(uint8_t timerNumber_u8, uint32_t timerIntervalInUs_u32)
+{
+    TIMER_SetTime(timerNumber_u8,timerIntervalInUs_u32);
+ 442:	0c 94 78 01 	jmp	0x2f0	; 0x2f0 <TIMER_SetTime>
+
+00000446 <myTimerIsr_0>:
+volatile uint8_t value =0,flag=0;
+
+void  myTimerIsr_0(void)
+{
+	
+	 util_BitToggle(value,0);
+ 446:	90 91 91 00 	lds	r25, 0x0091
+ 44a:	81 e0       	ldi	r24, 0x01	; 1
+ 44c:	89 27       	eor	r24, r25
+ 44e:	80 93 91 00 	sts	0x0091, r24
+ 452:	08 95       	ret
+
+00000454 <myTimerIsr_1>:
+}
+
+void  myTimerIsr_1(void)
+{
+	util_BitToggle(value,1);
+ 454:	90 91 91 00 	lds	r25, 0x0091
+ 458:	82 e0       	ldi	r24, 0x02	; 2
+ 45a:	89 27       	eor	r24, r25
+ 45c:	80 93 91 00 	sts	0x0091, r24
+ 460:	08 95       	ret
+
+00000462 <myTimerIsr_2>:
+	 */
+}
+
+void  myTimerIsr_2(void)
+{
+	util_BitToggle(value,2);
+ 462:	90 91 91 00 	lds	r25, 0x0091
+ 466:	84 e0       	ldi	r24, 0x04	; 4
+ 468:	89 27       	eor	r24, r25
+ 46a:	80 93 91 00 	sts	0x0091, r24
+ 46e:	08 95       	ret
+
+00000470 <main>:
+
+
+int main (void)
+{
+	
+	DDRC= 0xff;
+ 470:	8f ef       	ldi	r24, 0xFF	; 255
+ 472:	84 bb       	out	0x14, r24	; 20
+	DDRD= 0xff;
+ 474:	81 bb       	out	0x11, r24	; 17
+	
+	//UART_Init(9600);
+
+	TIMER_Init(0,7500);                  /* Configure timer0 to generate 100ms(100000us) delay*/
+ 476:	4c e4       	ldi	r20, 0x4C	; 76
+ 478:	5d e1       	ldi	r21, 0x1D	; 29
+ 47a:	60 e0       	ldi	r22, 0x00	; 0
+ 47c:	70 e0       	ldi	r23, 0x00	; 0
+ 47e:	80 e0       	ldi	r24, 0x00	; 0
+ 480:	0e 94 21 02 	call	0x442	; 0x442 <TIMER_Init>
+	TIMER_AttachInterrupt(0,myTimerIsr_0);  /* myTimerIsr_0 will be called by TIMER0_IRQn */
+ 484:	63 e2       	ldi	r22, 0x23	; 35
+ 486:	72 e0       	ldi	r23, 0x02	; 2
+ 488:	80 e0       	ldi	r24, 0x00	; 0
+ 48a:	0e 94 7d 00 	call	0xfa	; 0xfa <TIMER_AttachInterrupt>
+	TIMER_Start(0);                         /* Start the Timers */
+ 48e:	80 e0       	ldi	r24, 0x00	; 0
+ 490:	0e 94 49 00 	call	0x92	; 0x92 <TIMER_Start>
+	
+	TIMER_Init(1,30000);                  /* Configure timer0 to generate 100ms(100000us) delay*/
+ 494:	40 e3       	ldi	r20, 0x30	; 48
+ 496:	55 e7       	ldi	r21, 0x75	; 117
+ 498:	60 e0       	ldi	r22, 0x00	; 0
+ 49a:	70 e0       	ldi	r23, 0x00	; 0
+ 49c:	81 e0       	ldi	r24, 0x01	; 1
+ 49e:	0e 94 21 02 	call	0x442	; 0x442 <TIMER_Init>
+	TIMER_AttachInterrupt(1,myTimerIsr_1);  /* myTimerIsr_0 will be called by TIMER0_IRQn */
+ 4a2:	6a e2       	ldi	r22, 0x2A	; 42
+ 4a4:	72 e0       	ldi	r23, 0x02	; 2
+ 4a6:	81 e0       	ldi	r24, 0x01	; 1
+ 4a8:	0e 94 7d 00 	call	0xfa	; 0xfa <TIMER_AttachInterrupt>
+	// TIMER_Start(1);
+	
+	TIMER_Init(2,15000);                  /* Configure timer0 to generate 100ms(100000us) delay*/
+ 4ac:	48 e9       	ldi	r20, 0x98	; 152
+ 4ae:	5a e3       	ldi	r21, 0x3A	; 58
+ 4b0:	60 e0       	ldi	r22, 0x00	; 0
+ 4b2:	70 e0       	ldi	r23, 0x00	; 0
+ 4b4:	82 e0       	ldi	r24, 0x02	; 2
+ 4b6:	0e 94 21 02 	call	0x442	; 0x442 <TIMER_Init>
+	TIMER_AttachInterrupt(2,myTimerIsr_2);  /* myTimerIsr_0 will be called by TIMER0_IRQn */
+ 4ba:	61 e3       	ldi	r22, 0x31	; 49
+ 4bc:	72 e0       	ldi	r23, 0x02	; 2
+ 4be:	82 e0       	ldi	r24, 0x02	; 2
+ 4c0:	0e 94 7d 00 	call	0xfa	; 0xfa <TIMER_AttachInterrupt>
+	TIMER_Start(2);
+ 4c4:	82 e0       	ldi	r24, 0x02	; 2
+ 4c6:	0e 94 49 00 	call	0x92	; 0x92 <TIMER_Start>
+	TIMER_Start(1);
+ 4ca:	81 e0       	ldi	r24, 0x01	; 1
+ 4cc:	0e 94 49 00 	call	0x92	; 0x92 <TIMER_Start>
+	
+
+	sei();
+ 4d0:	78 94       	sei
+
+	while(1)
+	{
+		
+		
+		PORTC = value;
+ 4d2:	80 91 91 00 	lds	r24, 0x0091
+ 4d6:	85 bb       	out	0x15, r24	; 21
+		
+	}
+ 4d8:	fc cf       	rjmp	.-8      	; 0x4d2 <main+0x62>
+
+000004da <__udivmodsi4>:
+ 4da:	a1 e2       	ldi	r26, 0x21	; 33
+ 4dc:	1a 2e       	mov	r1, r26
+ 4de:	aa 1b       	sub	r26, r26
+ 4e0:	bb 1b       	sub	r27, r27
+ 4e2:	fd 01       	movw	r30, r26
+ 4e4:	0d c0       	rjmp	.+26     	; 0x500 <__udivmodsi4_ep>
+
+000004e6 <__udivmodsi4_loop>:
+ 4e6:	aa 1f       	adc	r26, r26
+ 4e8:	bb 1f       	adc	r27, r27
+ 4ea:	ee 1f       	adc	r30, r30
+ 4ec:	ff 1f       	adc	r31, r31
+ 4ee:	a2 17       	cp	r26, r18
+ 4f0:	b3 07       	cpc	r27, r19
+ 4f2:	e4 07       	cpc	r30, r20
+ 4f4:	f5 07       	cpc	r31, r21
+ 4f6:	20 f0       	brcs	.+8      	; 0x500 <__udivmodsi4_ep>
+ 4f8:	a2 1b       	sub	r26, r18
+ 4fa:	b3 0b       	sbc	r27, r19
+ 4fc:	e4 0b       	sbc	r30, r20
+ 4fe:	f5 0b       	sbc	r31, r21
+
+00000500 <__udivmodsi4_ep>:
+ 500:	66 1f       	adc	r22, r22
+ 502:	77 1f       	adc	r23, r23
+ 504:	88 1f       	adc	r24, r24
+ 506:	99 1f       	adc	r25, r25
+ 508:	1a 94       	dec	r1
+ 50a:	69 f7       	brne	.-38     	; 0x4e6 <__udivmodsi4_loop>
+ 50c:	60 95       	com	r22
+ 50e:	70 95       	com	r23
+ 510:	80 95       	com	r24
+ 512:	90 95       	com	r25
+ 514:	9b 01       	movw	r18, r22
+ 516:	ac 01       	movw	r20, r24
+ 518:	bd 01       	movw	r22, r26
+ 51a:	cf 01       	movw	r24, r30
+ 51c:	08 95       	ret
+
+0000051e <__muluhisi3>:
+ 51e:	0e 94 9a 02 	call	0x534	; 0x534 <__umulhisi3>
+ 522:	a5 9f       	mul	r26, r21
+ 524:	90 0d       	add	r25, r0
+ 526:	b4 9f       	mul	r27, r20
+ 528:	90 0d       	add	r25, r0
+ 52a:	a4 9f       	mul	r26, r20
+ 52c:	80 0d       	add	r24, r0
+ 52e:	91 1d       	adc	r25, r1
+ 530:	11 24       	eor	r1, r1
+ 532:	08 95       	ret
+
+00000534 <__umulhisi3>:
+ 534:	a2 9f       	mul	r26, r18
+ 536:	b0 01       	movw	r22, r0
+ 538:	b3 9f       	mul	r27, r19
+ 53a:	c0 01       	movw	r24, r0
+ 53c:	a3 9f       	mul	r26, r19
+ 53e:	70 0d       	add	r23, r0
+ 540:	81 1d       	adc	r24, r1
+ 542:	11 24       	eor	r1, r1
+ 544:	91 1d       	adc	r25, r1
+ 546:	b2 9f       	mul	r27, r18
+ 548:	70 0d       	add	r23, r0
+ 54a:	81 1d       	adc	r24, r1
+ 54c:	11 24       	eor	r1, r1
+ 54e:	91 1d       	adc	r25, r1
+ 550:	08 95       	ret
+
+00000552 <_exit>:
+ 552:	f8 94       	cli
+
+00000554 <__stop_program>:
+ 554:	ff cf       	rjmp	.-2      	; 0x554 <__stop_program>

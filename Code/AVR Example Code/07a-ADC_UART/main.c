@@ -47,7 +47,7 @@ int main()
     
     while(1)
     {
-        adcValue = ADC_GetAdcValue(0); // Read the ADC value of channel zero
+        adcValue = ADC_GetAdcValue(1); // Read the ADC value of channel zero
         UART_Printf("ADC0 Value:%4d \n\r",adcValue);     // Send the value on UART
     }
     

@@ -13,21 +13,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000870  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000120  00000000  00000000  000008ac  2**0
+  5 .debug_aranges 00000128  00000000  00000000  000008ac  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000017c1  00000000  00000000  000009cc  2**0
+  6 .debug_info   00001807  00000000  00000000  000009d4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000059a  00000000  00000000  0000218d  2**0
+  7 .debug_abbrev 0000059a  00000000  00000000  000021db  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000652  00000000  00000000  00002727  2**0
+  8 .debug_line   0000065b  00000000  00000000  00002775  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000374  00000000  00000000  00002d7c  2**2
+  9 .debug_frame  00000384  00000000  00000000  00002dd0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000006c1  00000000  00000000  000030f0  2**0
+ 10 .debug_str    0000073f  00000000  00000000  00003154  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000166d  00000000  00000000  000037b1  2**0
+ 11 .debug_loc    000016d4  00000000  00000000  00003893  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000128  00000000  00000000  00004e1e  2**0
+ 12 .debug_ranges 00000130  00000000  00000000  00004f67  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1411,12 +1411,6 @@ void DELAY_ms(uint16_t ms_count)
  72a:	08 95       	ret
 
 0000072c <main>:
-
-int main() 
-{
-    
-    /*Connect RS->PD0, RW->PD1, EN->PD2 and data bus to PORTB*/
-    LCD_SetUp(PD_0,PD_1,PD_2,PB_0,PB_1,PB_2,PB_3,PB_4,PB_5,PB_6,PB_7);
  72c:	8f e0       	ldi	r24, 0x0F	; 15
  72e:	8f 93       	push	r24
  730:	8e e0       	ldi	r24, 0x0E	; 14
@@ -1435,21 +1429,15 @@ int main()
  74a:	69 e1       	ldi	r22, 0x19	; 25
  74c:	88 e1       	ldi	r24, 0x18	; 24
  74e:	0e 94 17 02 	call	0x42e	; 0x42e <LCD_SetUp>
-    LCD_Init(2,16);
  752:	60 e1       	ldi	r22, 0x10	; 16
  754:	82 e0       	ldi	r24, 0x02	; 2
  756:	0e 94 b7 02 	call	0x56e	; 0x56e <LCD_Init>
  75a:	0f 90       	pop	r0
  75c:	0f 90       	pop	r0
-
-    while(1)
-    {
-        LCD_ScrollMessage(0,"        Welcome to AVR programming by Explore Embedded ");
  75e:	64 e6       	ldi	r22, 0x64	; 100
  760:	70 e0       	ldi	r23, 0x00	; 0
  762:	80 e0       	ldi	r24, 0x00	; 0
  764:	0e 94 3e 03 	call	0x67c	; 0x67c <LCD_ScrollMessage>
-    }
  768:	fa cf       	rjmp	.-12     	; 0x75e <main+0x32>
 
 0000076a <_exit>:

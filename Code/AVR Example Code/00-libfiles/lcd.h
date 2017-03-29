@@ -61,7 +61,7 @@ PreCompile configuration to enable or disable the API's.
 #define    Enable_LCD_DisplayString          1
 #define    Enable_LCD_ScrollMessage          1
 #define    Enable_LCD_DisplayNumber          1
-#define    Enable_LCD_DisplayFloatNumber     1
+#define    Enable_LCD_DisplayFloatNumber     0
 #define    Enable_LCD_Printf                 1
 /**************************************************************************************************/
 

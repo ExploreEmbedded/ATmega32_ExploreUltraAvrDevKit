@@ -150,6 +150,9 @@ typedef unsigned long int  uint32_t;
 #define C_ZERO_U8          0x00u
 #define C_NULL_U8          0x00u
 #define NULL_CHAR          0x00u
+#ifndef NULL
+#define NULL 0
+#endif
 
 
 #define FALSE              0x00u
