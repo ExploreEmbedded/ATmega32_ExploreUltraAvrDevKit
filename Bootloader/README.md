@@ -1,8 +1,8 @@
 Serial bootloader for Atmega32
 
 
+# optiboot_atmega32_16Mhz.hex: Fuse Bits
 ```
-*optiboot_atmega32_16Mhz.hex: Fuse Bits*
 low_fuses=0xff
 high_fuses=0xde
 extended_fuses=0x00
